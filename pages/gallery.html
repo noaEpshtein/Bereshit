@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>גלריה | בראשית</title>
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- עיצובים ששייכים רק לדף הזה נכתבים כאן -->
+    <style>
+    </style>
+</head>
+<body>
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <svg class="svg-defs" aria-hidden="true">
+        <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
+            <!-- רעש אקראי שגורם לקווים "לרעוד" -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
+            <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
+            <feFlood flood-color="#2b2b2b" result="ink"/>
+            <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
+            <!-- צל מודפס: אותו קו, מוזז הצידה -->
+            <feOffset in="outline" dx="3" dy="3" result="shadow"/>
+            <!-- המילוי הצבעוני רועד יחד עם הקו -->
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <feMerge>
+                <feMergeNode in="shadow"/>
+                <feMergeNode in="outline"/>
+                <feMergeNode in="fill"/>
+            </feMerge>
+        </filter>
+    </svg>
+    <!-- מדבקות מפוזרות על הדף (מיקום וזווית ב-CSS: .deco-1/2/3) -->
+    <img src="../assets/images/stickers/ponytail-girl.webp" alt="" class="sticker deco deco-1">
+    <img src="../assets/images/stickers/books-boy.webp" alt="" class="sticker deco deco-2">
+    <img src="../assets/images/stickers/eyes-2.webp" alt="" class="sticker deco deco-3">
+
+    <header>
+        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <div class="brand">
+            <h1>בראשית</h1>
+            <p class="slogan">ליצור עולם בדיו</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">דף הבית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="comics.html">קומיקסים</a></li>
+                <li><a href="gallery.html">גלריה</a></li>
+                <li><a href="order.html">הזמנת ציור</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>גלריה</h2>
+
+                <p>ציורים, סקיצות ואיורים. לחיצה על ציור פותחת אותו בגודל מלא.</p>
+
+                <div class="gallery">
+                    <figure>
+                        <a href="#v-1"><img src="../assets/images/gallery/stage.jpg" alt="על הבמה" loading="lazy"></a>
+                        <figcaption>על הבמה</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-2"><img src="../assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה" loading="lazy"></a>
+                        <figcaption>ילדה וסוכרייה</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-3"><img src="../assets/images/gallery/street.jpg" alt="רחוב" loading="lazy"></a>
+                        <figcaption>רחוב</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-4"><img src="../assets/images/gallery/curly-boy.jpg" alt="ידידי" loading="lazy"></a>
+                        <figcaption>ידידי</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-5"><img src="../assets/images/gallery/bar-mitzvah.jpg" alt="אני בן 13" loading="lazy"></a>
+                        <figcaption>אני בן 13</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-6"><img src="../assets/images/gallery/three-point.jpg" alt="שלוש נקודות" loading="lazy"></a>
+                        <figcaption>שלוש נקודות</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-7"><img src="../assets/images/gallery/curly-girl.webp" alt="ילדונת" loading="lazy"></a>
+                        <figcaption>ילדונת</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-8"><img src="../assets/images/gallery/classroom.jpg" alt="בכיתה" loading="lazy"></a>
+                        <figcaption>בכיתה</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-9"><img src="../assets/images/gallery/woman.jpg" alt="אישה" loading="lazy"></a>
+                        <figcaption>אישה</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-10"><img src="../assets/images/gallery/one-point.jpg" alt="נקודה אחת" loading="lazy"></a>
+                        <figcaption>נקודה אחת</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-11"><img src="../assets/images/gallery/girl-5.jpg" alt="ילדה בת חמש" loading="lazy"></a>
+                        <figcaption>ילדה בת חמש</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-12"><img src="../assets/images/gallery/park-sketch.jpg" alt="ברחוב" loading="lazy"></a>
+                        <figcaption>ברחוב</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-13"><img src="../assets/images/gallery/boy-12.jpg" alt="ילד בן 12" loading="lazy"></a>
+                        <figcaption>ילד בן 12</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-14"><img src="../assets/images/gallery/winter-girl.jpg" alt="ילדה בחורף" loading="lazy"></a>
+                        <figcaption>ילדה בחורף</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-15"><img src="../assets/images/gallery/toddler-2.jpg" alt="ילד בן שנתיים" loading="lazy"></a>
+                        <figcaption>ילד בן שנתיים</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-16"><img src="../assets/images/gallery/girl-dress.jpg" alt="ילדה בשמלה" loading="lazy"></a>
+                        <figcaption>ילדה בשמלה</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#v-17"><img src="../assets/images/gallery/baby.webp" alt="תינוק" loading="lazy"></a>
+                        <figcaption>תינוק</figcaption>
+                    </figure>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <!-- תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS) -->
+    <div class="lightbox" id="v-1">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/stage.jpg" alt="על הבמה"><figcaption>על הבמה</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-17" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-2" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-2">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה"><figcaption>ילדה וסוכרייה</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-1" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-3" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-3">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/street.jpg" alt="רחוב"><figcaption>רחוב</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-2" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-4" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-4">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/curly-boy.jpg" alt="ידידי"><figcaption>ידידי</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-3" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-5" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-5">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/bar-mitzvah.jpg" alt="אני בן 13"><figcaption>אני בן 13</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-4" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-6" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-6">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/three-point.jpg" alt="שלוש נקודות"><figcaption>שלוש נקודות</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-5" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-7" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-7">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/curly-girl.webp" alt="ילדונת"><figcaption>ילדונת</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-6" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-8" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-8">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/classroom.jpg" alt="בכיתה"><figcaption>בכיתה</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-7" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-9" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-9">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/woman.jpg" alt="אישה"><figcaption>אישה</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-8" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-10" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-10">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/one-point.jpg" alt="נקודה אחת"><figcaption>נקודה אחת</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-9" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-11" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-11">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/girl-5.jpg" alt="ילדה בת חמש"><figcaption>ילדה בת חמש</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-10" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-12" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-12">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/park-sketch.jpg" alt="ברחוב"><figcaption>ברחוב</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-11" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-13" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-13">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/boy-12.jpg" alt="ילד בן 12"><figcaption>ילד בן 12</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-12" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-14" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-14">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/winter-girl.jpg" alt="ילדה בחורף"><figcaption>ילדה בחורף</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-13" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-15" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-15">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/toddler-2.jpg" alt="ילד בן שנתיים"><figcaption>ילד בן שנתיים</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-14" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-16" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-16">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/girl-dress.jpg" alt="ילדה בשמלה"><figcaption>ילדה בשמלה</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-15" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-17" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox" id="v-17">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/gallery/baby.webp" alt="תינוק"><figcaption>תינוק</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#v-16" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#v-1" class="lb-next" aria-label="הבא"></a>
+    </div>
+
+    <footer>
+        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+    </footer>
+</body>
+</html>

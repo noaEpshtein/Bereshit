@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דף הבית | בראשית</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- עיצובים ששייכים רק לדף הבית: לדף הזה תבנית משלו — תפריט בשורה וחלקים לרוחב כל הדף -->
+    <style>
+        /* ----- main בדף הבית: בלי "דף" לבן — כל חלק מעוצב בנפרד ----- */
+        main.home {
+            width: 100%;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 20px 5% 60px;
+        }
+
+        .home > section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .home > section + section {
+            margin-top: 70px;
+        }
+
+        .home h2 {
+            display: block;
+            text-align: center;
+        }
+
+        .home h2::after {
+            margin: 10px auto 0;     /* הקו מתחת לכותרת — במרכז */
+        }
+
+        /* ----- 1. הסרטון שפותח את הדף: לכל רוחב המסך ולכל הגובה שמתחת לכותרת ----- */
+        .home > .hero-video {
+            max-width: none;
+            width: 100vw;
+            margin-right: calc(50% - 50vw);   /* "בורח" מהריווח של main אל קצוות המסך */
+            margin-top: -20px;
+            background-color: #fdfdfb;        /* אותו צבע כמו רקע הסרטון — המסגרת נעלמת */
+            border-bottom: var(--line);
+        }
+
+        .hero-video video {
+            display: block;
+            width: 100%;
+            height: calc(100vh - 125px);      /* כל המסך פחות גובה הכותרת */
+            object-fit: contain;              /* כל הציור נראה, בלי חיתוך */
+        }
+
+        /* ----- 2. ברוכים הבאים ----- */
+        .welcome {
+            text-align: center;
+        }
+
+        .welcome p {
+            margin: 0 auto 25px;
+            font-size: 1.2rem;
+        }
+
+        /* ----- 3. שני כרטיסים: קומיקסים וגלריה ----- */
+        .cards {
+            display: flex;
+            gap: 40px;
+        }
+
+        .card {
+            flex: 1;
+            display: block;
+            padding: 30px;
+            text-align: center;
+            color: var(--ink);
+            text-decoration: none;
+            border: var(--line);
+            border-radius: var(--hand-2);
+            box-shadow: var(--shadow);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:nth-child(1) { background-color: var(--blue);     rotate: -1deg; }
+        .card:nth-child(2) { background-color: var(--lavender); rotate: 1deg; }
+
+        .card:hover {
+            transform: translate(-3px, -6px);
+            box-shadow: 9px 11px 0 var(--ink);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+        }
+
+        .card img {
+            display: block;
+            max-width: 100%;
+            max-height: 220px;
+            margin: 18px auto;
+            border: var(--thin);
+            border-radius: var(--hand-2);
+            background-color: white;
+        }
+
+        .card span {
+            font-weight: 600;
+        }
+
+        /* ----- 4. לוח השעם ----- */
+        .corkboard {
+            position: relative;
+            min-height: 380px;
+            padding: 50px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px 50px;
+            /* מרקם שעם: צבע חום + נקודות כהות ובהירות */
+            background-color: #c99a62;
+            background-image:
+                radial-gradient(#a87a45 1.5px, transparent 1.5px),
+                radial-gradient(#ddb47f 1px, transparent 1px);
+            background-size: 14px 14px, 9px 9px;
+            background-position: 0 0, 5px 7px;
+            /* מסגרת עץ עם קו דיו */
+            border: 14px solid #8a5a2e;
+            outline: 3px solid var(--ink);
+            border-radius: 6px;
+            box-shadow: 10px 10px 0 var(--ink);
+        }
+
+        /* כל פריט על הלוח (מדבקה או פתק) "נעוץ" בנעץ */
+        .pinned {
+            position: relative;
+            display: block;
+            transition: transform 0.25s;
+        }
+
+        /* הנעץ: ברירת המחדל — באמצע הקצה העליון (פתקים ותמונות).
+           במדבקות, המיקום המדויק על הנייר מגיע מהמשתנים --px ו---py שכתובים על כל מדבקה */
+        .pinned::before {
+            content: "";
+            position: absolute;
+            top: calc(var(--py, 0%) - 9px);
+            left: var(--px, 50%);
+            width: 18px;
+            height: 18px;
+            margin-left: -9px;
+            border-radius: 50%;
+            border: 2px solid var(--ink);
+            background-color: var(--pin, var(--accent));
+            box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.35);
+            z-index: 2;
+        }
+
+        /* כל פריט בזווית ובצבע נעץ אחר */
+        .pinned:nth-child(4n+1) { rotate: -6deg; --pin: var(--accent); }
+        .pinned:nth-child(4n+2) { rotate: 4deg;  --pin: #7fc8a9; margin-top: 40px; }
+        .pinned:nth-child(4n+3) { rotate: -2deg; --pin: #8fb3e8; }
+        .pinned:nth-child(4n)   { rotate: 7deg;  --pin: #f2c94c; margin-top: -30px; }
+
+        .pinned:hover {
+            transform: scale(1.06);
+            z-index: 3;
+        }
+
+        /* כל המדבקות בגודל דומה, בלי קשר לצורה שלהן */
+        .pinned img {
+            display: block;
+            max-height: 210px;
+            max-width: 190px;
+        }
+
+        /* פתק נייר על הלוח */
+        .note {
+            width: 190px;
+            padding: 25px 18px 18px;
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            text-align: center;
+            color: var(--ink);
+            text-decoration: none;
+            background-color: var(--yellow);
+            border: var(--thin);
+            border-radius: var(--hand-2);
+            box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .note.pink {
+            background-color: var(--pink);
+        }
+
+        .note.blue {
+            background-color: var(--blue);
+        }
+
+        /* "תמונה מודפסת" נעוצה בלוח: מסגרת לבנה ושוליים רחבים למטה */
+        .polaroid {
+            padding: 10px 10px 8px;
+            background-color: white;
+            border: var(--thin);
+            box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .pinned.polaroid img {
+            width: 180px;
+            max-width: none;
+            max-height: none;
+            height: 140px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .polaroid span {
+            display: block;
+            margin-top: 6px;
+            font-family: var(--font-hand);
+        }
+
+        /* ----- טלפון ----- */
+        @media (max-width: 700px) {
+            .home > section + section {
+                margin-top: 50px;
+            }
+
+            .cards {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .corkboard {
+                padding: 35px 15px;
+                gap: 30px 20px;
+                border-width: 10px;
+                box-shadow: 6px 6px 0 var(--ink);
+            }
+
+            .pinned img {
+                max-height: 140px;
+                max-width: 120px;
+            }
+
+            .note {
+                width: 150px;
+                font-size: 1rem;
+            }
+
+            .pinned.polaroid img {
+                width: 120px;
+                height: 95px;
+            }
+
+            .hero-video video {
+                height: auto;                 /* בטלפון: לפי היחס של הסרטון */
+            }
+
+            .pinned:nth-child(4n+2),
+            .pinned:nth-child(4n) {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <svg class="svg-defs" aria-hidden="true">
+        <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
+            <!-- רעש אקראי שגורם לקווים "לרעוד" -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
+            <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
+            <feFlood flood-color="#2b2b2b" result="ink"/>
+            <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
+            <!-- צל מודפס: אותו קו, מוזז הצידה -->
+            <feOffset in="outline" dx="3" dy="3" result="shadow"/>
+            <!-- המילוי הצבעוני רועד יחד עם הקו -->
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <feMerge>
+                <feMergeNode in="shadow"/>
+                <feMergeNode in="outline"/>
+                <feMergeNode in="fill"/>
+            </feMerge>
+        </filter>
+    </svg>
+
+    <header>
+        <a href="index.html"><img src="assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <div class="brand">
+            <h1>בראשית</h1>
+            <p class="slogan">ליצור עולם בדיו</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="pages/about.html">אודות</a></li>
+                <li><a href="pages/comics.html">קומיקסים</a></li>
+                <li><a href="pages/gallery.html">גלריה</a></li>
+                <li><a href="pages/order.html">הזמנת ציור</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="home">
+
+        <!-- 1. הסרטון פותח את הדף: מתחיל לבד, בלי קול, בלולאה -->
+        <section class="hero-video">
+            <video controls autoplay muted loop playsinline>
+                <source src="assets/files/process.mp4" type="video/mp4">
+                הדפדפן שלך לא תומך בהצגת סרטונים.
+            </video>
+        </section>
+
+        <!-- 2. ברוכים הבאים -->
+        <section class="welcome">
+            <h2>ברוכים הבאים לבראשית</h2>
+            <p>אני מציירת כי ציור הוא כוח מופלא: הוא הופך רגע קטן לסיפור. הסתובבו בגלריה, קראו קומיקס, ואם תרצו — אצייר גם בשבילכם.</p>
+            <a href="pages/order.html" class="btn">להזמנת ציור</a>
+        </section>
+
+        <!-- 3. כרטיסים לשני דפי הציורים -->
+        <section class="cards">
+            <a href="pages/comics.html" class="card">
+                <h3>קומיקסים</h3>
+                <img src="assets/images/comics/shabbat-72.webp" alt="קומיקס שבת">
+                <span>לכל הקומיקסים ←</span>
+            </a>
+            <a href="pages/gallery.html" class="card">
+                <h3>גלריה</h3>
+                <img src="assets/images/gallery/stage.jpg" alt="על הבמה">
+                <span>לכל הציורים ←</span>
+            </a>
+        </section>
+
+        <!-- 4. לוח השעם: מדבקות ופתקים נעוצים בנעצים -->
+        <section class="board-section">
+            <h2>על הלוח</h2>
+            <div class="corkboard">
+                <a href="pages/gallery.html" class="pinned note">ציורים חדשים עלו לגלריה!</a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 57.2%; --py: 6.5%;"><img src="assets/images/stickers/reading-girl.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/curly-girl.webp" alt="ילדונת"><span>ילדונת</span></a>
+                <a href="pages/comics.html" class="pinned" style="--px: 50.0%; --py: 5.6%;"><img src="assets/images/stickers/bearded-man.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 50.0%; --py: 5.4%;"><img src="assets/images/stickers/family-father.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 69.4%; --py: 7.9%;"><img src="assets/images/stickers/duo.webp" alt="" class="sticker"></a>
+                <a href="pages/order.html" class="pinned note pink">רוצים ציור משלכם? הזמינו כאן</a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 63.7%; --py: 6.5%;"><img src="assets/images/stickers/winter-girl.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/street.jpg" alt="רחוב"><span>רחוב</span></a>
+                <a href="pages/comics.html" class="pinned" style="--px: 49.9%; --py: 8.0%;"><img src="assets/images/stickers/eyes-3.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 50.7%; --py: 6.0%;"><img src="assets/images/stickers/professor.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 49.6%; --py: 5.4%;"><img src="assets/images/stickers/family-mother.webp" alt="" class="sticker"></a>
+                <a href="pages/comics.html" class="pinned note blue">קומיקס חדש: מאחורי הקלעים</a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 50.0%; --py: 6.9%;"><img src="assets/images/stickers/family-toddler.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה"><span>ילדה וסוכרייה</span></a>
+                <a href="pages/gallery.html" class="pinned" style="--px: 39.3%; --py: 6.9%;"><img src="assets/images/stickers/books-boy.webp" alt="" class="sticker"></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; כל הזכויות שמורות | <a href="pages/about.html">אודות</a></p>
+    </footer>
+</body>
+</html>

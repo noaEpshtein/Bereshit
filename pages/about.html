@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אודות | בראשית</title>
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- עיצובים ששייכים רק לדף הזה -->
+    <style>
+        /* ----- פתיחה: טקסט ולוגו זה לצד זה ----- */
+        .intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+        }
+
+        /* משפט מודגש בסגנון "ציטוט" בכתב יד */
+        .intro blockquote {
+            margin: 20px 0;
+            padding: 12px 20px;
+            font-family: var(--font-hand);
+            font-size: 1.4rem;
+            background-color: var(--yellow);
+            border: var(--thin);
+            border-radius: var(--hand-2);
+            rotate: -1deg;
+        }
+
+        .intro-logo {
+            width: 30%;
+            min-width: 180px;
+        }
+
+        /* ----- רשימת "מה אני מציירת": כל פריט כפתק צבעוני ----- */
+        .what-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .what-list li {
+            padding: 16px 18px;
+            border: var(--thin);
+            border-radius: var(--hand-2);
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .what-list li:nth-child(1) { background-color: var(--pink);     rotate: -1deg; }
+        .what-list li:nth-child(2) { background-color: var(--mint);     rotate: 1deg; }
+        .what-list li:nth-child(3) { background-color: var(--blue);     rotate: -0.5deg; }
+        .what-list li:nth-child(4) { background-color: var(--lavender); rotate: 1.5deg; }
+
+        .what-list strong {
+            display: block;
+            font-family: var(--font-hand);
+            font-size: 1.2rem;
+        }
+
+        /* ----- פרטי קשר ----- */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 15px 0 25px;
+        }
+
+        .contact-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            color: var(--ink);
+            text-decoration: none;
+            background-color: white;
+            border: var(--thin);
+            border-radius: var(--hand-2);
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-list a:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 var(--ink);
+        }
+
+        .contact-list .icon {
+            font-size: 1.4rem;
+        }
+
+        @media (max-width: 700px) {
+            .intro {
+                flex-direction: column-reverse;   /* בטלפון: הלוגו מעל הטקסט */
+                gap: 10px;
+            }
+
+            .intro-logo {
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <svg class="svg-defs" aria-hidden="true">
+        <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
+            <!-- רעש אקראי שגורם לקווים "לרעוד" -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
+            <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
+            <feFlood flood-color="#2b2b2b" result="ink"/>
+            <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
+            <!-- צל מודפס: אותו קו, מוזז הצידה -->
+            <feOffset in="outline" dx="3" dy="3" result="shadow"/>
+            <!-- המילוי הצבעוני רועד יחד עם הקו -->
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <feMerge>
+                <feMergeNode in="shadow"/>
+                <feMergeNode in="outline"/>
+                <feMergeNode in="fill"/>
+            </feMerge>
+        </filter>
+    </svg>
+    <!-- מדבקות מפוזרות על הדף (מיקום וזווית ב-CSS: .deco-1/2/3) -->
+    <img src="../assets/images/stickers/baby-face.webp" alt="" class="sticker deco deco-1">
+    <img src="../assets/images/stickers/professor.webp" alt="" class="sticker deco deco-2">
+    <img src="../assets/images/stickers/family-toddler.webp" alt="" class="sticker deco deco-3">
+
+    <header>
+        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <div class="brand">
+            <h1>בראשית</h1>
+            <p class="slogan">ליצור עולם בדיו</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">דף הבית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="comics.html">קומיקסים</a></li>
+                <li><a href="gallery.html">גלריה</a></li>
+                <li><a href="order.html">הזמנת ציור</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <section class="intro">
+                <div class="intro-text">
+                    <h2>אודות</h2>
+                    <p>אני אוהבת לצייר. מאז שאני זוכרת את עצמי, דף לבן ועט היו בשבילי הזמנה להתחיל משהו חדש.</p>
+                    <blockquote>ציור הוא כוח מופלא: קו אחד על דף ריק — ופתאום יש דמות, סיפור, עולם שלם.</blockquote>
+                    <p>מכאן גם השם <strong>בראשית</strong>: כל ציור מתחיל מכלום, מקו ראשון, ונבנה לאט לאט — סקיצה, דיו, ולפעמים גם צבע. באתר תמצאו ציורים, קומיקסים ומדבקות שיצרתי, וגם אפשרות להזמין ציור משלכם.</p>
+                </div>
+                <img src="../assets/images/logo.webp" alt="הלוגו של בראשית: גלובוס שמכחול מצייר" class="sticker intro-logo">
+            </section>
+
+            <section>
+                <h2>מה אני מציירת</h2>
+                <ul class="what-list">
+                    <li><strong>דמויות ודיוקנאות</strong>ילדים, משפחות ודמויות עם הרבה הבעה.</li>
+                    <li><strong>קומיקסים</strong>סיפורים קצרים מהחיים, בריבועים ובבועות דיבור.</li>
+                    <li><strong>איורים צבעוניים</strong>סצנות, רחובות וחדרים — עם פרספקטיבה וצבע.</li>
+                    <li><strong>מדבקות</strong>דמויות שגזרתי מהציורים — כמו אלה שמפוזרות באתר.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>יצירת קשר</h2>
+                <p>רוצים לשאול, להתייעץ או להזמין? אשמח לשמוע!</p>
+                <!-- להחליף את הפרטים לדוגמה בפרטים האמיתיים -->
+                <ul class="contact-list">
+                    <li><a href="mailto:example@email.com"><span class="icon">✉️</span> example@email.com</a></li>
+                    <li><a href="tel:0500000000"><span class="icon">📞</span> 050-0000000</a></li>
+                    <li><a href="order.html"><span class="icon">✏️</span> טופס הזמנת ציור</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+    </footer>
+</body>
+</html>

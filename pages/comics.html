@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קומיקסים | בראשית</title>
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- עיצובים ששייכים רק לדף הזה נכתבים כאן -->
+    <style>
+    </style>
+</head>
+<body>
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <svg class="svg-defs" aria-hidden="true">
+        <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
+            <!-- רעש אקראי שגורם לקווים "לרעוד" -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
+            <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
+            <feFlood flood-color="#2b2b2b" result="ink"/>
+            <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
+            <!-- צל מודפס: אותו קו, מוזז הצידה -->
+            <feOffset in="outline" dx="3" dy="3" result="shadow"/>
+            <!-- המילוי הצבעוני רועד יחד עם הקו -->
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <feMerge>
+                <feMergeNode in="shadow"/>
+                <feMergeNode in="outline"/>
+                <feMergeNode in="fill"/>
+            </feMerge>
+        </filter>
+    </svg>
+    <!-- מדבקות מפוזרות על הדף (מיקום וזווית ב-CSS: .deco-1/2/3) -->
+    <img src="../assets/images/stickers/tongue-girl.webp" alt="" class="sticker deco deco-1">
+    <img src="../assets/images/stickers/hat-guy.webp" alt="" class="sticker deco deco-2">
+    <img src="../assets/images/stickers/family-baby.webp" alt="" class="sticker deco deco-3">
+
+    <header>
+        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <div class="brand">
+            <h1>בראשית</h1>
+            <p class="slogan">ליצור עולם בדיו</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">דף הבית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="comics.html">קומיקסים</a></li>
+                <li><a href="gallery.html">גלריה</a></li>
+                <li><a href="order.html">הזמנת ציור</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>קומיקסים</h2>
+
+                <p>קומיקסים שכתבתי וציירתי. לחיצה על עמוד פותחת אותו בגודל מלא.</p>
+
+                <!-- כל קומיקס הוא article, וכל עמוד בו הוא figure -->
+                <article class="comic">
+                    <h3>קומיקס שבת</h3>
+                    <div class="comic-pages wide">
+                        <figure class="comic-page">
+                            <a href="#c-1"><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת - עמוד 1" loading="lazy"></a>
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="comic">
+                    <h3>המעט שהוא רב</h3>
+                    <div class="comic-pages">
+                        <figure class="comic-page">
+                            <a href="#c-2"><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב - עמוד 1" loading="lazy"></a>
+                        </figure>
+                        <figure class="comic-page">
+                            <a href="#c-3"><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב - עמוד 2" loading="lazy"></a>
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="comic">
+                    <h3>בחדר ההתאוששות</h3>
+                    <div class="comic-pages">
+                        <figure class="comic-page">
+                            <a href="#c-4"><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות - עמוד 1" loading="lazy"></a>
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="comic">
+                    <h3>מאחורי הקלעים</h3>
+                    <div class="comic-pages">
+                        <figure class="comic-page">
+                            <a class="split-page" href="#c-5"><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים - עמוד 1" loading="lazy"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt="" loading="lazy"></a>
+                        </figure>
+                        <figure class="comic-page">
+                            <a href="#c-6"><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים - עמוד 2" loading="lazy"></a>
+                        </figure>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+
+
+
+    <!-- תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS) -->
+    <div class="lightbox comic-lb" id="c-1">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת"><figcaption>קומיקס שבת</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-6" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-2" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox comic-lb" id="c-2">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1"><figcaption>המעט שהוא רב — עמוד 1</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-1" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-3" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox comic-lb" id="c-3">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2"><figcaption>המעט שהוא רב — עמוד 2</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-2" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-4" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox comic-lb" id="c-4">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות"><figcaption>בחדר ההתאוששות</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-3" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-5" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox comic-lb" id="c-5">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt=""><figcaption>מאחורי הקלעים — עמוד 1</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-4" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-6" class="lb-next" aria-label="הבא"></a>
+    </div>
+    <div class="lightbox comic-lb" id="c-6">
+        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+        <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2"><figcaption>מאחורי הקלעים — עמוד 2</figcaption></figure>
+        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+        <a href="#c-5" class="lb-prev" aria-label="הקודם"></a>
+        <a href="#c-1" class="lb-next" aria-label="הבא"></a>
+    </div>
+
+    <footer>
+        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+    </footer>
+</body>
+</html>

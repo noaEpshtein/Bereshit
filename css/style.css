@@ -1,0 +1,676 @@
+/* ===== עיצוב משותף לכל דפי האתר ===== */
+/* סגנון: סטודיו / גלריה בנגיעת קומיקס — גופן אלגנטי, צבעי פסטל, קווי דיו עבים וצל "מודפס" */
+
+/* גופנים מגוגל-פונטס (שניהם תומכים בעברית):
+   Playpen Sans Hebrew — כתב יד: שם האתר, הסלוגן, הכותרות והפתקים
+   Rubik — עגול ונקי: הטקסט הרגיל, התפריט והכפתורים */
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;600;800&family=Rubik:wght@400;500;700&display=swap');
+
+/* ----- משתנים: כל הצבעים במקום אחד. משנים כאן ← משתנה בכל האתר ----- */
+:root {
+    /* הגופנים — משנים כאן ומשתנה בכל האתר */
+    --font-hand: 'Playpen Sans Hebrew', 'Varela Round', Arial, sans-serif;
+    --font-text: 'Rubik', Arial, sans-serif;
+
+    --ink: #2b2b2b;          /* "דיו": טקסט, קווים ומסגרות */
+    --paper: #fffdf8;        /* רקע בצבע נייר */
+    --white: #ffffff;
+    --pink: #ffd6e0;
+    --yellow: #fff1b8;
+    --mint: #c9f0e1;
+    --blue: #cfe3ff;
+    --lavender: #e4d9ff;
+    --accent: #e8738a;       /* צבע הדגשה: ורוד-אלמוג, כהה מספיק לטקסט וקווים */
+    --line: 3px solid var(--ink);            /* קו דיו עבה */
+    --thin: 2px solid var(--ink);
+    --shadow: 5px 5px 0 var(--ink);          /* צל חד בסגנון קומיקס */
+
+    /* פינות לא שוות — המסגרת נראית כאילו צוירה ביד ולא בסרגל */
+    --hand: 14px 4px 18px 6px / 6px 16px 4px 20px;
+    --hand-2: 5px 16px 6px 13px / 15px 5px 18px 6px;
+
+    /* קו מכחול: עובי משתנה בין 3 ל-5 פיקסלים, נשמר כתמונת SVG בתוך ה-CSS */
+    --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='10' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M0 4 C40 2 80 5 120 3.5 S200 2 240 4.5 S330 3 400 4 L400 7 C360 8.5 300 6 250 7.5 S150 8.5 100 6.5 S30 8 0 7 Z' fill='%232b2b2b'/%3E%3C/svg%3E");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-text);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.75;
+    background-color: var(--paper);
+    position: relative;     /* המדבקות המפוזרות ממוקמות ביחס ל-body */
+    overflow-x: hidden;     /* מדבקה שבולטת מהצד לא תיצור גלילה לרוחב */
+    /* הכותרת התחתונה תמיד בתחתית המסך, גם בדף קצר */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-hand);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* כותרת משנה עם קו קצר בצבע ההדגשה מתחתיה */
+h2 {
+    font-size: 2.1rem;
+    margin-bottom: 25px;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    margin-top: 10px;
+    background-color: var(--accent);
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 14px;
+    max-width: 65ch;        /* שורות לא ארוכות מדי — נוח לקריאה */
+}
+
+a {
+    color: var(--accent);
+}
+
+/* ----- כותרת ראשית ----- */
+header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 5%;
+    background-color: var(--pink);
+    position: sticky;       /* הכותרת נשארת למעלה בזמן גלילה */
+    top: 0;
+    z-index: 20;
+}
+
+/* קו המכחול מתחת לכותרת */
+header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 9px;
+    background-image: var(--brush);
+    background-size: 400px 100%;
+    background-repeat: repeat-x;
+}
+
+/* שם האתר: אותיות בצהוב בהיר עם קו דיו "חי" מסביב */
+header h1 {
+    font-family: var(--font-hand);
+    font-weight: 800;
+    font-size: 3.2rem;
+    letter-spacing: -1px;   /* אותיות צפופות */
+    line-height: 1.1;
+    padding: 0 6px;
+    color: #fff3b0;         /* המילוי: צהוב בהיר */
+    /* קו המתאר, הרעידה והצל מגיעים מפילטר ה-SVG שבראש כל דף */
+    filter: url(#ink-outline);
+}
+
+/* הסלוגן מתחת לשם האתר */
+.slogan {
+    margin: -6px 0 0;       /* צמוד לשם האתר */
+    font-family: var(--font-hand);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+}
+
+/* תגית ה-SVG עצמה לא תופסת מקום בדף */
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.logo {
+    height: 80px;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.logo:hover {
+    transform: rotate(-6deg);
+}
+
+/* ----- nav ו-main אחד ליד השני ----- */
+.container {
+    display: flex;
+    align-items: flex-start;
+    padding: 50px 6%;
+    flex: 1;                /* תופס את כל הגובה הפנוי ודוחף את ה-footer למטה */
+}
+
+/* התפריט בתוך הכותרת, נדחף לצד השמאלי */
+nav {
+    margin-right: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* כל קישור בתפריט מקבל צבע פסטל משלו — משתנה --c לפי nth-child */
+nav li:nth-child(1) { --c: var(--yellow); }
+nav li:nth-child(2) { --c: var(--mint); }
+nav li:nth-child(3) { --c: var(--blue); }
+nav li:nth-child(4) { --c: var(--lavender); }
+nav li:nth-child(5) { --c: var(--pink); }
+
+/* הטיה זעירה לסירוגין — כאילו הכפתורים הודבקו ביד */
+nav li:nth-child(odd)  a { rotate: -0.8deg; }
+nav li:nth-child(even) a { rotate: 0.6deg; }
+
+nav a {
+    display: block;
+    position: relative;
+    padding: 10px 22px 10px 10px;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+    background-color: var(--white);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+/* פס צבע בצד ימין של כל כפתור */
+nav a::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background-color: var(--c);
+    border-left: var(--thin);
+    border-radius: 0 12px 4px 0 / 0 5px 14px 0;
+}
+
+/* במעבר עכבר: הכפתור נצבע ו"נלחץ" לתוך הצל */
+nav a:hover {
+    background-color: var(--c);
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);
+}
+
+/* ----- התוכן המרכזי ----- */
+main {
+    width: 100%;
+    background-color: var(--white);
+    border: var(--line);
+    border-radius: var(--hand);
+    box-shadow: 8px 8px 0 var(--ink);   /* צל מודפס — נגיעת הקומיקס */
+    padding: 45px 50px;
+}
+
+main > section + section {
+    margin-top: 60px;       /* רווח בין חלקים באותו דף */
+}
+
+/* ----- כותרת תחתונה ----- */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: var(--mint);
+    position: relative;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* קו המכחול מעל הכותרת התחתונה (הפוך, כדי שלא ייראה זהה לעליון) */
+footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -4px;
+    height: 9px;
+    background-image: var(--brush);
+    background-size: 330px 100%;
+    background-repeat: repeat-x;
+    transform: scaleX(-1);
+}
+
+footer p {
+    max-width: none;
+    margin: 0;
+}
+
+footer a {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+/* ----- כפתור בסגנון קומיקס (בדף הבית ובטופס ההזמנה) ----- */
+.btn {
+    display: inline-block;
+    padding: 12px 34px;
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    background-color: var(--pink);
+    border: var(--line);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--yellow);
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* ----- ציור-מדבקה: הצל נוצר כאן, המדבקה עצמה בקובץ ה-PNG ----- */
+.sticker {
+    max-width: 100%;
+    filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.25));
+    transition: transform 0.4s, filter 0.4s;
+}
+
+.sticker:hover {
+    transform: rotate(-2deg) scale(1.04);
+    filter: drop-shadow(5px 9px 10px rgba(0, 0, 0, 0.22));
+}
+
+/* ----- מדבקות מפוזרות על האתר ----- */
+/* rotate נפרד מ-transform, כך שה-hover של .sticker לא מבטל את ההטיה */
+.deco {
+    position: absolute;
+    width: 7%;
+    min-width: 60px;
+    z-index: 30;
+}
+
+.deco-1 { top: 150px;  left: 1%;  rotate: -10deg; }   /* פינה שמאלית עליונה של הדף */
+.deco-2 { top: 55%;    right: 0.5%; rotate: 7deg;  }   /* בצד ימין, באמצע הדף */
+.deco-3 { bottom: 10px; left: 2%; rotate: 12deg;  }   /* למטה, "מודבקת" על הכותרת התחתונה */
+
+/* ----- דף הבית: סרטון תהליך הציור ----- */
+.process video {
+    width: 100%;
+    max-width: 720px;
+    display: block;
+    margin-top: 10px;
+    border: var(--line);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    background-color: var(--lavender);
+}
+
+/* ----- דף גלריה: רשת של ציורים ----- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 45px 35px;
+    margin-top: 25px;
+}
+
+.gallery figure {
+    text-align: center;
+}
+
+/* כל ציור במסגרת של "דף מודפס" */
+.gallery a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 10px;
+    background-color: var(--white);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* הטיה קטנה ושונה לכל ציור */
+.gallery figure:nth-child(3n+1) a { rotate: -1.5deg; }
+.gallery figure:nth-child(3n+2) a { rotate: 1deg; }
+.gallery figure:nth-child(3n)   a { rotate: -0.5deg; }
+
+.gallery a:hover {
+    transform: translate(-2px, -5px) scale(1.03);
+    box-shadow: 8px 10px 0 var(--ink);
+}
+
+/* הציור נכנס למסגרת בלי להתעוות */
+.gallery img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.gallery figcaption {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    background: linear-gradient(transparent 55%, var(--yellow) 55%);   /* "מרקר" עדין */
+}
+
+/* ----- דף קומיקסים: עמודים זה לצד זה, כמו כפולת חוברת ----- */
+.comic {
+    margin-top: 50px;
+}
+
+.comic h3 {
+    display: inline-block;
+    padding: 2px 16px;
+    background-color: var(--blue);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    rotate: -1deg;
+}
+
+.comic:nth-of-type(even) h3 {
+    background-color: var(--pink);
+    rotate: 1deg;
+}
+
+.comic-pages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.comic-page {
+    flex: 1 1 280px;
+    max-width: calc(50% - 13px);   /* לכל היותר שני עמודים בשורה */
+}
+
+.comic-pages.wide .comic-page {
+    max-width: 100%;               /* קומיקס לרוחב — עמוד אחד ברוחב מלא */
+}
+
+.comic-page a {
+    display: block;
+    border: var(--line);
+    border-radius: var(--hand-2);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background-color: white;
+    transition: transform 0.25s;
+}
+
+.comic-page a:hover {
+    transform: translateY(-4px);
+}
+
+.comic-page img {
+    display: block;
+    width: 100%;
+}
+
+/* ----- תצוגה בתוך האתר (lightbox) — CSS בלבד, בעזרת :target ----- */
+/* כל חלון מוסתר; כשלוחצים על קישור #v-3 הכתובת משתנה, והחלון עם id="v-3" הופך ל-:target ומוצג */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 70px;
+}
+
+.lightbox:target {
+    display: flex;
+    animation: lb-in 0.3s ease-out;
+}
+
+@keyframes lb-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* הרקע הכהה — גם הוא קישור, כך שלחיצה מחוץ לתמונה סוגרת */
+.lb-bg {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(43, 43, 43, 0.85);
+    cursor: zoom-out;
+}
+
+.lightbox figure {
+    position: relative;      /* מעל הרקע */
+    padding: 12px 12px 6px;
+    background-color: white;
+    border: var(--line);
+    border-radius: var(--hand-2);
+    box-shadow: 8px 8px 0 #000;
+    text-align: center;
+}
+
+.lightbox img {
+    display: block;
+    max-width: 82vw;
+    max-height: 78vh;
+    margin: 0 auto;
+}
+
+.lightbox figcaption {
+    margin-top: 6px;
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+}
+
+/* כפתורי סגירה וחצים — עיגולים בסגנון האתר */
+.lb-x,
+.lb-prev,
+.lb-next {
+    position: absolute;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--ink);
+    text-decoration: none;
+    background-color: var(--yellow);
+    border: var(--thin);
+    border-radius: 50%;
+    box-shadow: 3px 3px 0 #000;
+    transition: transform 0.2s;
+}
+
+.lb-x:hover,
+.lb-prev:hover,
+.lb-next:hover {
+    transform: scale(1.12);
+}
+
+.lb-x    { top: 18px; left: 18px; background-color: var(--pink); }
+.lb-prev { right: 12px; top: 50%; margin-top: -25px; }
+.lb-next { left: 12px;  top: 50%; margin-top: -25px; }
+
+/* החצים מצוירים ב-CSS (ולא כתו טקסט), כדי שהדפדפן לא "יהפוך" אותם בדף מימין לשמאל:
+   ריבוע קטן עם שני קווים (למעלה ומשמאל), מסובב כך שהפינה מצביעה החוצה */
+.lb-prev::before,
+.lb-next::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-top: 3px solid var(--ink);
+    border-left: 3px solid var(--ink);
+}
+
+.lb-prev::before { rotate: 135deg; margin-right: 6px; }   /* מצביע ימינה */
+.lb-next::before { rotate: -45deg; margin-left: 6px; }    /* מצביע שמאלה */
+
+/* עמודי קומיקס: גבוהים — אפשר לגלול בתוך החלון כדי לקרוא */
+.comic-lb {
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.comic-lb img {
+    max-width: min(900px, 80vw);
+    max-height: none;
+}
+
+.comic-lb .lb-bg,
+.comic-lb .lb-x,
+.comic-lb .lb-prev,
+.comic-lb .lb-next {
+    position: fixed;         /* נשארים במקום בזמן גלילה */
+}
+
+.comic-lb .lb-prev,
+.comic-lb .lb-next {
+    top: 50%;
+}
+
+.gallery a,
+.comic-page a {
+    cursor: zoom-in;
+}
+
+/* ----- רספונסיביות ----- */
+/* מסך בינוני (טאבלט) */
+@media (max-width: 1000px) {
+    header h1 {
+        font-size: 2.7rem;
+    }
+
+    main {
+        padding: 35px 30px;
+    }
+}
+
+/* מסך צר (טלפון): התפריט עולה מעל התוכן */
+@media (max-width: 700px) {
+    header {
+        position: relative; /* בטלפון הכותרת לא נדבקת, כדי לא לתפוס חצי מסך */
+        flex-wrap: wrap;    /* התפריט יורד לשורה משלו מתחת לשם האתר */
+        gap: 12px;
+    }
+
+    .logo {
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .slogan {
+        font-size: 1.2rem;
+        margin-top: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 20px 4%;
+        gap: 25px;
+    }
+
+    nav,
+    main {
+        width: 100%;
+    }
+
+    nav {
+        margin: 0 0 6px;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 6px 20px 6px 10px;
+    }
+
+    main {
+        padding: 25px 20px;
+        box-shadow: var(--shadow);
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    .deco {
+        width: 15%;
+        opacity: 0.6;     /* במסך קטן המדבקות לא יסתירו את התוכן */
+    }
+
+    .deco-1 {
+        display: none;    /* בטלפון אין מקום ליד הכותרת */
+    }
+
+    .comic-page {
+        max-width: 100%;    /* בטלפון: עמוד אחד בכל שורה */
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 30px 20px;
+    }
+
+    .gallery a {
+        height: 170px;
+    }
+
+    .lightbox {
+        padding: 70px 8px 20px;
+    }
+
+    .lightbox img,
+    .comic-lb img {
+        max-width: 92vw;
+    }
+
+    .lb-prev,
+    .lb-next {
+        top: auto;
+        bottom: 14px;
+        margin-top: 0;
+    }
+}
