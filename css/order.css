@@ -86,7 +86,6 @@
 .order-form input[type="text"],
 .order-form input[type="email"],
 .order-form input[type="tel"],
-.order-form input[type="number"],
 .order-form input[type="date"],
 .order-form input[type="file"],
 .order-form select,
@@ -153,17 +152,94 @@
     cursor: pointer;
 }
 
-/* בוחר הצבע: ריבוע קטן במסגרת.
-   vertical-align: middle - מיושר לאמצע השורה של הכיתוב שלידו */
-.order-form input[type="color"] {
-    width: 60px;
-    height: 38px;
-    padding: 2px;
+/* ----- פלטת צבעים מועדפת ----- */
+/* כל האפשרויות בשורה, ויורדות לשורה הבאה כשאין מקום */
+.palettes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* כל אפשרות היא "כרטיס" קטן, ובעצמו flex: כפתור הרדיו, פס הצבעים והשם זה לצד זה */
+.palette {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: white;
     border: var(--thin);
     border-radius: 8px;
-    background: white;
     cursor: pointer;
-    vertical-align: middle;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* :has() - סלקטור מתקדם: בוחר את ה-label שיש בתוכו כפתור רדיו מסומן (:checked).
+   כך כל הכרטיס של הפלטה שנבחרה נצבע ומקבל צל, ולא רק הכפתור הקטן */
+.palette:has(input:checked) {
+    background-color: var(--yellow);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* פס הצבעים: מלבן קטן עם מסגרת דקה */
+.swatch {
+    width: 64px;
+    height: 18px;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+}
+
+/* כל פלטה: ארבעה צבעים בפס אחד, בעזרת linear-gradient עם מעברים חדים.
+   to left - הצבעים מסודרים מימין לשמאל.
+   "#ffd6e0 0 25%" - הצבע הזה מ-0% עד 25% מהרוחב, והבא אחריו מתחיל בדיוק שם,
+   ולכן אין מעבר רך בין הצבעים - רואים ארבעה ריבועים נפרדים */
+.swatch.pastel { background: linear-gradient(to left, #ffd6e0 0 25%, #fff1b8 25% 50%, #c9f0e1 50% 75%, #cfe3ff 75%); }
+.swatch.warm   { background: linear-gradient(to left, #e8573f 0 25%, #f29e4c 25% 50%, #f6c85f 50% 75%, #a0522d 75%); }
+.swatch.cool   { background: linear-gradient(to left, #2f5d8a 0 25%, #4a90c2 25% 50%, #8fc1e3 50% 75%, #b8a9e0 75%); }
+.swatch.nature { background: linear-gradient(to left, #6b8e4e 0 25%, #a3b86c 25% 50%, #c8a26b 50% 75%, #7a5c3e 75%); }
+.swatch.mono   { background: linear-gradient(to left, #2b2b2b 0 25%, #6e6e6e 25% 50%, #bdbdbd 50% 75%, #ffffff 75%); }
+
+/* "אחר...": מעבר רך בין כל צבעי הקשת, כסימן ש"אפשר לבחור כל צבע" */
+.swatch.custom { background: linear-gradient(to left, #e8573f, #f6c85f, #7fc8a9, #4a90c2, #b8a9e0); }
+
+/* ארבעת בוחרי הצבעים של "אחר...": מוסתרים כברירת מחדל */
+.custom-colors {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-top: 12px;
+}
+
+/* ...ומופיעים רק כשבוחרים "אחר...".
+   .field:has(input[value="custom"]:checked) - ה-div.field שיש בתוכו כפתור רדיו מסומן
+   עם value="custom". כשזה קורה, .custom-colors שבתוכו הופך ל-flex (גלוי) */
+.field:has(input[value="custom"]:checked) .custom-colors {
+    display: flex;
+}
+
+/* .hint מוגדר כ-block (שורה משלו); כאן הוא חלק מהשורה של בוחרי הצבעים */
+.custom-colors .hint {
+    display: inline;
+    margin: 0;
+}
+
+/* כל בוחר צבע עם המספר שלו לצידו */
+.color-pick {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* בוחר הצבע: ריבוע קטן במסגרת */
+.color-pick input[type="color"] {
+    width: 48px;
+    height: 36px;
+    padding: 2px;
+    background: white;
+    border: var(--thin);
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .order-form input[type="range"] {

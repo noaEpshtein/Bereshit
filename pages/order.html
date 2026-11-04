@@ -262,18 +262,37 @@
                             </div>
                         </div>
 
+                        <!-- פלטת צבעים מועדפת: עוד קבוצת כפתורי רדיו (name="palette"), בחירה אחת בלבד.
+                             לא חובה (אין required): אפשר לא לבחור, ואז נבחר בעצמנו.
+                             כל אפשרות היא label עם class="palette", ובתוכו:
+                             input - כפתור הרדיו
+                             span.swatch - פס של 4 צבעים שמראה את הפלטה. הצבעים מצוירים ב-CSS
+                                           (order.css), כל פלטה לפי המחלקה השנייה שלה (pastel, warm...)
+                             והשם של הפלטה. האפשרות האחרונה, "אחר...", פותחת בחירה של 4 צבעים חופשיים.
+                             div.palettes: ב-CSS הוא flex עם גלישה, כך שהאפשרויות מסתדרות בשורות -->
                         <div class="field">
-                            <label for="people" class="req">מספר דמויות</label>
-                            <!-- type="number": מספרים בלבד, עם חיצים להעלאה והורדה.
-                                 min / max: המספר הקטן והגדול ביותר שמותר (0 ו-11 נדחים).
-                                 value="1": ערך התחלתי. בלי step המספר חייב להיות שלם (2.5 נדחה) -->
-                            <input type="number" id="people" name="people" required min="1" max="10" value="1">
-                            <span class="hint">בין 1 ל-10</span>
-                        </div>
+                            <span class="field-title">פלטת צבעים מועדפת</span>
+                            <div class="palettes">
+                                <label class="palette"><input type="radio" name="palette" value="pastel"> <span class="swatch pastel"></span> פסטל</label>
+                                <label class="palette"><input type="radio" name="palette" value="warm"> <span class="swatch warm"></span> חמים</label>
+                                <label class="palette"><input type="radio" name="palette" value="cool"> <span class="swatch cool"></span> קרירים</label>
+                                <label class="palette"><input type="radio" name="palette" value="nature"> <span class="swatch nature"></span> טבע</label>
+                                <label class="palette"><input type="radio" name="palette" value="mono"> <span class="swatch mono"></span> שחור-לבן</label>
+                                <label class="palette"><input type="radio" name="palette" value="custom"> <span class="swatch custom"></span> אחר...</label>
+                            </div>
 
-                        <!-- type="color": פותח בוחר צבעים. value: הצבע ההתחלתי (ורוד), בקוד הקסדצימלי -->
-                        <div class="field">
-                            <label for="color">צבע מועדף <input type="color" id="color" name="color" value="#ffd6e0"></label>
+                            <!-- בחירת 4 צבעים משלכם: מופיע רק כשבוחרים "אחר...".
+                                 בלי JavaScript: ה-CSS מסתיר את ה-div הזה (display: none), ומציג אותו
+                                 בעזרת הסלקטור :has() כשכפתור הרדיו value="custom" מסומן (ראו order.css).
+                                 type="color": פותח בוחר צבעים. value: הצבע ההתחלתי, בקוד הקסדצימלי.
+                                 כל input עטוף ב-label עם מספר, כדי שיהיה ברור איזה צבע זה -->
+                            <div class="custom-colors">
+                                <span class="hint">בחרו 4 צבעים:</span>
+                                <label class="color-pick">1 <input type="color" name="color1" value="#ffd6e0"></label>
+                                <label class="color-pick">2 <input type="color" name="color2" value="#fff1b8"></label>
+                                <label class="color-pick">3 <input type="color" name="color3" value="#c9f0e1"></label>
+                                <label class="color-pick">4 <input type="color" name="color4" value="#cfe3ff"></label>
+                            </div>
                         </div>
                     </fieldset>
 
@@ -297,7 +316,7 @@
                                  min ו-max: התאריך המוקדם והמאוחר ביותר שמותר (בפורמט שנה-חודש-יום).
                                  הם תאריכים קבועים: ב-HTML בלבד אי אפשר לחשב "שבועיים מהיום" -->
                             <input type="date" id="date" name="date" required min="2026-11-15" max="2027-12-31">
-                            <span class="hint">מ-15.11.2026 ועד סוף 2027</span>
+
                         </div>
 
                         <div class="field">
@@ -310,20 +329,9 @@
                         </div>
                     </fieldset>
 
-                    <!-- ===== 4. תוספות והערות ===== -->
+                    <!-- ===== 4. הערות ===== -->
                     <fieldset>
-                        <legend>תוספות והערות</legend>
-
-                        <div class="field">
-                            <!-- תיבות סימון (checkbox): אפשר לבחור כמה ביחד, או אף אחת.
-                                 לכולן אותו name="extra", וכל תיבה מסומנת נשלחת כ-extra=... בנפרד -->
-                            <span class="field-title">תוספות</span>
-                            <div class="choices">
-                                <label><input type="checkbox" name="extra" value="frame"> מסגרת</label>
-                                <label><input type="checkbox" name="extra" value="wrap"> אריזת מתנה</label>
-                                <label><input type="checkbox" name="extra" value="stickers"> מדבקות מהציור</label>
-                            </div>
-                        </div>
+                        <legend>הערות</legend>
 
                         <div class="field">
                             <label for="reference">תמונת השראה</label>
@@ -343,7 +351,7 @@
                     </fieldset>
 
                     <!-- ===== אישור =====
-                         תיבת סימון אחת עם required: אי אפשר לשלוח בלי לסמן אותה.
+                         תיבת סימון (checkbox) עם required: אי אפשר לשלוח בלי לסמן אותה.
                          class="wide": ב-CSS השורה הזו תופסת את כל הרוחב (flex-basis: 100%) -->
                     <div class="field wide">
                         <label><input type="checkbox" name="agree" required> <span class="req">קראתי ואני מאשר/ת שהציור יישלח לאישור לפני ההדפסה</span></label>
