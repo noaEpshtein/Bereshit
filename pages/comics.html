@@ -58,10 +58,10 @@
             <section>
                 <h2>קומיקסים</h2>
 
-                <p>קומיקסים שכתבתי וציירתי. לחיצה על קומיקס פותחת אותו לקריאה, והחיצים מעבירים בין העמודים.</p>
+                <p>קומיקסים שכתבתי וציירתי. לחיצה על קומיקס פותחת אותו לקריאה, ובקומיקס של שני עמודים החץ מעביר לעמוד הבא.</p>
 
                 <!-- כל קומיקס הוא "כרטיס מוצר" (article), באותו מבנה כמו בגלריה.
-                     בכרטיס מוצגת הקובייה הראשונה של הקומיקס; לחיצה פותחת את העמוד המלא, והחיצים עוברים לעמודים הבאים -->
+                     בכרטיס מוצגת הקובייה הראשונה של הקומיקס; לחיצה פותחת את העמוד המלא, והחיצים עוברים רק בין העמודים של אותו קומיקס -->
                 <div class="products">
                     <article class="product">
                         <figure>
@@ -105,48 +105,42 @@
 
 
 
-    <!-- תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS) -->
+    <!-- תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS).
+         החיצים עוברים רק בין העמודים של אותו קומיקס: בקומיקס של עמוד אחד אין חיצים,
+         בעמוד הראשון יש רק "הבא" ובעמוד האחרון רק "הקודם" -->
     <div class="lightbox comic-lb" id="c-1">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
         <figure><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת"><figcaption>קומיקס שבת</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-6" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-2" class="lb-next" aria-label="הבא"></a>
     </div>
     <div class="lightbox comic-lb" id="c-2">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1"><figcaption>המעט שהוא רב — עמוד 1</figcaption></figure>
+        <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1"><figcaption>המעט שהוא רב — עמוד 1 מתוך 2</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-1" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-3" class="lb-next" aria-label="הבא"></a>
+        <a href="#c-3" class="lb-next" aria-label="לעמוד הבא"></a>
     </div>
     <div class="lightbox comic-lb" id="c-3">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2"><figcaption>המעט שהוא רב — עמוד 2</figcaption></figure>
+        <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2"><figcaption>המעט שהוא רב — עמוד 2 מתוך 2</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-2" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-4" class="lb-next" aria-label="הבא"></a>
+        <a href="#c-2" class="lb-prev" aria-label="לעמוד הקודם"></a>
     </div>
     <div class="lightbox comic-lb" id="c-4">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
         <figure><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות"><figcaption>בחדר ההתאוששות</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-3" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-5" class="lb-next" aria-label="הבא"></a>
     </div>
     <div class="lightbox comic-lb" id="c-5">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt=""><figcaption>מאחורי הקלעים — עמוד 1</figcaption></figure>
+        <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt=""><figcaption>מאחורי הקלעים — עמוד 1 מתוך 2</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-4" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-6" class="lb-next" aria-label="הבא"></a>
+        <a href="#c-6" class="lb-next" aria-label="לעמוד הבא"></a>
     </div>
     <div class="lightbox comic-lb" id="c-6">
         <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2"><figcaption>מאחורי הקלעים — עמוד 2</figcaption></figure>
+        <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2"><figcaption>מאחורי הקלעים — עמוד 2 מתוך 2</figcaption></figure>
         <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-5" class="lb-prev" aria-label="הקודם"></a>
-        <a href="#c-1" class="lb-next" aria-label="הבא"></a>
+        <a href="#c-5" class="lb-prev" aria-label="לעמוד הקודם"></a>
     </div>
 
     <footer>
