@@ -1,0 +1,75 @@
+/* ===== עיצוב לדף הגלריה בלבד (pages/gallery.html) ===== */
+/* חלון התצוגה (lightbox) משותף לגלריה ולקומיקסים, ולכן נמצא ב-style.css */
+
+/* ----- דף גלריה: רשת של ציורים ----- */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;            /* ציור שלא נכנס בשורה יורד לשורה הבאה */
+    justify-content: center;    /* השורה האחרונה (החלקית) במרכז */
+    gap: 45px 35px;
+    margin-top: 25px;
+}
+
+.gallery figure {
+    flex: 1 1 210px;            /* רוחב בסיס 210px, וכל ציור "גדל" כדי למלא את השורה */
+    max-width: 280px;           /* ...אבל לא יותר מזה, כדי שציור בודד בשורה לא יימתח */
+    text-align: center;
+}
+
+/* כל ציור במסגרת של "דף מודפס" */
+.gallery a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 10px;
+    background-color: var(--white);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: zoom-in;
+}
+
+/* הטיה קטנה ושונה לכל ציור */
+.gallery figure:nth-child(3n+1) a { rotate: -1.5deg; }
+.gallery figure:nth-child(3n+2) a { rotate: 1deg; }
+.gallery figure:nth-child(3n)   a { rotate: -0.5deg; }
+
+.gallery a:hover {
+    transform: translate(-2px, -5px) scale(1.03);
+    box-shadow: 8px 10px 0 var(--ink);
+}
+
+/* הציור נכנס למסגרת בלי להתעוות */
+.gallery img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.gallery figcaption {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    background: linear-gradient(transparent 55%, var(--yellow) 55%);   /* "מרקר" עדין */
+}
+
+/* ----- טלפון ----- */
+@media (max-width: 700px) {
+    .gallery {
+        gap: 30px 20px;
+    }
+
+    .gallery figure {
+        flex-basis: 140px;      /* ציורים קטנים יותר — שניים בשורה */
+        max-width: 200px;
+    }
+
+    .gallery a {
+        height: 170px;
+    }
+}

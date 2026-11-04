@@ -7,62 +7,7 @@
     <link rel="icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
     <!-- עיצובים ששייכים רק לדף הזה -->
-    <style>
-        .done {
-            text-align: center;
-        }
-
-        .done h2::after {
-            margin: 10px auto 0;
-        }
-
-        .done p {
-            margin: 0 auto 20px;
-        }
-
-        /* המדבקה "קופצת" פנימה כשהדף נטען */
-        .done-sticker {
-            width: 200px;
-            margin-bottom: 10px;
-            animation: pop-in 0.7s ease-out;
-        }
-
-        @keyframes pop-in {
-            0%   { transform: scale(0) rotate(-20deg); }
-            70%  { transform: scale(1.1) rotate(4deg); }
-            100% { transform: scale(1) rotate(0); }
-        }
-
-        /* רשימה ממוספרת עם מספרים בעיגולים צבעוניים */
-        .steps {
-            list-style: none;
-            counter-reset: step;
-            max-width: 480px;
-            margin: 10px auto 30px;
-            text-align: right;
-        }
-
-        .steps li {
-            counter-increment: step;
-            position: relative;
-            padding: 8px 48px 8px 0;
-        }
-
-        .steps li::before {
-            content: counter(step);
-            position: absolute;
-            right: 0;
-            top: 6px;
-            width: 34px;
-            height: 34px;
-            line-height: 30px;
-            text-align: center;
-            font-weight: 700;
-            background-color: var(--yellow);
-            border: var(--thin);
-            border-radius: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/success.css">
 </head>
 <body>
     <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
