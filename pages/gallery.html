@@ -97,7 +97,7 @@
                      כל ציור הוא "כרטיס מוצר" (article). אותו מבנה בדיוק בדף הקומיקסים,
                      ולכן העיצוב שלו נמצא בקובץ המשותף style.css (.products, .product).
                      div.products הוא flex בשורה עם גלישה: ארבעה כרטיסים בשורה במחשב, שניים בטלפון.
-                     כל article.product הוא בעצמו flex בעמודה: תמונה, שם, תיאור וקישור, זה מתחת לזה.
+                     כל article.product הוא בעצמו flex בעמודה: תמונה, שם ותיאור, זה מתחת לזה.
                      article: תגית סמנטית לתוכן שעומד בפני עצמו, כמו מוצר בחנות -->
                 <div class="products">
                     <!-- מבנה כרטיס אחד (כל 17 הכרטיסים בנויים בדיוק כך):
@@ -106,15 +106,13 @@
                                      וזה פותח את חלון התצוגה עם id="v-1" (ראו בסוף הדף)
                          loading="lazy" - התמונה נטענת רק כשמגיעים אליה בגלילה, כך שהדף נפתח מהר יותר
                          h3        - שם הציור
-                         p         - שורת תיאור קצרה: סוג הציור · צבעוני או שחור-לבן
-                         a.product-link - קישור לטופס ההזמנה -->
+                         p         - שורת תיאור קצרה: סוג הציור · צבעוני או שחור-לבן -->
                     <article class="product">
                         <figure>
                             <a href="#v-1"><img src="../assets/images/gallery/stage.jpg" alt="על הבמה" loading="lazy"></a>
                         </figure>
                         <h3>על הבמה</h3>
                         <p>סצנה · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -123,7 +121,6 @@
                         </figure>
                         <h3>ילדה וסוכרייה</h3>
                         <p>דמות · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -132,7 +129,6 @@
                         </figure>
                         <h3>רחוב</h3>
                         <p>פרספקטיבה · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -141,7 +137,6 @@
                         </figure>
                         <h3>ידידי</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -150,7 +145,6 @@
                         </figure>
                         <h3>אני בן 13</h3>
                         <p>איור · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -159,7 +153,6 @@
                         </figure>
                         <h3>שלוש נקודות</h3>
                         <p>פרספקטיבה · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -168,7 +161,6 @@
                         </figure>
                         <h3>ילדונת</h3>
                         <p>דמות · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -177,7 +169,6 @@
                         </figure>
                         <h3>בכיתה</h3>
                         <p>סצנה · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -186,7 +177,6 @@
                         </figure>
                         <h3>אישה</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -195,7 +185,6 @@
                         </figure>
                         <h3>נקודה אחת</h3>
                         <p>פרספקטיבה · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -204,7 +193,6 @@
                         </figure>
                         <h3>ילדה בת חמש</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -213,7 +201,6 @@
                         </figure>
                         <h3>ברחוב</h3>
                         <p>סצנה · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -222,7 +209,6 @@
                         </figure>
                         <h3>ילד בן 12</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -231,7 +217,6 @@
                         </figure>
                         <h3>ילדה בחורף</h3>
                         <p>דמות · צבעוני</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -240,7 +225,6 @@
                         </figure>
                         <h3>ילד בן שנתיים</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -249,7 +233,6 @@
                         </figure>
                         <h3>ילדה בשמלה</h3>
                         <p>דמות · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
 
                     <article class="product">
@@ -258,7 +241,6 @@
                         </figure>
                         <h3>תינוק</h3>
                         <p>דיוקן · שחור-לבן</p>
-                        <a href="order.html" class="product-link">להזמנת ציור דומה</a>
                     </article>
                 </div>
             </section>
