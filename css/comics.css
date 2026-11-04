@@ -1,64 +1,13 @@
 /* ===== עיצוב לדף הקומיקסים בלבד (pages/comics.html) ===== */
-/* חלון התצוגה (lightbox) משותף לגלריה ולקומיקסים, ולכן נמצא ב-style.css.
-   כאן רק התוספת לעמודי קומיקס (comic-lb) */
+/* כרטיסי המוצר (.products, .product) משותפים לגלריה ולקומיקסים, ולכן נמצאים ב-style.css.
+   כאן רק מה ששונה בקומיקסים */
 
-/* ----- דף קומיקסים: עמודים זה לצד זה, כמו כפולת חוברת ----- */
-.comic {
-    margin-top: 50px;
+/* שם הקומיקס בפס כחול במקום צהוב — כדי להבדיל בין שני סוגי המוצרים */
+.product h3 {
+    background: linear-gradient(transparent 55%, var(--blue) 55%);
 }
 
-.comic h3 {
-    display: inline-block;
-    padding: 2px 16px;
-    background-color: var(--blue);
-    border: var(--thin);
-    border-radius: var(--hand-2);
-    rotate: -1deg;
-}
-
-.comic:nth-of-type(even) h3 {
-    background-color: var(--pink);
-    rotate: 1deg;
-}
-
-.comic-pages {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 15px;
-}
-
-.comic-page {
-    flex: 1 1 280px;
-    max-width: calc(50% - 13px);   /* לכל היותר שני עמודים בשורה */
-}
-
-.comic-pages.wide .comic-page {
-    max-width: 100%;               /* קומיקס לרוחב — עמוד אחד ברוחב מלא */
-}
-
-.comic-page a {
-    display: block;
-    border: var(--line);
-    border-radius: var(--hand-2);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    background-color: white;
-    transition: transform 0.25s;
-    cursor: zoom-in;
-}
-
-.comic-page a:hover {
-    transform: translateY(-4px);
-}
-
-.comic-page img {
-    display: block;
-    width: 100%;
-}
-
-/* עמודי קומיקס: גבוהים — אפשר לגלול בתוך החלון כדי לקרוא */
+/* חלון התצוגה של עמודי קומיקס: העמודים גבוהים — אפשר לגלול בתוך החלון כדי לקרוא */
 .comic-lb {
     align-items: flex-start;
     overflow-y: auto;
@@ -83,14 +32,6 @@
 
 /* ----- טלפון ----- */
 @media (max-width: 700px) {
-    .comic {
-        margin-top: 35px;
-    }
-
-    .comic-page {
-        max-width: 100%;    /* בטלפון: עמוד אחד בכל שורה */
-    }
-
     .comic-lb img {
         max-width: 92vw;
     }

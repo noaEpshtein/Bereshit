@@ -322,6 +322,88 @@ footer a:hover {
 .deco-2 { top: 55%;    right: 0.5%; rotate: 7deg;  }   /* בצד ימין, באמצע הדף */
 .deco-3 { bottom: 10px; left: 2%; rotate: 12deg;  }   /* למטה, "מודבקת" על הכותרת התחתונה */
 
+/* ----- כרטיסי מוצר: אותו עיצוב בדף הגלריה ובדף הקומיקסים ----- */
+/* הרשת: כרטיסים בשורה, וכרטיס שלא נכנס יורד לשורה הבאה */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    /* השורה האחרונה (החלקית) במרכז */
+    gap: 45px 35px;
+    margin-top: 25px;
+}
+
+/* כרטיס אחד: תמונה, שם, שורת תיאור וקישור — זה מתחת לזה */
+.product {
+    flex: 1 1 210px;            /* רוחב בסיס 210px, וכל כרטיס "גדל" כדי למלא את השורה */
+    max-width: 280px;           /* ...אבל לא יותר מזה, כדי שכרטיס בודד בשורה לא יימתח */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product figure {
+    align-self: stretch;        /* התמונה ברוחב כל הכרטיס */
+    margin-bottom: 16px;
+}
+
+/* כל תמונה במסגרת של "דף מודפס" */
+.product figure a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 10px;
+    background-color: var(--white);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    cursor: zoom-in;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* הטיה קטנה ושונה לכל כרטיס */
+.product:nth-child(3n+1) figure a { rotate: -1.5deg; }
+.product:nth-child(3n+2) figure a { rotate: 1deg; }
+.product:nth-child(3n)   figure a { rotate: -0.5deg; }
+
+.product figure a:hover {
+    transform: translate(-2px, -5px) scale(1.03);
+    box-shadow: 8px 10px 0 var(--ink);
+}
+
+/* התמונה נכנסת למסגרת בלי להתעוות */
+.product img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.product h3 {
+    margin-bottom: 4px;
+    padding: 0 12px;
+    font-size: 1.2rem;
+    background: linear-gradient(transparent 55%, var(--yellow) 55%);   /* "מרקר" עדין */
+}
+
+.product p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #6b665e;
+}
+
+.product-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px solid var(--pink);
+}
+
+.product-link:hover {
+    border-bottom-color: var(--accent);
+}
+
 /* ----- תצוגה בתוך האתר (lightbox) — CSS בלבד, בעזרת :target ----- */
 /* כל חלון מוסתר; כשלוחצים על קישור #v-3 הכתובת משתנה, והחלון עם id="v-3" הופך ל-:target ומוצג */
 .lightbox {
@@ -495,6 +577,19 @@ footer a:hover {
 
     .deco-1 {
         display: none;    /* בטלפון אין מקום ליד הכותרת */
+    }
+
+    .products {
+        gap: 30px 20px;
+    }
+
+    .product {
+        flex-basis: 140px;      /* כרטיסים קטנים יותר — שניים בשורה */
+        max-width: 200px;
+    }
+
+    .product figure a {
+        height: 170px;
     }
 
     .lightbox {
