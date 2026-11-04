@@ -68,18 +68,21 @@
 
                         <div class="field">
                             <label for="fullname" class="req">שם מלא</label>
-                            <!-- pattern: רק אותיות בעברית או באנגלית ורווחים, לפחות 2 תווים -->
+                            <!-- pattern: מתחיל באות, ואחריה אותיות, רווח, מקף או גרש (בן-דוד, ג'ני). 2 עד 40 תווים -->
                             <input type="text" id="fullname" name="fullname" required
                                    minlength="2" maxlength="40"
-                                   pattern="[א-תa-zA-Z ]{2,40}"
-                                   title="אותיות בעברית או באנגלית בלבד"
+                                   pattern="[א-תa-zA-Z][א-תa-zA-Z '\-]{1,39}"
+                                   title="אותיות בעברית או באנגלית (מותר רווח, מקף וגרש), לפחות 2 אותיות"
                                    placeholder="ישראלה ישראלי" autocomplete="name">
                         </div>
 
                         <div class="field">
                             <label for="email" class="req">אימייל</label>
-                            <!-- type="email" בודק לבד שיש @ ונקודה -->
+                            <!-- type="email" בודק שיש @ ומשהו אחריו, אבל מקבל גם noa@gmail בלי נקודה.
+                                 ה-pattern מוסיף דרישה לנקודה אחרי ה-@ (gmail.com) -->
                             <input type="email" id="email" name="email" required
+                                   pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                                   title="כתובת אימייל מלאה, למשל name@example.com"
                                    placeholder="name@example.com" autocomplete="email">
                         </div>
 
@@ -95,15 +98,62 @@
                         <div class="field">
                             <label for="city">עיר</label>
                             <!-- datalist: רשימת הצעות שמופיעה בזמן ההקלדה -->
-                            <input type="text" id="city" name="city" list="cities" placeholder="התחילו להקליד...">
+                            <!-- שדה לא חובה: ה-pattern נבדק רק אם כתבו משהו -->
+                            <input type="text" id="city" name="city" list="cities"
+                                   pattern="[א-תa-zA-Z '\-]{2,30}"
+                                   title="שם עיר באותיות בלבד"
+                                   placeholder="התחילו להקליד...">
                             <datalist id="cities">
-                                <option value="ירושלים">
-                                <option value="תל אביב">
-                                <option value="חיפה">
-                                <option value="בני ברק">
-                                <option value="פתח תקווה">
+                                <option value="אופקים">
+                                <option value="אור יהודה">
+                                <option value="אילת">
+                                <option value="אלעד">
+                                <option value="אריאל">
                                 <option value="אשדוד">
+                                <option value="אשקלון">
                                 <option value="באר שבע">
+                                <option value="בית שאן">
+                                <option value="בית שמש">
+                                <option value="ביתר עילית">
+                                <option value="בני ברק">
+                                <option value="בת ים">
+                                <option value="גבעתיים">
+                                <option value="דימונה">
+                                <option value="הוד השרון">
+                                <option value="הרצליה">
+                                <option value="זכרון יעקב">
+                                <option value="חדרה">
+                                <option value="חולון">
+                                <option value="חיפה">
+                                <option value="טבריה">
+                                <option value="ירושלים">
+                                <option value="כפר סבא">
+                                <option value="כרמיאל">
+                                <option value="לוד">
+                                <option value="מודיעין עילית">
+                                <option value="מודיעין-מכבים-רעות">
+                                <option value="מעלה אדומים">
+                                <option value="נהריה">
+                                <option value="נצרת">
+                                <option value="נתיבות">
+                                <option value="נתניה">
+                                <option value="עכו">
+                                <option value="עפולה">
+                                <option value="פתח תקווה">
+                                <option value="צפת">
+                                <option value="קריית אתא">
+                                <option value="קריית גת">
+                                <option value="קריית מלאכי">
+                                <option value="קריית שמונה">
+                                <option value="ראש העין">
+                                <option value="ראשון לציון">
+                                <option value="רחובות">
+                                <option value="רמלה">
+                                <option value="רמת גן">
+                                <option value="רמת השרון">
+                                <option value="רעננה">
+                                <option value="שדרות">
+                                <option value="תל אביב">
                             </datalist>
                         </div>
                     </fieldset>
@@ -160,8 +210,9 @@
 
                         <div class="field">
                             <label for="date" class="req">מתי צריך את הציור?</label>
+                            <!-- min ו-max הם תאריכים קבועים: ב-HTML בלבד אי אפשר לחשב "שבועיים מהיום" -->
                             <input type="date" id="date" name="date" required min="2026-11-15" max="2027-12-31">
-                            <span class="hint">לפחות שבועיים מהיום</span>
+                            <span class="hint">מ-15.11.2026 ועד סוף 2027</span>
                         </div>
 
                         <div class="field">
