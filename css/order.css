@@ -1,7 +1,8 @@
 /* ===== עיצוב לדף הזמנת ציור (הטופס) בלבד ===== */
-/* העיצוב המשותף לכל הדפים נמצא ב-style.css */
+/* העיצוב המשותף לכל הדפים נמצא ב-style.css. הקובץ הזה נטען אחריו */
 
 /* ----- הטופס: חלקים (fieldset) בשתי עמודות, בעזרת flex ----- */
+/* הטופס הוא flex בשורה עם גלישה: שני fieldset בכל שורה, והשאר יורדים לשורה הבאה */
 .order-form {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +10,10 @@
     margin-top: 25px;
 }
 
-/* כל חלק תופס חצי שורה: 50% פחות חצי מהרווח (30px) שבין שני החלקים */
+/* כל חלק תופס חצי שורה: 50% פחות חצי מהרווח (30px) שבין שני החלקים.
+   calc() מחשב: חצי מהרוחב פחות 15 פיקסלים, כך ששני חלקים + רווח = בדיוק שורה אחת.
+   flex: 1 1 ... - מותר לגדול ולהתכווץ מהרוחב הזה.
+   שני חלקים באותה שורה נמתחים לאותו גובה (ברירת המחדל של flex) */
 .order-form fieldset {
     flex: 1 1 calc(50% - 15px);
     min-width: 0;           /* בלי זה fieldset לא מסכים להיות צר מהתוכן שלו */
@@ -19,18 +23,22 @@
     background-color: var(--paper);
 }
 
-/* כל חלק בצבע פסטל אחר בכותרת — סלקטור nth-of-type */
+/* כל חלק בצבע פסטל אחר בכותרת — סלקטור nth-of-type.
+   :nth-of-type(2) - ה-fieldset השני מבין ה-fieldset (סופר רק אלמנטים מאותו סוג,
+   בשונה מ-nth-child שסופר את כל האחים) */
 .order-form fieldset:nth-of-type(1) legend { background-color: var(--yellow); }
 .order-form fieldset:nth-of-type(2) legend { background-color: var(--mint); }
 .order-form fieldset:nth-of-type(3) legend { background-color: var(--blue); }
 .order-form fieldset:nth-of-type(4) legend { background-color: var(--lavender); }
 
-/* החלק האחרון והכפתורים תופסים את כל הרוחב */
+/* החלק האחרון והכפתורים תופסים את כל הרוחב.
+   flex-basis: 100% - הרוחב ההתחלתי הוא כל השורה, ולכן הם בשורה משלהם */
 .order-form .wide,
 .form-buttons {
     flex-basis: 100%;
 }
 
+/* הכותרת של כל חלק (legend) נראית כמו תווית */
 .order-form legend {
     padding: 2px 14px;
     font-family: var(--font-hand);
@@ -40,10 +48,13 @@
     border-radius: var(--hand-2);
 }
 
+/* רווח בין שדה לשדה */
 .field {
     margin-top: 14px;
 }
 
+/* .field > label - label שהוא ילד ישיר של .field (הכיתוב מעל השדה), וגם כותרות הקבוצות.
+   display: block - הכיתוב בשורה משלו, והשדה מתחתיו */
 .field > label,
 .field-title {
     display: block;
@@ -51,12 +62,15 @@
     font-weight: 500;
 }
 
-/* כוכבית אדומה ליד שדה חובה */
+/* כוכבית אדומה ליד שדה חובה.
+   ::after מוסיף תוכן אחרי הטקסט של האלמנט. כאן התוכן הוא רווח וכוכבית */
 .req::after {
     content: " *";
     color: var(--accent);
 }
 
+/* טקסט עזרה קטן ואפור מתחת לשדה (למשל "בין 1 ל-10").
+   span הוא inline, ו-display: block שם אותו בשורה משלו */
 .hint {
     display: block;
     margin-top: 3px;
@@ -65,6 +79,10 @@
 }
 
 /* ----- שדות הקלט ----- */
+/* סלקטור תכונה: input[type="text"] - רק input שה-type שלו הוא text.
+   כך כל שדות הטקסט, הבחירה והתאריך מקבלים את אותו עיצוב:
+   width: 100% - ברוחב כל החלק. border-radius: 8px - פינות מעוגלות.
+   transition - הצל והמסגרת משתנים בהדרגה (בפוקוס ובבדיקת התקינות) */
 .order-form input[type="text"],
 .order-form input[type="email"],
 .order-form input[type="tel"],
@@ -75,7 +93,7 @@
 .order-form textarea {
     width: 100%;
     padding: 9px 12px;
-    font-family: var(--font-text);
+    font-family: var(--font-text);   /* שדות טופס לא יורשים גופן כברירת מחדל */
     font-size: 1rem;
     color: var(--ink);
     background-color: white;
@@ -84,12 +102,15 @@
     transition: box-shadow 0.2s, border-color 0.2s;
 }
 
+/* textarea: גובה מינימלי, ואפשר לשנות את הגודל רק לגובה (resize: vertical), לא לרוחב */
 .order-form textarea {
     min-height: 110px;
     resize: vertical;
 }
 
-/* שדה בפוקוס: צל צבעוני */
+/* שדה בפוקוס: צל צבעוני.
+   :focus - השדה שהסמן נמצא בו כרגע (אחרי לחיצה או מעבר עם Tab).
+   outline: none - מבטל את המסגרת הכחולה הרגילה של הדפדפן, והצל מחליף אותה */
 .order-form input:focus,
 .order-form select:focus,
 .order-form textarea:focus {
@@ -98,7 +119,8 @@
 }
 
 /* בדיקת תקינות חזותית: שדה שמולא לא נכון — מסגרת ורודה, שדה תקין — ירוקה.
-   :user-invalid פועל רק אחרי שהמשתמשת נגעה בשדה, כדי לא לצבוע את הטופס באדום מההתחלה */
+   :user-invalid פועל רק אחרי שהמשתמשת נגעה בשדה, כדי לא לצבוע את הטופס באדום מההתחלה.
+   (:invalid הרגיל היה צובע את כל שדות החובה כבר כשהדף נפתח, כי הם עוד ריקים) */
 .order-form :user-invalid {
     border-color: var(--accent);
     background-color: #fff3f5;
@@ -110,23 +132,29 @@
     border-color: #3aa77a;
 }
 
-/* כפתורי רדיו ותיבות סימון בצבע האתר */
+/* כפתורי רדיו, תיבות סימון והמחוון בצבע האתר.
+   accent-color - משנה את הצבע של פקדי הטופס המובנים בדפדפן */
 .order-form input[type="radio"],
 .order-form input[type="checkbox"],
 .order-form input[type="range"] {
     accent-color: var(--accent);
 }
 
+/* קבוצת אפשרויות (רדיו או תיבות סימון): flex בשורה, עם גלישה אם אין מקום.
+   gap: 8px 18px - 8 בין שורות, 18 בין אפשרויות */
 .choices {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 18px;
 }
 
+/* סמן של "יד" מעל הכיתוב, כי לחיצה עליו בוחרת את האפשרות */
 .choices label {
     cursor: pointer;
 }
 
+/* בוחר הצבע: ריבוע קטן במסגרת.
+   vertical-align: middle - מיושר לאמצע השורה של הכיתוב שלידו */
 .order-form input[type="color"] {
     width: 60px;
     height: 38px;
@@ -142,6 +170,8 @@
     width: 100%;
 }
 
+/* הכיתובים מתחת למחוון: flex עם space-between -
+   כל המקום הפנוי הולך לרווח ביניהם, כך ש"פשוט" בקצה אחד ו"מפורט מאוד" בקצה השני */
 .range-labels {
     display: flex;
     justify-content: space-between;
@@ -150,6 +180,7 @@
 }
 
 /* ----- הכפתורים ----- */
+/* שני הכפתורים בשורה, במרכז */
 .form-buttons {
     display: flex;
     justify-content: center;
@@ -157,6 +188,7 @@
     margin-top: 10px;
 }
 
+/* .btn.reset - כפתור שיש לו גם class="btn" וגם class="reset": כפתור הניקוי לבן */
 .btn.reset {
     background-color: white;
 }
@@ -166,6 +198,7 @@
 }
 
 /* ----- טלפון: עמודה אחת ----- */
+/* הכללים כאן פועלים רק במסך ברוחב 700 פיקסלים או פחות */
 @media (max-width: 700px) {
     .order-form {
         gap: 22px;

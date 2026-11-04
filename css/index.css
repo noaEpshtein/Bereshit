@@ -1,20 +1,28 @@
 /* ===== עיצוב לדף הבית בלבד ===== */
-/* העיצוב המשותף לכל הדפים נמצא ב-style.css */
+/* העיצוב המשותף לכל הדפים נמצא ב-style.css.
+   הקובץ הזה נטען אחריו, ולכן כאן אפשר "לדרוס" כללים משותפים בשביל דף הבית בלבד.
+   לדף הבית יש תבנית שונה (ההנחיות מאפשרות זאת): אין "דף" לבן אחד, וכל חלק מעוצב לעצמו */
 
 /* ----- main בדף הבית: בלי "דף" לבן — כל חלק מעוצב בנפרד ----- */
+/* main.home - main שיש לו גם class="home" (רק בדף הבית).
+   מבטלים את הרקע, המסגרת והצל שהוגדרו ל-main ב-style.css */
 main.home {
     width: 100%;
     background: none;
     border: none;
     box-shadow: none;
-    padding: 20px 5% 60px;
+    padding: 20px 5% 60px;   /* למעלה, צדדים, למטה */
 }
 
+/* .home > section - כל section שהוא ילד ישיר של main.home.
+   max-width: 1000px - לא רחב מדי במסך גדול.
+   margin: 0 auto - "auto" בצדדים ממרכז אותו לרוחב */
 .home > section {
     max-width: 1000px;
     margin: 0 auto;
 }
 
+/* רווח בין חלק לחלק (section שבא אחרי section) */
 .home > section + section {
     margin-top: 70px;
 }
@@ -24,11 +32,15 @@ main.home {
     text-align: center;
 }
 
+/* הקו הקצר מתחת לכותרת (מוגדר ב-style.css) עובר למרכז: margin אוטומטי בצדדים */
 .home h2::after {
     margin: 10px auto 0;     /* הקו מתחת לכותרת — במרכז */
 }
 
 /* ----- 1. הסרטון שפותח את הדף: לכל רוחב המסך ולכל הגובה שמתחת לכותרת ----- */
+/* width: 100vw - כל רוחב המסך (vw = אחוז מרוחב המסך).
+   calc() - חישוב בתוך CSS. 50% - 50vw זה מספר שלילי, שמושך את הסרטון ימינה
+   עד קצה המסך, למרות שהוא בתוך main שיש לו ריווח בצדדים */
 .home > .hero-video {
     max-width: none;
     width: 100vw;
@@ -50,17 +62,21 @@ main.home {
     text-align: center;
 }
 
+/* margin: 0 auto 25px - למעלה 0, בצדדים אוטומטי (מירכוז), למטה 25 */
 .welcome p {
     margin: 0 auto 25px;
     font-size: 1.2rem;
 }
 
 /* ----- 3. שני כרטיסים: קומיקסים וגלריה ----- */
+/* flex בשורה: שני הכרטיסים זה לצד זה */
 .cards {
     display: flex;
     gap: 40px;
 }
 
+/* flex: 1 - כל כרטיס תופס חלק שווה מהשורה, כך ששניהם באותו רוחב.
+   display: block - הקישור (a) מתנהג כמו בלוק ומקבל padding ומסגרת */
 .card {
     flex: 1;
     display: block;
@@ -74,9 +90,11 @@ main.home {
     transition: transform 0.25s, box-shadow 0.25s;
 }
 
+/* לכל כרטיס צבע רקע והטיה משלו, לפי המיקום שלו (nth-child) */
 .card:nth-child(1) { background-color: var(--blue);     rotate: -1deg; }
 .card:nth-child(2) { background-color: var(--lavender); rotate: 1deg; }
 
+/* במעבר עכבר הכרטיס "מתרומם" - זז למעלה והצל מתרחק */
 .card:hover {
     transform: translate(-3px, -6px);
     box-shadow: 9px 11px 0 var(--ink);
@@ -86,6 +104,7 @@ main.home {
     font-size: 1.8rem;
 }
 
+/* margin: 18px auto - רווח למעלה ולמטה, ומירכוז לרוחב */
 .card img {
     display: block;
     max-width: 100%;
@@ -101,6 +120,9 @@ main.home {
 }
 
 /* ----- 4. לוח השעם ----- */
+/* flex בשורה עם גלישה: הפריטים מסתדרים בכמה שורות.
+   justify-content ו-align-items: center - הפריטים במרכז, לרוחב ולגובה.
+   gap: 40px 50px - 40 בין שורות, 50 בין פריטים בשורה */
 .corkboard {
     position: relative;
     min-height: 380px;
@@ -110,21 +132,26 @@ main.home {
     justify-content: center;
     align-items: center;
     gap: 40px 50px;
-    /* מרקם שעם: צבע חום + נקודות כהות ובהירות */
+    /* מרקם שעם: צבע חום + נקודות כהות ובהירות.
+       radial-gradient - מעבר צבעים עגול מהמרכז החוצה. כאן הוא יוצר נקודה קטנה,
+       וכי התמונה חוזרת על עצמה (background-size), מתקבלת רשת של נקודות.
+       שתי שכבות של נקודות, מופרדות בפסיק, כל אחת בגודל ובמיקום אחר */
     background-color: #c99a62;
     background-image:
         radial-gradient(#a87a45 1.5px, transparent 1.5px),
         radial-gradient(#ddb47f 1px, transparent 1px);
     background-size: 14px 14px, 9px 9px;
     background-position: 0 0, 5px 7px;
-    /* מסגרת עץ עם קו דיו */
+    /* מסגרת עץ עם קו דיו.
+       outline - קו נוסף מחוץ למסגרת (border), שלא תופס מקום */
     border: 14px solid #8a5a2e;
     outline: 3px solid var(--ink);
     border-radius: 6px;
     box-shadow: 10px 10px 0 var(--ink);
 }
 
-/* כל פריט על הלוח (מדבקה או פתק) "נעוץ" בנעץ */
+/* כל פריט על הלוח (מדבקה או פתק) "נעוץ" בנעץ.
+   position: relative - כדי שהנעץ (::before, שהוא absolute) ימוקם ביחס לפריט */
 .pinned {
     position: relative;
     display: block;
@@ -132,7 +159,12 @@ main.home {
 }
 
 /* הנעץ: ברירת המחדל — באמצע הקצה העליון (פתקים ותמונות).
-   במדבקות, המיקום המדויק על הנייר מגיע מהמשתנים --px ו---py שכתובים על כל מדבקה */
+   במדבקות, המיקום המדויק על הנייר מגיע מהמשתנים --px ו---py שכתובים על כל מדבקה
+   (ב-HTML: style="--px: 57.2%; --py: 6.5%;").
+   var(--px, 50%) - ערך גיבוי: אם אין --px (בפתקים), משתמשים ב-50%.
+   calc(var(--py, 0%) - 9px) - מעלים את הנעץ בחצי מהגובה שלו, כדי שהמרכז שלו יהיה בנקודה.
+   margin-left: -9px - אותו דבר לרוחב: מזיזים חצי נעץ, כדי שיהיה ממורכז על הנקודה.
+   background-color: var(--pin, var(--accent)) - צבע הנעץ מהמשתנה --pin, ואם אין - צבע ההדגשה */
 .pinned::before {
     content: "";
     position: absolute;
@@ -148,18 +180,22 @@ main.home {
     z-index: 2;
 }
 
-/* כל פריט בזווית ובצבע נעץ אחר */
+/* כל פריט בזווית ובצבע נעץ אחר.
+   4n+1 = פריטים 1, 5, 9...   4n+2 = 2, 6, 10...   4n+3 = 3, 7, 11...   4n = 4, 8, 12...
+   margin-top חיובי או שלילי מזיז חלק מהפריטים למטה או למעלה, כדי שהלוח ייראה "מבולגן" וטבעי */
 .pinned:nth-child(4n+1) { rotate: -6deg; --pin: var(--accent); }
 .pinned:nth-child(4n+2) { rotate: 4deg;  --pin: #7fc8a9; margin-top: 40px; }
 .pinned:nth-child(4n+3) { rotate: -2deg; --pin: #8fb3e8; }
 .pinned:nth-child(4n)   { rotate: 7deg;  --pin: #f2c94c; margin-top: -30px; }
 
+/* במעבר עכבר הפריט גדל קצת ועולה מעל השכנים שלו (z-index) */
 .pinned:hover {
     transform: scale(1.06);
     z-index: 3;
 }
 
-/* כל המדבקות בגודל דומה, בלי קשר לצורה שלהן */
+/* כל המדבקות בגודל דומה, בלי קשר לצורה שלהן:
+   רוחב וגובה מקסימליים, והתמונה שומרת על היחס שלה */
 .pinned img {
     display: block;
     max-height: 210px;
@@ -182,6 +218,7 @@ main.home {
     box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
+/* .note.pink (בלי רווח) - אלמנט שיש לו גם class="note" וגם class="pink" */
 .note.pink {
     background-color: var(--pink);
 }
@@ -201,6 +238,9 @@ main.home {
     text-decoration: none;
 }
 
+/* התמונה בתוך הפולרויד בגודל קבוע.
+   max-width / max-height: none - מבטלים את ההגבלה של .pinned img שלמעלה.
+   object-fit: cover - התמונה ממלאת את כל המסגרת, ומה שלא נכנס נחתך (בלי עיוות) */
 .pinned.polaroid img {
     width: 180px;
     max-width: none;
@@ -210,6 +250,7 @@ main.home {
     border: 1px solid #ddd;
 }
 
+/* הכיתוב מתחת לתמונה. span הוא inline כברירת מחדל, ו-display: block שם אותו בשורה משלו */
 .polaroid span {
     display: block;
     margin-top: 6px;
@@ -217,16 +258,19 @@ main.home {
 }
 
 /* ----- טלפון ----- */
+/* הכללים כאן פועלים רק במסך ברוחב 700 פיקסלים או פחות */
 @media (max-width: 700px) {
     .home > section + section {
         margin-top: 50px;
     }
 
+    /* שני הכרטיסים עוברים מהשורה לעמודה: אחד מתחת לשני */
     .cards {
         flex-direction: column;
         gap: 25px;
     }
 
+    /* לוח השעם: פחות ריווח ומסגרת דקה יותר */
     .corkboard {
         padding: 35px 15px;
         gap: 30px 20px;
@@ -234,6 +278,7 @@ main.home {
         box-shadow: 6px 6px 0 var(--ink);
     }
 
+    /* מדבקות, פתקים ותמונות קטנים יותר */
     .pinned img {
         max-height: 140px;
         max-width: 120px;
@@ -253,6 +298,7 @@ main.home {
         height: auto;                 /* בטלפון: לפי היחס של הסרטון */
     }
 
+    /* בטלפון מבטלים את ההזזות למעלה ולמטה, כדי שהלוח יהיה מסודר יותר */
     .pinned:nth-child(4n+2),
     .pinned:nth-child(4n) {
         margin-top: 0;

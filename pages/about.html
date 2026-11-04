@@ -1,22 +1,37 @@
 <!DOCTYPE html>
+<!-- DOCTYPE: מסמך HTML5. lang="he": שפת הדף עברית. dir="rtl": כיוון מימין לשמאל -->
 <html lang="he" dir="rtl">
+
+<!-- ===== head: מידע על הדף שלא מוצג בתוכו ===== -->
 <head>
+    <!-- קידוד UTF-8: מאפשר להציג עברית בלי ג'יבריש -->
     <meta charset="UTF-8">
+
+    <!-- viewport: בטלפון הדף מוצג ברוחב המסך האמיתי. בלי זה ה-media queries לא יעבדו בטלפון -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אודות | בראשית</title>
+
+    <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
+
+    <!-- העיצוב המשותף לכל הדפים -->
     <link rel="stylesheet" href="../css/style.css">
-    <!-- עיצובים ששייכים רק לדף הזה -->
+
+    <!-- עיצובים ששייכים רק לדף הזה. נטען אחרי style.css, ולכן יכול לדרוס כללים משותפים -->
     <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
-    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס.
+         ה-SVG עצמו לא נראה (class="svg-defs" מקטין אותו לגודל 0 ב-CSS).
+         הוא רק מגדיר פילטר בשם ink-outline, וה-CSS מפעיל אותו על שם האתר
+         בעזרת filter: url(#ink-outline). ההסבר המלא נמצא ב-index.html -->
     <svg class="svg-defs" aria-hidden="true">
         <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
             <!-- רעש אקראי שגורם לקווים "לרעוד" -->
             <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
             <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
             <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <!-- מזיזים את הקו לפי הרעש וצובעים אותו בצבע הדיו -->
             <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
             <feFlood flood-color="#2b2b2b" result="ink"/>
             <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
@@ -24,6 +39,7 @@
             <feOffset in="outline" dx="3" dy="3" result="shadow"/>
             <!-- המילוי הצבעוני רועד יחד עם הקו -->
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <!-- השכבות זו על זו: צל, קו, מילוי -->
             <feMerge>
                 <feMergeNode in="shadow"/>
                 <feMergeNode in="outline"/>
@@ -31,17 +47,30 @@
             </feMerge>
         </filter>
     </svg>
-    <!-- מדבקות מפוזרות על הדף (מיקום וזווית ב-CSS: .deco-1/2/3) -->
+    <!-- מדבקות קישוט שמפוזרות על הדף. הן ממוקמות ב-CSS עם position: absolute,
+         ולכן לא תופסות מקום בזרימה הרגילה של הדף.
+         class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
+         sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
+         alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
     <img src="../assets/images/stickers/baby-face.webp" alt="" class="sticker deco deco-1">
     <img src="../assets/images/stickers/professor.webp" alt="" class="sticker deco deco-2">
     <img src="../assets/images/stickers/family-toddler.webp" alt="" class="sticker deco deco-3">
 
+    <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
+         ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
+        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
         <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+
+        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
         <div class="brand">
             <h1>בראשית</h1>
             <p class="slogan">ליצור עולם בדיו</p>
         </div>
+
+        <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
+             הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
+             לדף הבית צריך לעלות תיקייה: ../index.html -->
         <nav>
             <ul>
                 <li><a href="../index.html">דף הבית</a></li>
@@ -53,18 +82,31 @@
         </nav>
     </header>
 
+    <!-- div.container עוטף את התוכן. ב-CSS הוא flex: 1, ולכן תופס את כל הגובה הפנוי
+         ודוחף את הכותרת התחתונה לתחתית המסך גם כשהדף קצר -->
     <div class="container">
+        <!-- ===== main: התוכן המרכזי של הדף, מחולק ל-section ===== -->
         <main>
+            <!-- פתיחה: טקסט מצד אחד ולוגו מהצד השני.
+                 ב-CSS (about.css) הוא flex בשורה, ובטלפון עמודה הפוכה (column-reverse),
+                 כך שהלוגו עולה מעל הטקסט -->
             <section class="intro">
+                <!-- div שמקבץ את כל הטקסט, כדי שיהיה פריט flex אחד מול הלוגו -->
                 <div class="intro-text">
                     <h2>אודות</h2>
+                    <p>אני נעה אפשטיין, מאיירת בדיגיטל וביד. </p>
                     <p>אני אוהבת לצייר. מאז שאני זוכרת את עצמי, דף לבן ועט היו בשבילי הזמנה להתחיל משהו חדש.</p>
+                    <!-- blockquote: תגית לציטוט. כאן היא מדגישה את המשפט המרכזי -->
                     <blockquote>ציור הוא כוח מופלא: קו אחד על דף ריק — ופתאום יש דמות, סיפור, עולם שלם.</blockquote>
+                    <!-- strong: הדגשה עם משמעות (מילה חשובה). הדפדפן מציג אותה מודגשת -->
                     <p>מכאן גם השם <strong>בראשית</strong>: כל ציור מתחיל מכלום, מקו ראשון, ונבנה לאט לאט — סקיצה, דיו, ולפעמים גם צבע. באתר תמצאו ציורים, קומיקסים ומדבקות שיצרתי, וגם אפשרות להזמין ציור משלכם.</p>
                 </div>
                 <img src="../assets/images/logo.webp" alt="הלוגו של בראשית: גלובוס שמכחול מצייר" class="sticker intro-logo">
             </section>
 
+            <!-- רשימה לא ממוספרת (ul). כל li מעוצב ב-CSS כפתק צבעוני,
+                 והרשימה כולה היא flex עם גלישה, כך שהפתקים מסתדרים בשורות.
+                 בתוך כל פריט: strong לכותרת הפתק, ואחריה טקסט רגיל -->
             <section>
                 <h2>מה אני מציירת</h2>
                 <ul class="what-list">
@@ -78,16 +120,22 @@
             <section>
                 <h2>יצירת קשר</h2>
                 <p>רוצים לשאול, להתייעץ או להזמין? אשמח לשמוע!</p>
-                <!-- להחליף את הפרטים לדוגמה בפרטים האמיתיים -->
+                <!-- קישורים מיוחדים (נושא הלמידה העצמית):
+                     mailto: - פותח את תוכנת המייל עם הודעה חדשה לכתובת הזו
+                     tel:    - בטלפון פותח את החייגן עם המספר (בלי מקפים ב-href)
+                     הקישור השלישי הוא קישור רגיל לדף אחר באתר.
+                     span.icon: עוטף את הסמל, כדי שיהיה אפשר לעצב אותו בנפרד מהטקסט -->
                 <ul class="contact-list">
-                    <li><a href="mailto:example@email.com"><span class="icon">✉️</span> example@email.com</a></li>
-                    <li><a href="tel:0500000000"><span class="icon">📞</span> 050-0000000</a></li>
+                    <li><a href="mailto:n0583200503@email.com"><span class="icon">✉️</span> n0583200503@email.com</a></li>
+                    <li><a href="tel:0583200503"><span class="icon">📞</span> 058-320-0503</a></li>
                     <li><a href="order.html"><span class="icon">✏️</span> טופס הזמנת ציור</a></li>
                 </ul>
             </section>
         </main>
     </div>
 
+    <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
+         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
         <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
     </footer>

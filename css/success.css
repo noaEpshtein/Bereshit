@@ -1,32 +1,43 @@
 /* ===== עיצוב לדף סיום ההזמנה בלבד ===== */
-/* העיצוב המשותף לכל הדפים נמצא ב-style.css */
+/* העיצוב המשותף לכל הדפים נמצא ב-style.css. הקובץ הזה נטען אחריו */
 
+/* כל התוכן של הדף במרכז */
 .done {
     text-align: center;
 }
 
+/* הקו הקצר מתחת לכותרת (מוגדר ב-style.css) עובר למרכז: margin אוטומטי בצדדים */
 .done h2::after {
     margin: 10px auto 0;
 }
 
+/* p מוגבל ברוחב (65ch, ב-style.css), ולכן צריך margin אוטומטי בצדדים כדי למרכז אותו */
 .done p {
     margin: 0 auto 20px;
 }
 
-/* המדבקה "קופצת" פנימה כשהדף נטען */
+/* המדבקה "קופצת" פנימה כשהדף נטען.
+   animation: pop-in 0.7s ease-out - מפעיל את האנימציה pop-in פעם אחת, במשך 0.7 שניות */
 .done-sticker {
     width: 200px;
     margin-bottom: 10px;
     animation: pop-in 0.7s ease-out;
 }
 
+/* האנימציה pop-in בשלושה שלבים (באחוזים מזמן האנימציה):
+   0%   - בגודל 0 ומסובבת: לא רואים אותה
+   70%  - קצת גדולה מדי (110%) ומסובבת לצד השני: "קפיצה"
+   100% - חוזרת לגודל ולזווית הרגילים */
 @keyframes pop-in {
     0%   { transform: scale(0) rotate(-20deg); }
     70%  { transform: scale(1.1) rotate(4deg); }
     100% { transform: scale(1) rotate(0); }
 }
 
-/* רשימה ממוספרת עם מספרים בעיגולים צבעוניים */
+/* ----- רשימה ממוספרת עם מספרים בעיגולים צבעוניים ----- */
+/* list-style: none - מבטל את המספרים הרגילים של ol.
+   counter-reset: step - יוצר "מונה" בשם step שמתחיל מ-0.
+   margin: 10px auto 30px - מירכוז הרשימה לרוחב, וטקסט מיושר לימין בתוכה */
 .steps {
     list-style: none;
     counter-reset: step;
@@ -35,12 +46,17 @@
     text-align: right;
 }
 
+/* counter-increment: step - כל li מעלה את המונה ב-1 (1, 2, 3).
+   padding מימין משאיר מקום לעיגול עם המספר.
+   position: relative - כדי שהעיגול (::before, שהוא absolute) ימוקם ביחס לשורה */
 .steps li {
     counter-increment: step;
     position: relative;
     padding: 8px 48px 8px 0;
 }
 
+/* העיגול עם המספר: content: counter(step) מציג את הערך הנוכחי של המונה.
+   line-height שווה בערך לגובה - הספרה ממורכזת לגובה בתוך העיגול */
 .steps li::before {
     content: counter(step);
     position: absolute;
@@ -57,6 +73,7 @@
 }
 
 /* ----- טלפון ----- */
+/* הכללים כאן פועלים רק במסך ברוחב 700 פיקסלים או פחות */
 @media (max-width: 700px) {
     .done-sticker {
         width: 150px;

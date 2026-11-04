@@ -1,17 +1,29 @@
 /* ===== עיצוב משותף לכל דפי האתר ===== */
-/* סגנון: סטודיו / גלריה בנגיעת קומיקס — גופן אלגנטי, צבעי פסטל, קווי דיו עבים וצל "מודפס" */
+/* כל ששת הדפים מקושרים לקובץ הזה עם <link rel="stylesheet">.
+   כאן נמצא כל מה שחוזר בכמה דפים: צבעים, גופנים, הכותרת העליונה, התפריט, התוכן המרכזי,
+   הכותרת התחתונה, הכפתורים, כרטיסי המוצרים וחלון התצוגה.
+   עיצוב ששייך רק לדף אחד נמצא בקובץ של אותו דף (index.css, about.css וכו').
+   סגנון: סטודיו / גלריה בנגיעת קומיקס — גופן אלגנטי, צבעי פסטל, קווי דיו עבים וצל "מודפס" */
 
 /* גופנים מגוגל-פונטס (שניהם תומכים בעברית):
    Playpen Sans Hebrew — כתב יד: שם האתר, הסלוגן, הכותרות והפתקים
-   Rubik — עגול ונקי: הטקסט הרגיל, התפריט והכפתורים */
+   Rubik — עגול ונקי: הטקסט הרגיל, התפריט והכפתורים
+   @import טוען קובץ CSS נוסף מגוגל, שמגדיר את הגופנים. הוא חייב להיות בראש הקובץ.
+   wght@500;600;800: אילו עוביים של הגופן להוריד.
+   display=swap: עד שהגופן נטען מוצג גופן גיבוי, כדי שהטקסט לא יהיה שקוף.
+   הגופנים נטענים רק כשיש אינטרנט; בלי אינטרנט מוצג גופן הגיבוי (Arial) */
 @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;600;800&family=Rubik:wght@400;500;700&display=swap');
 
 /* ----- משתנים: כל הצבעים במקום אחד. משנים כאן ← משתנה בכל האתר ----- */
+/* :root הוא האלמנט הראשי של הדף (html). משתנה שמוגדר כאן מוכר בכל הדפים ובכל האלמנטים.
+   שם של משתנה מתחיל תמיד בשני מקפים, ומשתמשים בו עם var(), למשל color: var(--ink) */
 :root {
-    /* הגופנים — משנים כאן ומשתנה בכל האתר */
+    /* הגופנים — משנים כאן ומשתנה בכל האתר.
+       אחרי הגופן הראשי באים גופני גיבוי, למקרה שהראשי לא נטען */
     --font-hand: 'Playpen Sans Hebrew', 'Varela Round', Arial, sans-serif;
     --font-text: 'Rubik', Arial, sans-serif;
 
+    /* צבעים בקוד הקסדצימלי: # ואחריו 6 תווים - שניים לאדום, שניים לירוק, שניים לכחול */
     --ink: #2b2b2b;          /* "דיו": טקסט, קווים ומסגרות */
     --paper: #fffdf8;        /* רקע בצבע נייר */
     --white: #ffffff;
@@ -21,39 +33,53 @@
     --blue: #cfe3ff;
     --lavender: #e4d9ff;
     --accent: #e8738a;       /* צבע הדגשה: ורוד-אלמוג, כהה מספיק לטקסט וקווים */
-    --line: 3px solid var(--ink);            /* קו דיו עבה          */
-    --thin: 2px solid var(--ink);           /* */
-    --shadow: 5px 5px 0 var(--ink);        /* צל חד בסגנון קומיקס */
 
-    /* פינות לא שוות — המסגרת נראית כאילו צוירה ביד ולא בסרגל */
+    /* משתנה יכול להשתמש במשתנה אחר: אם משנים את --ink, גם הקווים והצללים משתנים */
+    --line: 3px solid var(--ink);            /* קו דיו עבה (עובי, סוג קו, צבע)  */
+    --thin: 2px solid var(--ink);            /* קו דיו דק                       */
+    --shadow: 5px 5px 0 var(--ink);          /* צל חד בסגנון קומיקס: 5 ימינה, 5 למטה, בלי טשטוש */
+
+    /* פינות לא שוות — המסגרת נראית כאילו צוירה ביד ולא בסרגל.
+       ב-border-radius אפשר לתת 4 ערכים (פינה-פינה), ואחרי הלוכסן עוד 4 לגובה של כל פינה,
+       כך שכל פינה מקבלת עיגול "סגלגל" אחר */
     --hand: 14px 4px 18px 6px / 6px 16px 4px 20px;
     --hand-2: 5px 16px 6px 13px / 15px 5px 18px 6px;
 
-    /* קו מכחול: עובי משתנה בין 3 ל-5 פיקסלים, נשמר כתמונת SVG בתוך ה-CSS */
+    /* קו מכחול: עובי משתנה בין 3 ל-5 פיקסלים, נשמר כתמונת SVG בתוך ה-CSS.
+       data:image/svg+xml - במקום קישור לקובץ תמונה, התמונה עצמה כתובה כאן כטקסט */
     --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='10' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M0 4 C40 2 80 5 120 3.5 S200 2 240 4.5 S330 3 400 4 L400 7 C360 8.5 300 6 250 7.5 S150 8.5 100 6.5 S30 8 0 7 Z' fill='%232b2b2b'/%3E%3C/svg%3E");
 }
 
+/* * = כל האלמנטים בדף.
+   margin ו-padding מאופסים, כי לכל דפדפן יש ברירות מחדל קצת שונות.
+   box-sizing: border-box - הרוחב (width) כולל את ה-padding והמסגרת,
+   כך ש-width: 100% באמת נכנס ברוחב ולא בולט החוצה */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* body: ההגדרות הבסיסיות של כל הטקסט בדף. אלמנטים בתוכו "יורשים" את הגופן והצבע */
 body {
     font-family: var(--font-text);
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1rem;        /* rem = יחסית לגודל הגופן של הדפדפן (בדרך כלל 16px) */
+    font-weight: 400;       /* עובי רגיל */
     color: var(--ink);
-    line-height: 1.75;
+    line-height: 1.75;      /* גובה שורה: פי 1.75 מגודל האות, נוח לקריאה */
     background-color: var(--paper);
-    position: relative;     /* המדבקות המפוזרות ממוקמות ביחס ל-body */
+    position: relative;     /* המדבקות המפוזרות (position: absolute) ממוקמות ביחס ל-body */
     overflow-x: hidden;     /* מדבקה שבולטת מהצד לא תיצור גלילה לרוחב */
-    /* הכותרת התחתונה תמיד בתחתית המסך, גם בדף קצר */
+    /* הכותרת התחתונה תמיד בתחתית המסך, גם בדף קצר:
+       min-height: 100vh - גובה מינימלי של כל המסך (vh = אחוז מגובה המסך),
+       display: flex + flex-direction: column - הכותרת, התוכן והכותרת התחתונה זה מתחת לזה,
+       והתוכן (container) מקבל flex: 1 ומתמלא עד הסוף */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* כמה סלקטורים מופרדים בפסיק = אותו עיצוב לכולם */
 h1, h2, h3 {
     font-family: var(--font-hand);
     font-weight: 600;
@@ -66,6 +92,9 @@ h2 {
     margin-bottom: 25px;
 }
 
+/* ::after - פסאודו-אלמנט: "אלמנט מדומה" שנוצר רק ב-CSS, אחרי התוכן של h2.
+   content: "" חובה כדי שהוא יופיע (כאן ריק, כי רוצים רק קו).
+   display: block - כדי שיהיה בשורה משלו ויקבל רוחב וגובה */
 h2::after {
     content: "";
     display: block;
@@ -82,7 +111,7 @@ h3 {
 
 p {
     margin-bottom: 14px;
-    max-width: 65ch;        /* שורות לא ארוכות מדי — נוח לקריאה */
+    max-width: 65ch;        /* ch = רוחב של תו אחד. שורות של עד 65 תווים — נוח לקריאה */
 }
 
 a {
@@ -90,6 +119,10 @@ a {
 }
 
 /* ----- כותרת ראשית ----- */
+/* flex בשורה: לוגו, שם האתר ותפריט זה לצד זה.
+   align-items: center - כולם ממורכזים לגובה (ציר הרוחב של השורה).
+   gap - רווח קבוע בין הפריטים.
+   padding: 18px 5% - ערך ראשון למעלה ולמטה, שני לצדדים (באחוזים מרוחב המסך) */
 header {
     display: flex;
     align-items: center;
@@ -97,11 +130,14 @@ header {
     padding: 18px 5%;
     background-color: var(--pink);
     position: sticky;       /* הכותרת נשארת למעלה בזמן גלילה */
-    top: 0;
-    z-index: 20;
+    top: 0;                 /* ...צמודה לקצה העליון של המסך */
+    z-index: 20;            /* "שכבה": מספר גבוה = מעל אלמנטים אחרים, כך שהתוכן נגלל מתחתיה */
 }
 
-/* קו המכחול מתחת לכותרת */
+/* קו המכחול מתחת לכותרת.
+   position: absolute - ממוקם ביחס ל-header (שהוא sticky, ולכן משמש "אבא" למיקום).
+   left: 0 ו-right: 0 - נמתח לכל הרוחב. bottom: -5px - בולט קצת מתחת לכותרת.
+   background-repeat: repeat-x - תמונת המכחול חוזרת לאורך, אבל לא לגובה */
 header::after {
     content: "";
     position: absolute;
@@ -114,7 +150,8 @@ header::after {
     background-repeat: repeat-x;
 }
 
-/* שם האתר: אותיות בצהוב בהיר עם קו דיו "חי" מסביב */
+/* שם האתר: אותיות בצהוב בהיר עם קו דיו "חי" מסביב.
+   header h1 - סלקטור צאצא: רק h1 שנמצא בתוך header */
 header h1 {
     font-family: var(--font-hand);
     font-weight: 800;
@@ -123,13 +160,13 @@ header h1 {
     line-height: 1.1;
     padding: 0 6px;
     color: #fff3b0;         /* המילוי: צהוב בהיר */
-    /* קו המתאר, הרעידה והצל מגיעים מפילטר ה-SVG שבראש כל דף */
+    /* קו המתאר, הרעידה והצל מגיעים מפילטר ה-SVG שבראש כל דף (id="ink-outline") */
     filter: url(#ink-outline);
 }
 
-/* הסלוגן מתחת לשם האתר */
+/* הסלוגן מתחת לשם האתר. נקודה לפני השם = סלקטור של class */
 .slogan {
-    margin: -6px 0 0;       /* צמוד לשם האתר */
+    margin: -6px 0 0;       /* margin שלילי מושך את הסלוגן למעלה, צמוד לשם האתר */
     font-family: var(--font-hand);
     font-weight: 500;
     font-size: 1.6rem;
@@ -138,24 +175,29 @@ header h1 {
     color: var(--ink);
 }
 
-/* תגית ה-SVG עצמה לא תופסת מקום בדף */
+/* תגית ה-SVG עצמה לא תופסת מקום בדף.
+   (לא משתמשים ב-display: none, כי אז הדפדפן לא היה מפעיל את הפילטר שבתוכה) */
 .svg-defs {
     position: absolute;
     width: 0;
     height: 0;
 }
 
+/* הלוגו. transition - כשמשהו משתנה (כאן transform), השינוי קורה בהדרגה במשך 0.4 שניות */
 .logo {
     height: 80px;
     display: block;
     transition: transform 0.4s;
 }
 
+/* :hover - כשהעכבר מעל הלוגו, הוא מסתובב קצת (rotate במעלות, מינוס = נגד כיוון השעון) */
 .logo:hover {
     transform: rotate(-6deg);
 }
 
-/* ----- nav ו-main אחד ליד השני ----- */
+/* ----- העוטף של התוכן המרכזי ----- */
+/* align-items: flex-start - התוכן מתחיל למעלה ולא נמתח לגובה.
+   flex: 1 - "תגדל" ותתפוס את כל הגובה הפנוי ב-body, וכך דוחף את ה-footer למטה */
 .container {
     display: flex;
     align-items: flex-start;
@@ -163,11 +205,14 @@ header h1 {
     flex: 1;                /* תופס את כל הגובה הפנוי ודוחף את ה-footer למטה */
 }
 
-/* התפריט בתוך הכותרת, נדחף לצד השמאלי */
+/* התפריט בתוך הכותרת, נדחף לצד השמאלי.
+   margin-right: auto - כל המקום הפנוי מימין לתפריט הופך לרווח, ולכן הוא נדחף שמאלה */
 nav {
     margin-right: auto;
 }
 
+/* list-style: none - מבטל את הנקודות של הרשימה.
+   flex + flex-wrap: wrap - הכפתורים בשורה, ואם אין מקום - יורדים לשורה הבאה */
 nav ul {
     list-style: none;
     display: flex;
@@ -175,17 +220,26 @@ nav ul {
     gap: 14px;
 }
 
-/* כל קישור בתפריט מקבל צבע פסטל משלו — משתנה --c לפי nth-child */
+/* כל קישור בתפריט מקבל צבע פסטל משלו — משתנה --c לפי nth-child.
+   :nth-child(1) - הילד הראשון מבין האחים שלו, (2) - השני, וכן הלאה.
+   כאן משתמשים במשתנה מקומי: --c מוגדר על כל li, וכל מה שבתוכו יכול להשתמש בו */
 nav li:nth-child(1) { --c: var(--yellow); }
 nav li:nth-child(2) { --c: var(--mint); }
 nav li:nth-child(3) { --c: var(--blue); }
 nav li:nth-child(4) { --c: var(--lavender); }
 nav li:nth-child(5) { --c: var(--pink); }
 
-/* הטיה זעירה לסירוגין — כאילו הכפתורים הודבקו ביד */
+/* הטיה זעירה לסירוגין — כאילו הכפתורים הודבקו ביד.
+   odd = אי-זוגיים (1, 3, 5), even = זוגיים (2, 4) */
 nav li:nth-child(odd)  a { rotate: -0.8deg; }
 nav li:nth-child(even) a { rotate: 0.6deg; }
 
+/* כל קישור בתפריט נראה כמו כפתור.
+   display: block - הקישור תופס את כל השטח של הכפתור, ולא רק את הטקסט.
+   position: relative - כדי שפס הצבע (::before, שהוא absolute) ימוקם ביחס לכפתור.
+   padding: 10px 22px 10px 10px - למעלה, ימין, למטה, שמאל (עם כיוון השעון).
+   בצד ימין יש יותר מקום, בשביל פס הצבע.
+   text-decoration: none - בלי קו תחתון */
 nav a {
     display: block;
     position: relative;
@@ -197,10 +251,11 @@ nav a {
     border: var(--thin);
     border-radius: var(--hand-2);
     box-shadow: 3px 3px 0 var(--ink);
+    /* כמה מעברים, מופרדים בפסיק: לכל תכונה זמן משלה */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
 }
 
-/* פס צבע בצד ימין של כל כפתור */
+/* פס צבע בצד ימין של כל כפתור. הצבע מגיע מהמשתנה --c של ה-li */
 nav a::before {
     content: "";
     position: absolute;
@@ -213,7 +268,8 @@ nav a::before {
     border-radius: 0 12px 4px 0 / 0 5px 14px 0;
 }
 
-/* במעבר עכבר: הכפתור נצבע ו"נלחץ" לתוך הצל */
+/* במעבר עכבר: הכפתור נצבע ו"נלחץ" לתוך הצל.
+   translate(3px, 3px) מזיז אותו 3 ימינה ו-3 למטה, והצל מתאפס - נראה כמו לחיצה */
 nav a:hover {
     background-color: var(--c);
     transform: translate(3px, 3px);
@@ -221,6 +277,7 @@ nav a:hover {
 }
 
 /* ----- התוכן המרכזי ----- */
+/* main נראה כמו "דף" לבן עם מסגרת דיו וצל מודפס */
 main {
     width: 100%;
     background-color: var(--white);
@@ -230,11 +287,16 @@ main {
     padding: 45px 50px;
 }
 
+/* סלקטור מתקדם:
+   main > section - section שהוא ילד ישיר של main
+   + section      - section שבא מיד אחרי section אחר
+   כך הרווח נוסף רק בין חלקים, ולא מעל החלק הראשון */
 main > section + section {
     margin-top: 60px;       /* רווח בין חלקים באותו דף */
 }
 
 /* ----- כותרת תחתונה ----- */
+/* position: relative - כדי שקו המכחול (::before) ימוקם ביחס ל-footer */
 footer {
     text-align: center;
     padding: 25px;
@@ -244,7 +306,8 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* קו המכחול מעל הכותרת התחתונה (הפוך, כדי שלא ייראה זהה לעליון) */
+/* קו המכחול מעל הכותרת התחתונה.
+   transform: scaleX(-1) הופך אותו כמו במראה, כדי שלא ייראה זהה לקו העליון */
 footer::before {
     content: "";
     position: absolute;
@@ -258,11 +321,13 @@ footer::before {
     transform: scaleX(-1);
 }
 
+/* max-width: none - מבטל את הגבלת הרוחב של p (65ch), כדי שהטקסט יהיה במרכז כל הרוחב */
 footer p {
     max-width: none;
     margin: 0;
 }
 
+/* הקישור לאודות: בלי קו תחתון רגיל, ובמקומו מסגרת תחתונה בצבע ההדגשה */
 footer a {
     color: var(--ink);
     font-weight: 600;
@@ -274,7 +339,9 @@ footer a:hover {
     color: var(--accent);
 }
 
-/* ----- כפתור בסגנון קומיקס (בדף הבית ובטופס ההזמנה) ----- */
+/* ----- כפתור בסגנון קומיקס (בדף הבית, בטופס ההזמנה ובדף הסיום) ----- */
+/* display: inline-block - נשאר בתוך השורה כמו טקסט, אבל מקבל padding ומידות כמו בלוק.
+   cursor: pointer - סמן של "יד" כשעוברים עליו, כמו בקישור */
 .btn {
     display: inline-block;
     padding: 12px 34px;
@@ -291,26 +358,34 @@ footer a:hover {
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
+/* במעבר עכבר: הכפתור "נלחץ" לתוך הצל ונצבע בצהוב */
 .btn:hover {
     background-color: var(--yellow);
     transform: translate(3px, 3px);
     box-shadow: 1px 1px 0 var(--ink);
 }
 
-/* ----- ציור-מדבקה: הצל נוצר כאן, המדבקה עצמה בקובץ ה-PNG ----- */
+/* ----- ציור-מדבקה: הצל נוצר כאן, המדבקה עצמה בקובץ התמונה ----- */
+/* filter: drop-shadow - צל שעוקב אחרי הצורה של התמונה (ולא ריבוע כמו box-shadow),
+   כי לתמונת המדבקה יש רקע שקוף.
+   rgba(0, 0, 0, 0.25) - שחור עם שקיפות של 25% */
 .sticker {
     max-width: 100%;
     filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.25));
     transition: transform 0.4s, filter 0.4s;
 }
 
+/* במעבר עכבר: המדבקה מסתובבת קצת, גדלה ב-4% (scale) והצל מתרחק - כאילו מתרוממת */
 .sticker:hover {
     transform: rotate(-2deg) scale(1.04);
     filter: drop-shadow(5px 9px 10px rgba(0, 0, 0, 0.22));
 }
 
 /* ----- מדבקות מפוזרות על האתר ----- */
-/* rotate נפרד מ-transform, כך שה-hover של .sticker לא מבטל את ההטיה */
+/* position: absolute - יוצאות מהזרימה הרגילה וממוקמות ביחס ל-body.
+   width: 7% - רוחב יחסי למסך, ו-min-width כדי שלא יהיו קטנות מדי.
+   z-index: 30 - מעל הכותרת העליונה (20).
+   rotate נפרד מ-transform, כך שה-hover של .sticker (שמשנה את transform) לא מבטל את ההטיה */
 .deco {
     position: absolute;
     width: 7%;
@@ -318,12 +393,14 @@ footer a:hover {
     z-index: 30;
 }
 
+/* המיקום של כל מדבקה: top/bottom - מרחק מלמעלה/מלמטה, left/right - מרחק מהצד */
 .deco-1 { top: 150px;  left: 1%;  rotate: -10deg; }   /* פינה שמאלית עליונה של הדף */
 .deco-2 { top: 55%;    right: 0.5%; rotate: 7deg;  }   /* בצד ימין, באמצע הדף */
 .deco-3 { bottom: 10px; left: 2%; rotate: 12deg;  }   /* למטה, "מודבקת" על הכותרת התחתונה */
 
 /* ----- כרטיסי מוצר: אותו עיצוב בדף הגלריה ובדף הקומיקסים ----- */
-/* הרשת: כרטיסים בשורה, וכרטיס שלא נכנס יורד לשורה הבאה */
+/* הרשת: כרטיסים בשורה, וכרטיס שלא נכנס יורד לשורה הבאה.
+   gap: 45px 35px - רווח של 45 בין שורות ו-35 בין כרטיסים באותה שורה */
 .products {
     display: flex;
     flex-wrap: wrap;
@@ -332,22 +409,32 @@ footer a:hover {
     margin-top: 25px;
 }
 
-/* כרטיס אחד: תמונה, שם, שורת תיאור וקישור — זה מתחת לזה */
+/* כרטיס אחד: תמונה, שם, שורת תיאור וקישור — זה מתחת לזה.
+   הכרטיס הוא גם פריט בתוך הרשת (flex: 1 1 210px), וגם מכל flex בעצמו (בעמודה).
+   flex: 1 1 210px הוא קיצור של שלוש תכונות:
+     flex-grow: 1   - מותר לו לגדול כדי למלא מקום פנוי בשורה
+     flex-shrink: 1 - מותר לו להתכווץ אם אין מספיק מקום
+     flex-basis: 210px - הרוחב שממנו מתחילים לחשב */
 .product {
     flex: 1 1 210px;            /* רוחב בסיס 210px, וכל כרטיס "גדל" כדי למלא את השורה */
     max-width: 280px;           /* ...אבל לא יותר מזה, כדי שכרטיס בודד בשורה לא יימתח */
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column;     /* הפריטים בתוך הכרטיס זה מתחת לזה */
+    align-items: center;        /* ...וממורכזים לרוחב */
     text-align: center;
 }
 
+/* align-self: stretch - רק ה-figure נמתח לכל הרוחב, למרות ש-align-items: center על הכרטיס */
 .product figure {
     align-self: stretch;        /* התמונה ברוחב כל הכרטיס */
     margin-bottom: 16px;
 }
 
-/* כל תמונה במסגרת של "דף מודפס" */
+/* כל תמונה במסגרת של "דף מודפס".
+   הקישור הוא flex עם align-items ו-justify-content במרכז:
+   כך התמונה תמיד באמצע המסגרת, גם אם היא רחבה או גבוהה.
+   height: 250px - כל המסגרות באותו גובה, כדי שהשורה תהיה מסודרת.
+   cursor: zoom-in - סמן של זכוכית מגדלת, כי לחיצה מגדילה את התמונה */
 .product figure a {
     display: flex;
     align-items: center;
@@ -362,17 +449,22 @@ footer a:hover {
     transition: transform 0.25s, box-shadow 0.25s;
 }
 
-/* הטיה קטנה ושונה לכל כרטיס */
+/* הטיה קטנה ושונה לכל כרטיס.
+   :nth-child(3n+1) - הכרטיסים 1, 4, 7, 10... (כל שלישי, החל מהראשון)
+   :nth-child(3n+2) - 2, 5, 8...   :nth-child(3n) - 3, 6, 9... */
 .product:nth-child(3n+1) figure a { rotate: -1.5deg; }
 .product:nth-child(3n+2) figure a { rotate: 1deg; }
 .product:nth-child(3n)   figure a { rotate: -0.5deg; }
 
+/* במעבר עכבר: המסגרת "מתרוממת" - זזה למעלה, גדלה קצת והצל מתרחק */
 .product figure a:hover {
     transform: translate(-2px, -5px) scale(1.03);
     box-shadow: 8px 10px 0 var(--ink);
 }
 
-/* התמונה נכנסת למסגרת בלי להתעוות */
+/* התמונה נכנסת למסגרת בלי להתעוות.
+   max-width ו-max-height: 100% - לא גדולה מהמסגרת.
+   object-fit: contain - שומרת על היחס בין רוחב לגובה, בלי חיתוך ובלי מתיחה */
 .product img {
     display: block;
     max-width: 100%;
@@ -380,6 +472,9 @@ footer a:hover {
     object-fit: contain;
 }
 
+/* שם המוצר עם "מרקר" צהוב:
+   linear-gradient - מעבר צבעים. כאן הוא חד: עד 55% מהגובה שקוף, ומשם צהוב,
+   כך שרק החצי התחתון של הטקסט צבוע - כמו סימון במרקר */
 .product h3 {
     margin-bottom: 4px;
     padding: 0 12px;
@@ -387,12 +482,14 @@ footer a:hover {
     background: linear-gradient(transparent 55%, var(--yellow) 55%);   /* "מרקר" עדין */
 }
 
+/* שורת התיאור: קטנה ובאפור */
 .product p {
     margin-bottom: 8px;
     font-size: 0.9rem;
     color: #6b665e;
 }
 
+/* הקישור לטופס ההזמנה: קו תחתון ורוד במקום הקו הרגיל */
 .product-link {
     font-size: 0.95rem;
     font-weight: 500;
@@ -405,7 +502,11 @@ footer a:hover {
 }
 
 /* ----- תצוגה בתוך האתר (lightbox) — CSS בלבד, בעזרת :target ----- */
-/* כל חלון מוסתר; כשלוחצים על קישור #v-3 הכתובת משתנה, והחלון עם id="v-3" הופך ל-:target ומוצג */
+/* כל חלון מוסתר; כשלוחצים על קישור #v-3 הכתובת משתנה, והחלון עם id="v-3" הופך ל-:target ומוצג.
+   position: fixed - ממוקם ביחס למסך עצמו (לא לדף), ולא זז כשגוללים.
+   inset: 0 - קיצור של top, right, bottom ו-left שווים ל-0: החלון ממלא את כל המסך.
+   z-index: 100 - מעל כל השאר.
+   display: none - מוסתר כברירת מחדל */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -416,17 +517,25 @@ footer a:hover {
     padding: 30px 70px;
 }
 
+/* :target - נבחר רק החלון שה-id שלו כתוב בסוף הכתובת אחרי #.
+   הוא הופך ל-flex (גלוי), והתמונה ממורכזת בו לגובה ולרוחב.
+   animation - מפעיל את האנימציה lb-in במשך 0.3 שניות.
+   ease-out: מהיר בהתחלה ומאט בסוף */
 .lightbox:target {
     display: flex;
     animation: lb-in 0.3s ease-out;
 }
 
+/* @keyframes - הגדרת אנימציה בשם lb-in: מאיפה מתחילים (from) ולאן מגיעים (to).
+   החלון מופיע בעדינות: משקוף לגמרי (opacity: 0) ומעט קטן, לגלוי ובגודל מלא */
 @keyframes lb-in {
     from { opacity: 0; transform: scale(0.96); }
     to   { opacity: 1; transform: scale(1); }
 }
 
-/* הרקע הכהה — גם הוא קישור, כך שלחיצה מחוץ לתמונה סוגרת */
+/* הרקע הכהה — גם הוא קישור, כך שלחיצה מחוץ לתמונה סוגרת.
+   position: absolute + inset: 0 - ממלא את כל החלון.
+   rgba(43, 43, 43, 0.85) - צבע הדיו עם 85% אטימות: רואים קצת את הדף מאחור */
 .lb-bg {
     position: absolute;
     inset: 0;
@@ -434,6 +543,8 @@ footer a:hover {
     cursor: zoom-out;
 }
 
+/* המסגרת הלבנה של התמונה.
+   position: relative - נותן לה "שכבה" מעל הרקע הכהה (שהוא absolute) */
 .lightbox figure {
     position: relative;      /* מעל הרקע */
     padding: 12px 12px 6px;
@@ -444,6 +555,8 @@ footer a:hover {
     text-align: center;
 }
 
+/* התמונה בגדול: עד 82% מרוחב המסך (vw) ו-78% מגובהו (vh), כך שתמיד נכנסת במסך.
+   margin: 0 auto - מירכוז לרוחב */
 .lightbox img {
     display: block;
     max-width: 82vw;
@@ -457,7 +570,9 @@ footer a:hover {
     font-size: 1.2rem;
 }
 
-/* כפתורי סגירה וחצים — עיגולים בסגנון האתר */
+/* כפתורי סגירה וחצים — עיגולים בסגנון האתר.
+   border-radius: 50% על ריבוע (50x50) הופך אותו לעיגול.
+   display: flex + center - הסימן (✕ או החץ) באמצע העיגול */
 .lb-x,
 .lb-prev,
 .lb-next {
@@ -485,6 +600,8 @@ footer a:hover {
     transform: scale(1.12);
 }
 
+/* מיקום כל כפתור בחלון.
+   top: 50% + margin-top: -25px (חצי מגובה הכפתור) - ממרכז את החץ בדיוק באמצע הגובה */
 .lb-x    { top: 18px; left: 18px; background-color: var(--pink); }
 .lb-prev { right: 12px; top: 50%; margin-top: -25px; }
 .lb-next { left: 12px;  top: 50%; margin-top: -25px; }
@@ -504,7 +621,10 @@ footer a:hover {
 .lb-next::before { rotate: -45deg; margin-left: 6px; }    /* מצביע שמאלה */
 
 /* ----- רספונסיביות ----- */
-/* מסך בינוני (טאבלט) */
+/* @media (max-width: ...) - הכללים בפנים פועלים רק כשרוחב המסך קטן או שווה לערך.
+   הם באים בסוף הקובץ, ולכן דורסים את הכללים הרגילים שלמעלה */
+
+/* מסך בינוני (טאבלט): עד 1000 פיקסלים */
 @media (max-width: 1000px) {
     header h1 {
         font-size: 2.7rem;
@@ -515,7 +635,7 @@ footer a:hover {
     }
 }
 
-/* מסך צר (טלפון): התפריט עולה מעל התוכן */
+/* מסך צר (טלפון): עד 700 פיקסלים */
 @media (max-width: 700px) {
     header {
         position: relative; /* בטלפון הכותרת לא נדבקת, כדי לא לתפוס חצי מסך */
@@ -536,6 +656,7 @@ footer a:hover {
         margin-top: 0;
     }
 
+    /* העוטף עובר לעמודה, ופחות ריווח בצדדים */
     .container {
         flex-direction: column;
         padding: 20px 4%;
@@ -551,6 +672,7 @@ footer a:hover {
         margin: 0 0 6px;
     }
 
+    /* כפתורי התפריט ממורכזים בשורה שלהם */
     nav ul {
         justify-content: center;
         gap: 10px;
@@ -572,13 +694,14 @@ footer a:hover {
 
     .deco {
         width: 15%;
-        opacity: 0.6;     /* במסך קטן המדבקות לא יסתירו את התוכן */
+        opacity: 0.6;     /* שקיפות 60%: במסך קטן המדבקות לא יסתירו את התוכן */
     }
 
     .deco-1 {
         display: none;    /* בטלפון אין מקום ליד הכותרת */
     }
 
+    /* כרטיסי המוצרים: קטנים יותר, כך שנכנסים שניים בשורה */
     .products {
         gap: 30px 20px;
     }
@@ -592,6 +715,7 @@ footer a:hover {
         height: 170px;
     }
 
+    /* בחלון התצוגה: יותר מקום למעלה לכפתור הסגירה, והחצים יורדים לתחתית המסך */
     .lightbox {
         padding: 70px 8px 20px;
     }

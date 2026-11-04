@@ -1,13 +1,16 @@
 /* ===== עיצוב לדף אודות בלבד ===== */
-/* העיצוב המשותף לכל הדפים נמצא ב-style.css */
+/* העיצוב המשותף לכל הדפים נמצא ב-style.css. הקובץ הזה נטען אחריו */
 
 /* ----- פתיחה: טקסט ולוגו זה לצד זה ----- */
+/* flex בשורה: הטקסט מצד אחד והלוגו מהצד השני.
+   align-items: center - הלוגו ממורכז לגובה מול הטקסט */
 .intro {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
+/* flex: 1 - הטקסט תופס את כל המקום שנשאר אחרי הלוגו */
 .intro-text {
     flex: 1;
 }
@@ -16,24 +19,28 @@
     font-size: 1.1rem;
 }
 
-/* משפט מודגש בסגנון "ציטוט" בכתב יד */
+/* משפט מודגש בסגנון "ציטוט" בכתב יד.
+   .intro blockquote - רק blockquote שנמצא בתוך .intro */
 .intro blockquote {
-    margin: 20px 0;
+    margin: 20px 0;          /* למעלה ולמטה 20, בצדדים 0 (מבטל את ההזחה של ציטוט) */
     padding: 12px 20px;
     font-family: var(--font-hand);
     font-size: 1.4rem;
     background-color: var(--yellow);
     border: var(--thin);
     border-radius: var(--hand-2);
-    rotate: -1deg;
+    rotate: -1deg;           /* הטיה קטנה, כמו פתק שהודבק ביד */
 }
 
+/* הלוגו: 30% מרוחב השורה, אבל לא פחות מ-180 פיקסלים */
 .intro-logo {
     width: 30%;
     min-width: 180px;
 }
 
 /* ----- רשימת "מה אני מציירת": כל פריט כפתק צבעוני ----- */
+/* list-style: none - בלי נקודות של רשימה.
+   flex עם גלישה: הפתקים בשורה, ויורדים לשורה הבאה כשאין מקום */
 .what-list {
     list-style: none;
     display: flex;
@@ -42,6 +49,8 @@
     margin-top: 15px;
 }
 
+/* flex: 1 1 200px - כל פתק מתחיל ברוחב 200, ויכול לגדול או להתכווץ.
+   במחשב ארבעה פתקים נכנסים בשורה, ובמסך צר הם יורדים לשורות נוספות */
 .what-list li {
     flex: 1 1 200px;        /* רוחב בסיס 200px, וכל הפתקים גדלים שווה בשווה כדי למלא את השורה */
     padding: 16px 18px;
@@ -50,11 +59,13 @@
     box-shadow: 3px 3px 0 var(--ink);
 }
 
+/* לכל פתק צבע והטיה משלו, לפי המיקום שלו ברשימה */
 .what-list li:nth-child(1) { background-color: var(--pink);     rotate: -1deg; }
 .what-list li:nth-child(2) { background-color: var(--mint);     rotate: 1deg; }
 .what-list li:nth-child(3) { background-color: var(--blue);     rotate: -0.5deg; }
 .what-list li:nth-child(4) { background-color: var(--lavender); rotate: 1.5deg; }
 
+/* כותרת הפתק (strong). display: block שם אותה בשורה משלה, מעל הטקסט */
 .what-list strong {
     display: block;
     font-family: var(--font-hand);
@@ -62,6 +73,7 @@
 }
 
 /* ----- פרטי קשר ----- */
+/* שלושת הקישורים (מייל, טלפון, טופס) בשורה, עם גלישה */
 .contact-list {
     list-style: none;
     display: flex;
@@ -70,6 +82,7 @@
     margin: 15px 0 25px;
 }
 
+/* כל קישור הוא כפתור, ובעצמו flex: הסמל והטקסט זה לצד זה, ממורכזים לגובה */
 .contact-list a {
     display: flex;
     align-items: center;
@@ -84,16 +97,22 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* במעבר עכבר הכפתור "נלחץ" לתוך הצל */
 .contact-list a:hover {
     transform: translate(3px, 3px);
     box-shadow: 0 0 0 var(--ink);
 }
 
+/* .contact-list .icon - הסמל (span עם class="icon") בתוך רשימת הקשר: קצת גדול יותר */
 .contact-list .icon {
     font-size: 1.4rem;
 }
 
+/* ----- טלפון ----- */
+/* הכללים כאן פועלים רק במסך ברוחב 700 פיקסלים או פחות */
 @media (max-width: 700px) {
+    /* column-reverse: עמודה בסדר הפוך. ב-HTML הטקסט בא לפני הלוגו,
+       אבל על המסך הלוגו עולה למעלה - בלי לשנות את ה-HTML */
     .intro {
         flex-direction: column-reverse;   /* בטלפון: הלוגו מעל הטקסט */
         gap: 10px;

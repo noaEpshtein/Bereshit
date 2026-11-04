@@ -1,22 +1,37 @@
 <!DOCTYPE html>
+<!-- DOCTYPE: מסמך HTML5. lang="he": שפת הדף עברית. dir="rtl": כיוון מימין לשמאל -->
 <html lang="he" dir="rtl">
+
+<!-- ===== head: מידע על הדף שלא מוצג בתוכו ===== -->
 <head>
+    <!-- קידוד UTF-8: מאפשר להציג עברית בלי ג'יבריש -->
     <meta charset="UTF-8">
+
+    <!-- viewport: בטלפון הדף מוצג ברוחב המסך האמיתי. בלי זה ה-media queries לא יעבדו בטלפון -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הזמנת ציור | בראשית</title>
+
+    <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
+
+    <!-- העיצוב המשותף לכל הדפים -->
     <link rel="stylesheet" href="../css/style.css">
-    <!-- עיצובים ששייכים רק לדף הזה -->
+
+    <!-- עיצובים ששייכים רק לדף הזה. נטען אחרי style.css, ולכן יכול לדרוס כללים משותפים -->
     <link rel="stylesheet" href="../css/order.css">
 </head>
 <body>
-    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס -->
+    <!-- פילטר SVG לשם האתר: קו מתאר "חי" ורועד כמו דיו, וצל מודפס.
+         ה-SVG עצמו לא נראה (class="svg-defs" מקטין אותו לגודל 0 ב-CSS).
+         הוא רק מגדיר פילטר בשם ink-outline, וה-CSS מפעיל אותו על שם האתר
+         בעזרת filter: url(#ink-outline). ההסבר המלא נמצא ב-index.html -->
     <svg class="svg-defs" aria-hidden="true">
         <filter id="ink-outline" x="-10%" y="-20%" width="125%" height="150%">
             <!-- רעש אקראי שגורם לקווים "לרעוד" -->
             <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
             <!-- קו המתאר: צורת האותיות מורחבת ב-3 פיקסלים -->
             <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="thick"/>
+            <!-- מזיזים את הקו לפי הרעש וצובעים אותו בצבע הדיו -->
             <feDisplacementMap in="thick" in2="noise" scale="4" result="wobbly"/>
             <feFlood flood-color="#2b2b2b" result="ink"/>
             <feComposite in="ink" in2="wobbly" operator="in" result="outline"/>
@@ -24,6 +39,7 @@
             <feOffset in="outline" dx="3" dy="3" result="shadow"/>
             <!-- המילוי הצבעוני רועד יחד עם הקו -->
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="fill"/>
+            <!-- השכבות זו על זו: צל, קו, מילוי -->
             <feMerge>
                 <feMergeNode in="shadow"/>
                 <feMergeNode in="outline"/>
@@ -31,17 +47,30 @@
             </feMerge>
         </filter>
     </svg>
-    <!-- מדבקות מפוזרות על הדף (מיקום וזווית ב-CSS: .deco-1/2/3) -->
+    <!-- מדבקות קישוט שמפוזרות על הדף. הן ממוקמות ב-CSS עם position: absolute,
+         ולכן לא תופסות מקום בזרימה הרגילה של הדף.
+         class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
+         sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
+         alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
     <img src="../assets/images/stickers/bending-girl.webp" alt="" class="sticker deco deco-1">
     <img src="../assets/images/stickers/family-boy.webp" alt="" class="sticker deco deco-2">
     <img src="../assets/images/stickers/eyes-1.webp" alt="" class="sticker deco deco-3">
 
+    <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
+         ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
+        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
         <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+
+        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
         <div class="brand">
             <h1>בראשית</h1>
             <p class="slogan">ליצור עולם בדיו</p>
         </div>
+
+        <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
+             הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
+             לדף הבית צריך לעלות תיקייה: ../index.html -->
         <nav>
             <ul>
                 <li><a href="../index.html">דף הבית</a></li>
@@ -53,22 +82,47 @@
         </nav>
     </header>
 
+    <!-- div.container עוטף את התוכן. ב-CSS הוא flex: 1, ולכן תופס את כל הגובה הפנוי
+         ודוחף את הכותרת התחתונה לתחתית המסך גם כשהדף קצר -->
     <div class="container">
+        <!-- ===== main: התוכן המרכזי של הדף, מחולק ל-section ===== -->
         <main>
             <section>
                 <h2>הזמנת ציור</h2>
+                <!-- span.req ריק: ה-CSS מוסיף בתוכו כוכבית אדומה, כמו ליד שדות החובה -->
                 <p>רוצים ציור, איור או קומיקס משלכם? מלאו את הפרטים ונחזור אליכם עם הצעה. שדות עם <span class="req"></span> הם שדות חובה.</p>
 
-                <!-- action: לאן נשלחים הפרטים (כאן — לדף הסיום, במקום שרת אמיתי) -->
+                <!-- ===== הטופס =====
+                     action: לאן נשלחים הפרטים (כאן — לדף הסיום, במקום שרת אמיתי).
+                     method="get": הפרטים עוברים בכתובת של דף הסיום, אחרי סימן השאלה
+                     (למשל success.html?fullname=...&email=...). אפשר לראות אותם בשורת הכתובת.
+                     הדפדפן בודק את כל בדיקות התקינות (required, pattern, min, max...) לפני השליחה,
+                     ואם משהו לא תקין - הוא לא שולח ומציג הודעה ליד השדה.
+                     ב-CSS הטופס הוא flex עם גלישה: כל fieldset תופס חצי שורה, ובטלפון שורה שלמה.
+                     name: כל שדה צריך name - זה השם שתחתיו הערך נשלח. שדה בלי name לא נשלח בכלל -->
                 <form class="order-form" action="success.html" method="get">
 
-                    <!-- ===== 1. פרטים אישיים ===== -->
+                    <!-- ===== 1. פרטים אישיים =====
+                         fieldset: מקבץ שדות שקשורים זה לזה. legend: הכותרת של הקבוצה -->
                     <fieldset>
                         <legend>פרטים אישיים</legend>
 
+                        <!-- מבנה כל שדה: div.field שעוטף label (הכיתוב) ו-input (השדה).
+                             label for="fullname" מתחבר לשדה עם id="fullname":
+                             לחיצה על הכיתוב מעבירה את הסמן לשדה, וקורא מסך מקריא את הכיתוב.
+                             class="req" על הכיתוב מוסיף כוכבית אדומה (ב-CSS, עם ::after) לשדות חובה -->
+
                         <div class="field">
                             <label for="fullname" class="req">שם מלא</label>
-                            <!-- pattern: מתחיל באות, ואחריה אותיות, רווח, מקף או גרש (בן-דוד, ג'ני). 2 עד 40 תווים -->
+                            <!-- type="text": שדה טקסט רגיל.
+                                 required: חובה למלא. minlength / maxlength: מספר תווים מינימלי ומקסימלי.
+                                 pattern: ביטוי רגולרי שהערך חייב להתאים לו. כאן:
+                                   [א-תa-zA-Z]        - תו ראשון: אות בעברית או באנגלית
+                                   [א-תa-zA-Z '\-]{1,39} - אחריו עוד 1 עד 39 תווים: אותיות, רווח, גרש או מקף
+                                 כך שם כמו "בן-דוד" או "ג'ני" עובר, אבל "123" או שני רווחים לא.
+                                 title: ההסבר שמופיע בהודעת השגיאה כשה-pattern לא מתאים.
+                                 placeholder: טקסט אפור לדוגמה שנעלם כשמתחילים להקליד.
+                                 autocomplete="name": הדפדפן יכול להציע את השם השמור -->
                             <input type="text" id="fullname" name="fullname" required
                                    minlength="2" maxlength="40"
                                    pattern="[א-תa-zA-Z][א-תa-zA-Z '\-]{1,39}"
@@ -79,7 +133,12 @@
                         <div class="field">
                             <label for="email" class="req">אימייל</label>
                             <!-- type="email" בודק שיש @ ומשהו אחריו, אבל מקבל גם noa@gmail בלי נקודה.
-                                 ה-pattern מוסיף דרישה לנקודה אחרי ה-@ (gmail.com) -->
+                                 ה-pattern מוסיף דרישה לנקודה אחרי ה-@ (gmail.com):
+                                   [^@\s]+ - תו אחד או יותר שאינו @ ואינו רווח
+                                   @       - סימן @
+                                   [^@\s]+ - שם השרת (gmail)
+                                   \.      - נקודה (הלוכסן אומר "נקודה ממש", לא "כל תו")
+                                   [^@\s]+ - הסיומת (com) -->
                             <input type="email" id="email" name="email" required
                                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                                    title="כתובת אימייל מלאה, למשל name@example.com"
@@ -88,7 +147,13 @@
 
                         <div class="field">
                             <label for="phone" class="req">טלפון נייד</label>
-                            <!-- pattern: מתחיל ב-05, אחריו ספרה, מקף לא חובה, ועוד 7 ספרות -->
+                            <!-- type="tel": שדה טלפון. בטלפון נפתחת מקלדת ספרות.
+                                 pattern: מתחיל ב-05, אחריו ספרה, מקף לא חובה, ועוד 7 ספרות:
+                                   05      - בדיוק "05"
+                                   [0-9]   - ספרה אחת כלשהי (0 עד 9)
+                                   -?      - מקף, אבל סימן השאלה אומר שהוא לא חובה
+                                   [0-9]{7} - בדיוק 7 ספרות
+                                 כך 050-1234567 ו-0501234567 עוברים, ו-02-1234567 לא -->
                             <input type="tel" id="phone" name="phone" required
                                    pattern="05[0-9]-?[0-9]{7}"
                                    title="מספר נייד ישראלי, למשל 050-1234567"
@@ -97,12 +162,14 @@
 
                         <div class="field">
                             <label for="city">עיר</label>
-                            <!-- datalist: רשימת הצעות שמופיעה בזמן ההקלדה -->
-                            <!-- שדה לא חובה: ה-pattern נבדק רק אם כתבו משהו -->
+                            <!-- list="cities" מחבר את השדה ל-datalist עם id="cities" (מתחת לשדה):
+                                 רשימת הצעות שמופיעה בזמן ההקלדה. אפשר לבחור מהרשימה או לכתוב עיר אחרת.
+                                 שדה לא חובה (אין required): ה-pattern נבדק רק אם כתבו משהו -->
                             <input type="text" id="city" name="city" list="cities"
                                    pattern="[א-תa-zA-Z '\-]{2,30}"
                                    title="שם עיר באותיות בלבד"
                                    placeholder="התחילו להקליד...">
+                            <!-- datalist: כל option הוא הצעה אחת. הערכים לא מוצגים בדף עצמו -->
                             <datalist id="cities">
                                 <option value="אופקים">
                                 <option value="אור יהודה">
@@ -164,6 +231,10 @@
 
                         <div class="field">
                             <label for="type" class="req">סוג הציור</label>
+                            <!-- select: רשימה נפתחת. כל option הוא בחירה אחת.
+                                 value: הערך שנשלח (באנגלית), והטקסט בין התגיות הוא מה שרואים.
+                                 לאפשרות הראשונה יש value="" (ריק), ולכן עם required
+                                 אי אפשר לשלוח בלי לבחור משהו אחר -->
                             <select id="type" name="type" required>
                                 <option value="">— בחרו —</option>
                                 <option value="portrait">דיוקן</option>
@@ -176,6 +247,13 @@
                         </div>
 
                         <div class="field">
+                            <!-- כפתורי רדיו: בחירה אחת בלבד מתוך כמה.
+                                 כל הכפתורים באותה קבוצה מקבלים אותו name="style", ולכן בחירה באחד מבטלת את האחר.
+                                 מספיק required על אחד מהם כדי שהקבוצה כולה תהיה חובה.
+                                 כאן ה-input נמצא בתוך ה-label, ולכן לא צריך for ו-id:
+                                 לחיצה על הטקסט בוחרת את הכפתור.
+                                 span.field-title: כותרת לקבוצה (לא label, כי היא לא שייכת לשדה אחד).
+                                 div.choices: ב-CSS הוא flex בשורה עם גלישה -->
                             <span class="field-title req">סגנון</span>
                             <div class="choices">
                                 <label><input type="radio" name="style" value="ink" required> קו דיו שחור-לבן</label>
@@ -186,10 +264,14 @@
 
                         <div class="field">
                             <label for="people" class="req">מספר דמויות</label>
+                            <!-- type="number": מספרים בלבד, עם חיצים להעלאה והורדה.
+                                 min / max: המספר הקטן והגדול ביותר שמותר (0 ו-11 נדחים).
+                                 value="1": ערך התחלתי. בלי step המספר חייב להיות שלם (2.5 נדחה) -->
                             <input type="number" id="people" name="people" required min="1" max="10" value="1">
                             <span class="hint">בין 1 ל-10</span>
                         </div>
 
+                        <!-- type="color": פותח בוחר צבעים. value: הצבע ההתחלתי (ורוד), בקוד הקסדצימלי -->
                         <div class="field">
                             <label for="color">צבע מועדף <input type="color" id="color" name="color" value="#ffd6e0"></label>
                         </div>
@@ -200,6 +282,7 @@
                         <legend>פרטי ההזמנה</legend>
 
                         <div class="field">
+                            <!-- עוד קבוצת רדיו, עם name="size" -->
                             <span class="field-title req">גודל</span>
                             <div class="choices">
                                 <label><input type="radio" name="size" value="digital" required> קובץ דיגיטלי</label>
@@ -210,13 +293,18 @@
 
                         <div class="field">
                             <label for="date" class="req">מתי צריך את הציור?</label>
-                            <!-- min ו-max הם תאריכים קבועים: ב-HTML בלבד אי אפשר לחשב "שבועיים מהיום" -->
+                            <!-- type="date": פותח לוח שנה לבחירת תאריך.
+                                 min ו-max: התאריך המוקדם והמאוחר ביותר שמותר (בפורמט שנה-חודש-יום).
+                                 הם תאריכים קבועים: ב-HTML בלבד אי אפשר לחשב "שבועיים מהיום" -->
                             <input type="date" id="date" name="date" required min="2026-11-15" max="2027-12-31">
                             <span class="hint">מ-15.11.2026 ועד סוף 2027</span>
                         </div>
 
                         <div class="field">
                             <label for="detail">רמת פירוט</label>
+                            <!-- type="range": מחוון (סליידר). min / max: הקצוות (1 עד 5), value: המיקום ההתחלתי (באמצע).
+                                 div.range-labels: הכיתובים מתחת למחוון. ב-CSS הוא flex עם space-between,
+                                 ולכן "פשוט" נדחף לקצה אחד ו"מפורט מאוד" לקצה השני -->
                             <input type="range" id="detail" name="detail" min="1" max="5" value="3">
                             <div class="range-labels"><span>פשוט</span><span>מפורט מאוד</span></div>
                         </div>
@@ -227,6 +315,8 @@
                         <legend>תוספות והערות</legend>
 
                         <div class="field">
+                            <!-- תיבות סימון (checkbox): אפשר לבחור כמה ביחד, או אף אחת.
+                                 לכולן אותו name="extra", וכל תיבה מסומנת נשלחת כ-extra=... בנפרד -->
                             <span class="field-title">תוספות</span>
                             <div class="choices">
                                 <label><input type="checkbox" name="extra" value="frame"> מסגרת</label>
@@ -237,24 +327,32 @@
 
                         <div class="field">
                             <label for="reference">תמונת השראה</label>
-                            <!-- accept: מאפשר לבחור רק קבצי תמונה -->
+                            <!-- type="file": כפתור לבחירת קובץ מהמחשב.
+                                 accept="image/*": חלון הבחירה מציג רק קבצי תמונה (כל סוג תמונה).
+                                 הערה: עם method="get" נשלח רק שם הקובץ, לא הקובץ עצמו. מספיק לטופס דמוי שרת -->
                             <input type="file" id="reference" name="reference" accept="image/*">
                         </div>
 
                         <div class="field">
                             <label for="notes">ספרו לנו על הציור</label>
+                            <!-- textarea: שדה טקסט של כמה שורות. maxlength: אי אפשר להקליד יותר מ-500 תווים -->
                             <textarea id="notes" name="notes" maxlength="500"
                                       placeholder="מי בציור, מה הם עושים, אווירה, צבעים..."></textarea>
                             <span class="hint">עד 500 תווים</span>
                         </div>
                     </fieldset>
 
-                    <!-- ===== אישור ===== -->
+                    <!-- ===== אישור =====
+                         תיבת סימון אחת עם required: אי אפשר לשלוח בלי לסמן אותה.
+                         class="wide": ב-CSS השורה הזו תופסת את כל הרוחב (flex-basis: 100%) -->
                     <div class="field wide">
                         <label><input type="checkbox" name="agree" required> <span class="req">קראתי ואני מאשר/ת שהציור יישלח לאישור לפני ההדפסה</span></label>
                     </div>
 
-                    <!-- ===== כפתורים: שליחה ואיפוס ===== -->
+                    <!-- ===== כפתורים: שליחה ואיפוס =====
+                         type="submit": שולח את הטופס ל-action (אחרי שכל הבדיקות עברו).
+                         type="reset": מחזיר את כל השדות לערכים ההתחלתיים שלהם.
+                         class="btn": העיצוב המשותף לכפתורים (style.css). reset: צבע שונה לכפתור הניקוי -->
                     <div class="form-buttons">
                         <button type="submit" class="btn">שליחת ההזמנה</button>
                         <button type="reset" class="btn reset">ניקוי הטופס</button>
@@ -264,6 +362,8 @@
         </main>
     </div>
 
+    <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
+         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
         <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
     </footer>
