@@ -16,17 +16,17 @@
 
 /* ----- aside: התוכן הצדדי ----- */
 /* נראה כמו פתק צהוב שהודבק ליד הדף.
-   flex: 0 0 240px - קיצור של שלוש תכונות:
+   flex: 0 0 270px - קיצור של שלוש תכונות:
      flex-grow: 0     - לא גדל למלא מקום פנוי
      flex-shrink: 0   - לא מתכווץ
-     flex-basis: 240px - רוחב קבוע של 240 פיקסלים
+     flex-basis: 270px - רוחב קבוע של 270 פיקסלים
    כך main מקבל את כל שאר הרוחב.
    order: -1 - ב-flex אפשר לשנות את סדר התצוגה בלי לשנות את ה-HTML.
      ברירת המחדל של כל פריט היא 0, ולכן -1 מקדים את aside לפני main.
      הדף מימין לשמאל (rtl), ולכן "לפני" = בצד ימין, כמו בתבנית שבהנחיות.
    rotate: 1deg - הטיה קטנה, כאילו הפתק הודבק ביד */
 aside {
-    flex: 0 0 240px;
+    flex: 0 0 270px;
     order: -1;
     padding: 25px 22px;
     background-color: var(--yellow);
@@ -42,21 +42,25 @@ aside h2 {
     margin-bottom: 18px;
 }
 
-aside h3 {
-    font-size: 1.2rem;
-    margin-top: 22px;
-    margin-bottom: 8px;
-}
-
 /* padding-right - מקום לנקודות של הרשימה (בכיוון rtl הן בצד ימין) */
 aside ul {
     padding-right: 20px;
-    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
-/* li + li - כל פריט שבא מיד אחרי פריט אחר: רווח רק בין פריטים, לא מעל הראשון */
+/* li + li - כל פריט שבא מיד אחרי פריט אחר: רווח רק בין פריטים, לא מעל הראשון.
+   כל עובדה מופרדת מהקודמת בקו מקווקו דק */
 aside li + li {
-    margin-top: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--ink);
+}
+
+/* הכותרת הקצרה של כל עובדה (strong) בגופן של הכותרות, כמו כתב יד */
+aside li strong {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
 }
 
 /* ::marker - פסאודו-אלמנט של הנקודה או המספר ברשימה. צובעים אותו בצבע ההדגשה */
@@ -65,21 +69,28 @@ aside li::marker {
     font-weight: 700;
 }
 
-aside p {
+/* פסקת הפתיחה: קו מקווקו עבה מתחתיה מפריד אותה מרשימת העובדות */
+.aside-intro {
     font-size: 0.95rem;
+    padding-bottom: 14px;
+    border-bottom: 2px dashed var(--ink);
 }
 
-/* שורת הסיכום: קו מקווקו מעליה מפריד אותה מהרשימה */
-.aside-total {
-    padding-top: 10px;
-    border-top: 2px dashed var(--ink);
+/* ----- מדבקת הקישוט השנייה ----- */
+/* ב-style.css היא באמצע הדף בצד ימין (top: 55%), אבל בגלריה ה-aside ארוך ויושב בדיוק שם,
+   והמדבקה הסתירה את סוף הטקסט שלו. כאן מורידים אותה לתחתית הדף, מתחת ל-aside:
+   top: auto - מבטל את top: 55% מ-style.css.
+   bottom: 120px - 120 פיקסלים מעל התחתית של הדף */
+.deco-2 {
+    top: auto;
+    bottom: 120px;
 }
 
 /* ----- מסך בינוני (טאבלט) ----- */
 /* aside צר יותר, כדי להשאיר לגלריה מקום */
 @media (max-width: 1000px) {
     aside {
-        flex-basis: 200px;
+        flex-basis: 220px;
         padding: 20px 16px;
     }
 }
@@ -93,8 +104,14 @@ aside p {
 
     /* ב-style.css ה-.container עובר לעמודה בטלפון.
        order: 0 - aside חוזר לסדר הרגיל לפי ה-HTML, כלומר מתחת לגלריה.
-       flex-basis: auto - בעמודה, flex-basis קובע גובה ולא רוחב, ולכן מבטלים את 240px.
+       flex-basis: auto - בעמודה, flex-basis קובע גובה ולא רוחב, ולכן מבטלים את 270px.
        rotate: 0deg - בלי הטיה, כדי שלא יבלוט מהמסך הצר */
+    /* בטלפון ה-aside נמצא בתחתית הדף, ולכן המדבקה חוזרת לאמצע הדף, ליד הגלריה */
+    .deco-2 {
+        top: 55%;
+        bottom: auto;
+    }
+
     aside {
         order: 0;
         flex-basis: auto;
