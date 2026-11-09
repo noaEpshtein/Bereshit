@@ -8,10 +8,97 @@
     margin-top: 35px;
 }
 
+/* ----- העוטף: main ו-aside זה לצד זה ----- */
+/* .container כבר מוגדר ב-style.css כ-flex בשורה. כאן רק מוסיפים רווח בין main ל-aside */
+.container {
+    gap: 30px;
+}
+
+/* ----- aside: התוכן הצדדי ----- */
+/* נראה כמו פתק צהוב שהודבק ליד הדף.
+   flex: 0 0 240px - קיצור של שלוש תכונות:
+     flex-grow: 0     - לא גדל למלא מקום פנוי
+     flex-shrink: 0   - לא מתכווץ
+     flex-basis: 240px - רוחב קבוע של 240 פיקסלים
+   כך main מקבל את כל שאר הרוחב.
+   order: -1 - ב-flex אפשר לשנות את סדר התצוגה בלי לשנות את ה-HTML.
+     ברירת המחדל של כל פריט היא 0, ולכן -1 מקדים את aside לפני main.
+     הדף מימין לשמאל (rtl), ולכן "לפני" = בצד ימין, כמו בתבנית שבהנחיות.
+   rotate: 1deg - הטיה קטנה, כאילו הפתק הודבק ביד */
+aside {
+    flex: 0 0 240px;
+    order: -1;
+    padding: 25px 22px;
+    background-color: var(--yellow);
+    border: var(--thin);
+    border-radius: var(--hand-2);
+    box-shadow: var(--shadow);
+    rotate: 1deg;
+}
+
+/* הכותרת של aside קטנה יותר מכותרת הדף */
+aside h2 {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+}
+
+aside h3 {
+    font-size: 1.2rem;
+    margin-top: 22px;
+    margin-bottom: 8px;
+}
+
+/* padding-right - מקום לנקודות של הרשימה (בכיוון rtl הן בצד ימין) */
+aside ul {
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+/* li + li - כל פריט שבא מיד אחרי פריט אחר: רווח רק בין פריטים, לא מעל הראשון */
+aside li + li {
+    margin-top: 6px;
+}
+
+/* ::marker - פסאודו-אלמנט של הנקודה או המספר ברשימה. צובעים אותו בצבע ההדגשה */
+aside li::marker {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+aside p {
+    font-size: 0.95rem;
+}
+
+/* שורת הסיכום: קו מקווקו מעליה מפריד אותה מהרשימה */
+.aside-total {
+    padding-top: 10px;
+    border-top: 2px dashed var(--ink);
+}
+
+/* ----- מסך בינוני (טאבלט) ----- */
+/* aside צר יותר, כדי להשאיר לגלריה מקום */
+@media (max-width: 1000px) {
+    aside {
+        flex-basis: 200px;
+        padding: 20px 16px;
+    }
+}
+
 /* ----- טלפון ----- */
 /* הכללים כאן פועלים רק במסך ברוחב 700 פיקסלים או פחות */
 @media (max-width: 700px) {
     .products {
         margin-top: 20px;
+    }
+
+    /* ב-style.css ה-.container עובר לעמודה בטלפון.
+       order: 0 - aside חוזר לסדר הרגיל לפי ה-HTML, כלומר מתחת לגלריה.
+       flex-basis: auto - בעמודה, flex-basis קובע גובה ולא רוחב, ולכן מבטלים את 240px.
+       rotate: 0deg - בלי הטיה, כדי שלא יבלוט מהמסך הצר */
+    aside {
+        order: 0;
+        flex-basis: auto;
+        width: 100%;
+        rotate: 0deg;
     }
 }

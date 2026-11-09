@@ -17,6 +17,10 @@
     <!-- הכותרת שמופיעה בלשונית של הדפדפן -->
     <title>דף הבית | בראשית</title>
 
+    <!-- description: תיאור קצר של הדף. גוגל מציג אותו בתוצאות החיפוש, מתחת לקישור לאתר.
+         לכל דף יש תיאור משלו, שמסביר מה יש בדף הזה דווקא -->
+    <meta name="description" content="בראשית – האתר של נעה אפשטיין, מאיירת: גלריית ציורים, קומיקסים ומדבקות, ואפשרות להזמין ציור אישי.">
+
     <!-- favicon: האייקון הקטן שמופיע בלשונית ליד הכותרת -->
     <link rel="icon" href="favicon.ico">
 
@@ -65,16 +69,23 @@
     <!-- ===== header: הכותרת הראשית. זהה בכל דפי האתר =====
          ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
-        <!-- הלוגו עטוף בקישור לדף הבית, כמו שההנחיות דורשות.
-             alt: טקסט חלופי שמוקרא לעיוורים ומוצג אם התמונה לא נטענת -->
-        <a href="index.html"><img src="assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <!-- הלוגו, שם האתר והסלוגן עטופים יחד בקישור אחד לדף הבית (a.brand-link):
+             לחיצה בכל מקום על האזור הזה מובילה לדף הבית, כמו שההנחיות דורשות ללוגו.
+             alt="" בלוגו: לקישור כבר יש טקסט (שם האתר והסלוגן), שהוא "שם הקישור".
+             alt נוסף כמו "לוגו בראשית" היה גורם לקורא מסך להקריא "בראשית" פעמיים.
+             ב-CSS הקישור הוא flex בשורה: הלוגו ליד שם האתר -->
+        <a href="index.html" class="brand-link">
+            <img src="assets/images/logo.webp" alt="" class="logo" width="360" height="333">
 
-        <!-- div שמקבץ את שם האתר והסלוגן, כדי שיעמדו אחד מעל השני כיחידה אחת -->
-        <div class="brand">
-            <!-- h1: הכותרת החשובה ביותר בדף. יש רק h1 אחד בכל דף -->
-            <h1>בראשית</h1>
-            <p class="slogan">ליצור עולם בדיו</p>
-        </div>
+            <!-- div שמקבץ את שם האתר והסלוגן, כדי שיעמדו אחד מעל השני כיחידה אחת -->
+            <div class="brand">
+                <!-- h1: הכותרת החשובה ביותר בדף, ויש רק אחת בכל דף.
+                     בדף הבית ה-h1 הוא שם האתר, כי הדף הזה עוסק באתר כולו.
+                     בשאר הדפים שם האתר הוא פסקה (p.site-name), וה-h1 הוא כותרת הדף עצמו -->
+                <h1 class="site-name">בראשית</h1>
+                <p class="slogan">ליצור עולם בדיו</p>
+            </div>
+        </a>
 
         <!-- nav: תגית סמנטית לתפריט ניווט. בתוכה רשימה לא ממוספרת (ul),
              וכל פריט ברשימה (li) הוא קישור לדף אחר.
@@ -96,8 +107,10 @@
          אין "דף" לבן אחד, וכל section מעוצב לעצמו. העיצוב ב-css/index.css -->
     <main class="home">
 
-        <!-- 1. הסרטון פותח את הדף: מתחיל לבד, בלי קול, בלולאה -->
-        <section class="hero-video">
+        <!-- 1. הסרטון פותח את הדף: מתחיל לבד, בלי קול, בלולאה.
+             figure: תגית סמנטית לתוכן מוצג (תמונה, סרטון) עם כיתוב משלו (figcaption).
+             (section מתאים לחלק בדף שיש לו כותרת. לסרטון אין כותרת, ולכן figure מתאים יותר) -->
+        <figure class="hero-video">
             <!-- תכונות הסרטון:
                  controls    - מציג כפתורי ניגון, עצירה ומסך מלא
                  autoplay    - מתחיל לבד כשהדף נטען
@@ -110,7 +123,9 @@
                 <!-- הטקסט הזה מוצג רק בדפדפן ישן שלא מכיר את תגית video -->
                 הדפדפן שלך לא תומך בהצגת סרטונים.
             </video>
-        </section>
+            <!-- figcaption: הכיתוב של הסרטון. עוזר גם לקוראי מסך וגם לגוגל להבין מה רואים בסרטון -->
+            <figcaption>תהליך היצירה: מקו ראשון ועד ציור מוגמר</figcaption>
+        </figure>
 
         <!-- 2. ברוכים הבאים: כותרת משנה (h2), פסקה (p) וכפתור -->
         <section class="welcome">
@@ -122,17 +137,19 @@
 
         <!-- 3. כרטיסים לשני דפי הציורים.
              כל כרטיס הוא קישור (a) אחד גדול, כך שלחיצה בכל מקום בכרטיס מעבירה לדף.
+             הכותרות כאן h2 (ולא h3), כי הכרטיסים לא שייכים לחלק "ברוכים הבאים" שמעליהם:
+             הם חלק עצמאי בדף, ולכן הכותרת שלהם באותה דרגה כמו "ברוכים הבאים" ו"על הלוח".
              ב-CSS: section.cards הוא flex בשורה, ובטלפון עובר לעמודה -->
         <section class="cards">
             <a href="pages/comics.html" class="card">
-                <h3>קומיקסים</h3>
-                <img src="assets/images/comics/shabbat-72.webp" alt="קומיקס שבת">
+                <h2>קומיקסים</h2>
+                <img src="assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013">
                 <!-- span: תגית "ריקה" בלי משמעות, רק כדי לעצב את הטקסט הזה בנפרד -->
                 <span>לכל הקומיקסים ←</span>
             </a>
             <a href="pages/gallery.html" class="card">
-                <h3>גלריה</h3>
-                <img src="assets/images/gallery/stage.jpg" alt="על הבמה">
+                <h2>גלריה</h2>
+                <img src="assets/images/gallery/stage.jpg" alt="על הבמה" width="1222" height="864">
                 <span>לכל הציורים ←</span>
             </a>
         </section>
@@ -144,40 +161,43 @@
              - pinned note     : פתק צבעוני עם טקסט (pink / blue משנים את הצבע)
              - pinned polaroid : תמונה מודפסת עם שוליים לבנים וכיתוב
              - pinned + img.sticker : מדבקה (ציור עם שוליים לבנים ורקע שקוף)
-             style="--px: ...; --py: ...;" - משתני CSS (נושא הלמידה העצמית):
+             pin-...: לכל מדבקה class משלה (pin-reading-girl וכו'), שמגדיר ב-index.css
+             שני משתני CSS (נושא הלמידה העצמית), px ו-py (עם שני מקפים לפני השם):
              המיקום המדויק של הנעץ על הנייר של כל מדבקה, באחוזים מהרוחב ומהגובה.
-             ה-CSS קורא אותם ב-var(--px) ו-var(--py). לפתקים אין משתנים,
-             ולכן הנעץ שלהם במקום ברירת המחדל: באמצע הקצה העליון.
-             alt="" במדבקות: הן קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
+             ה-CSS קורא אותם בעזרת var(). (בתוך הערת HTML אסור לכתוב שני מקפים ברצף)
+             לפתקים אין משתנים, ולכן הנעץ שלהם במקום ברירת המחדל: באמצע הקצה העליון.
+             alt במדבקות: כל מדבקה היא התוכן היחיד של קישור, ולכן ה-alt שלה הוא "שם הקישור":
+             מה רואים ולאן הקישור מוביל. בלי alt, לקישור לא היה שם בכלל -
+             קורא מסך היה מקריא רק את הכתובת, וגוגל היה רואה קישור בלי טקסט -->
         <section class="board-section">
             <h2>על הלוח</h2>
             <div class="corkboard">
                 <a href="pages/gallery.html" class="pinned note">ציורים חדשים עלו לגלריה!</a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 57.2%; --py: 6.5%;"><img src="assets/images/stickers/reading-girl.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/curly-girl.webp" alt="ילדונת"><span>ילדונת</span></a>
-                <a href="pages/comics.html" class="pinned" style="--px: 50.0%; --py: 5.6%;"><img src="assets/images/stickers/bearded-man.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 50.0%; --py: 5.4%;"><img src="assets/images/stickers/family-father.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 69.4%; --py: 7.9%;"><img src="assets/images/stickers/duo.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned pin-reading-girl"><img src="assets/images/stickers/reading-girl.webp" alt="ילדה קוראת – לגלריה" class="sticker" width="491" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/curly-girl.webp" alt="ילדונת" width="595" height="842"><span>ילדונת</span></a>
+                <a href="pages/comics.html" class="pinned pin-bearded-man"><img src="assets/images/stickers/bearded-man.webp" alt="איש עם זקן – לקומיקסים" class="sticker" width="308" height="484"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-father"><img src="assets/images/stickers/family-father.webp" alt="אבא – לגלריה" class="sticker" width="150" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-duo"><img src="assets/images/stickers/duo.webp" alt="שתי דמויות – לגלריה" class="sticker" width="520" height="267"></a>
                 <a href="pages/order.html" class="pinned note pink">רוצים ציור משלכם? הזמינו כאן</a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 63.7%; --py: 6.5%;"><img src="assets/images/stickers/winter-girl.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/street.jpg" alt="רחוב"><span>רחוב</span></a>
-                <a href="pages/comics.html" class="pinned" style="--px: 49.9%; --py: 8.0%;"><img src="assets/images/stickers/eyes-3.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 50.7%; --py: 6.0%;"><img src="assets/images/stickers/professor.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 49.6%; --py: 5.4%;"><img src="assets/images/stickers/family-mother.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned pin-winter-girl"><img src="assets/images/stickers/winter-girl.webp" alt="ילדה עם כובע – לגלריה" class="sticker" width="193" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/street.jpg" alt="רחוב" width="1400" height="990"><span>רחוב</span></a>
+                <a href="pages/comics.html" class="pinned pin-eyes-3"><img src="assets/images/stickers/eyes-3.webp" alt="זוג עיניים – לקומיקסים" class="sticker" width="369" height="199"></a>
+                <a href="pages/gallery.html" class="pinned pin-professor"><img src="assets/images/stickers/professor.webp" alt="פרופסור עם תיק – לגלריה" class="sticker" width="213" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-mother"><img src="assets/images/stickers/family-mother.webp" alt="אמא – לגלריה" class="sticker" width="123" height="520"></a>
                 <a href="pages/comics.html" class="pinned note blue">קומיקס חדש: מאחורי הקלעים</a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 50.0%; --py: 6.9%;"><img src="assets/images/stickers/family-toddler.webp" alt="" class="sticker"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה"><span>ילדה וסוכרייה</span></a>
-                <a href="pages/gallery.html" class="pinned" style="--px: 39.3%; --py: 6.9%;"><img src="assets/images/stickers/books-boy.webp" alt="" class="sticker"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-toddler"><img src="assets/images/stickers/family-toddler.webp" alt="פעוטה – לגלריה" class="sticker" width="154" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה" width="1400" height="990"><span>ילדה וסוכרייה</span></a>
+                <a href="pages/gallery.html" class="pinned pin-books-boy"><img src="assets/images/stickers/books-boy.webp" alt="ערימת ספרים – לגלריה" class="sticker" width="331" height="520"></a>
             </div>
         </section>
 
     </main>
 
     <!-- ===== footer: הכותרת התחתונה. זהה בכל הדפים =====
-         &copy; היא "ישות" (entity) של HTML שמציגה את הסימן ©.
+         הסימן © כתוב ישירות (ולא כ-&amp;copy;), כי הקובץ שמור ב-UTF-8 ומכיר את כל התווים.
          כמו שההנחיות דורשות: זכויות שמורות + קישור לדף האודות -->
     <footer>
-        <p>&copy; כל הזכויות שמורות | נעה אפשטיין  | <a href="pages/about.html">אודות</a></p>
+        <p>© כל הזכויות שמורות | נעה אפשטיין | <a href="pages/about.html">אודות</a></p>
     </footer>
 </body>
 </html>

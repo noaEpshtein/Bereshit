@@ -6,9 +6,19 @@
     text-align: center;
 }
 
-/* הקו הקצר מתחת לכותרת (מוגדר ב-style.css) עובר למרכז: margin אוטומטי בצדדים */
-.done h2::after {
+/* הקו הקצר מתחת לכותרת הדף (מוגדר ב-style.css) עובר למרכז: margin אוטומטי בצדדים */
+.done h1::after {
     margin: 10px auto 0;
+}
+
+/* "מה קורה עכשיו?" - כותרת משנה (h2) בגודל קטן יותר, ובלי הקו הקצר */
+.done h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.done h2::after {
+    display: none;
 }
 
 /* p מוגבל ברוחב (65ch, ב-style.css), ולכן צריך margin אוטומטי בצדדים כדי למרכז אותו */

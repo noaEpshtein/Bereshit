@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>קומיקסים | בראשית</title>
 
+    <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש, מתחת לקישור -->
+    <meta name="description" content="קומיקסים קצרים מהחיים שכתבתי וציירתי: קומיקס שבת, המעט שהוא רב, בחדר ההתאוששות ומאחורי הקלעים. לחיצה על קומיקס פותחת אותו לקריאה.">
+
     <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
 
@@ -52,21 +55,27 @@
          class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
          sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
          alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
-    <img src="../assets/images/stickers/tongue-girl.webp" alt="" class="sticker deco deco-1">
-    <img src="../assets/images/stickers/hat-guy.webp" alt="" class="sticker deco deco-2">
-    <img src="../assets/images/stickers/family-baby.webp" alt="" class="sticker deco deco-3">
+    <img src="../assets/images/stickers/tongue-girl.webp" alt="" class="sticker deco deco-1" width="325" height="520">
+    <img src="../assets/images/stickers/hat-guy.webp" alt="" class="sticker deco deco-2" width="326" height="520">
+    <img src="../assets/images/stickers/family-baby.webp" alt="" class="sticker deco deco-3" width="314" height="311">
 
     <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
          ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
-        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
-        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <!-- הלוגו, שם האתר והסלוגן עטופים יחד בקישור אחד לדף הבית (a.brand-link),
+             כך שלחיצה בכל מקום על האזור הזה מובילה לדף הבית.
+             alt="" בלוגו: לקישור כבר יש טקסט (שם האתר והסלוגן), ולכן אין צורך לחזור עליו -->
+        <a href="../index.html" class="brand-link">
+            <img src="../assets/images/logo.webp" alt="" class="logo" width="360" height="333">
 
-        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
-        <div class="brand">
-            <h1>בראשית</h1>
-            <p class="slogan">ליצור עולם בדיו</p>
-        </div>
+            <!-- שם האתר והסלוגן, מקובצים יחד ב-div.
+                 שם האתר הוא p ולא h1: ה-h1 של הדף הזה הוא כותרת הדף בתוך main,
+                 כי היא אומרת על מה הדף (גוגל וקוראי מסך נעזרים בה) -->
+            <div class="brand">
+                <p class="site-name">בראשית</p>
+                <p class="slogan">ליצור עולם בדיו</p>
+            </div>
+        </a>
 
         <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
              הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
@@ -88,7 +97,7 @@
         <!-- ===== main: התוכן המרכזי של הדף, מחולק ל-section ===== -->
         <main>
             <section>
-                <h2>קומיקסים</h2>
+                <h1>קומיקסים</h1>
 
                 <p>קומיקסים שכתבתי וציירתי. לחיצה על קומיקס פותחת אותו לקריאה, ובקומיקס של שני עמודים החץ מעביר לעמוד הבא.</p>
 
@@ -96,94 +105,94 @@
                      כל קומיקס הוא "כרטיס מוצר" (article), באותו מבנה בדיוק כמו בגלריה.
                      העיצוב המשותף נמצא ב-style.css (.products, .product), וב-comics.css רק ההבדלים.
                      בכרטיס מוצגת הקובייה הראשונה של הקומיקס (קבצי ה-panel.webp, חתוכים מהעמוד הראשון).
+                     ה-alt של התמונה אומר מה רואים ומה הלחיצה עושה, ולא סתם חוזר על השם שב-h2.
                      הקישור על התמונה מוביל ל-id של העמוד הראשון של הקומיקס:
                      c-1 = קומיקס שבת, c-2 = המעט שהוא רב, c-4 = בחדר ההתאוששות, c-5 = מאחורי הקלעים.
                      (c-3 ו-c-6 הם העמודים השניים, ומגיעים אליהם רק עם החץ בתוך החלון) -->
                 <div class="products">
                     <article class="product">
                         <figure>
-                            <a href="#c-1"><img src="../assets/images/comics/shabbat-panel.webp" alt="קומיקס שבת" loading="lazy"></a>
+                            <a href="#c-1"><img src="../assets/images/comics/shabbat-panel.webp" alt="הקובייה הראשונה של הקומיקס קומיקס שבת – פתיחה לקריאה" loading="lazy" width="519" height="458"></a>
                         </figure>
-                        <h3>קומיקס שבת</h3>
+                        <h2>קומיקס שבת</h2>
                         <p>קומיקס · עמוד אחד</p>
                     </article>
 
                     <article class="product">
                         <figure>
-                            <a href="#c-2"><img src="../assets/images/comics/daily-panel.webp" alt="המעט שהוא רב" loading="lazy"></a>
+                            <a href="#c-2"><img src="../assets/images/comics/daily-panel.webp" alt="הקובייה הראשונה של הקומיקס המעט שהוא רב – פתיחה לקריאה" loading="lazy" width="349" height="374"></a>
                         </figure>
-                        <h3>המעט שהוא רב</h3>
+                        <h2>המעט שהוא רב</h2>
                         <p>קומיקס · 2 עמודים</p>
                     </article>
 
                     <article class="product">
                         <figure>
-                            <a href="#c-4"><img src="../assets/images/comics/recovery-panel.webp" alt="בחדר ההתאוששות" loading="lazy"></a>
+                            <a href="#c-4"><img src="../assets/images/comics/recovery-panel.webp" alt="הקובייה הראשונה של הקומיקס בחדר ההתאוששות – פתיחה לקריאה" loading="lazy" width="599" height="585"></a>
                         </figure>
-                        <h3>בחדר ההתאוששות</h3>
+                        <h2>בחדר ההתאוששות</h2>
                         <p>קומיקס · עמוד אחד</p>
                     </article>
 
                     <article class="product">
                         <figure>
-                            <a href="#c-5"><img src="../assets/images/comics/behind-scenes-panel.webp" alt="מאחורי הקלעים" loading="lazy"></a>
+                            <a href="#c-5"><img src="../assets/images/comics/behind-scenes-panel.webp" alt="הקובייה הראשונה של הקומיקס מאחורי הקלעים – פתיחה לקריאה" loading="lazy" width="541" height="530"></a>
                         </figure>
-                        <h3>מאחורי הקלעים</h3>
+                        <h2>מאחורי הקלעים</h2>
                         <p>קומיקס · 2 עמודים</p>
                     </article>
                 </div>
             </section>
+
+            <!-- ===== חלונות התצוגה (lightbox) - אותו רעיון כמו בגלריה, עם :target =====
+                 החלונות נמצאים בתוך main, כי עמודי הקומיקס הם התוכן של הדף.
+                 class="lightbox comic-lb": שתי מחלקות. lightbox - העיצוב המשותף מ-style.css,
+                 comic-lb - תוספת מ-comics.css: עמוד קומיקס גבוה, ולכן אפשר לגלול בתוך החלון.
+                 תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS).
+                 החיצים עוברים רק בין העמודים של אותו קומיקס: בקומיקס של עמוד אחד אין חיצים,
+                 בעמוד הראשון יש רק "הבא" ובעמוד האחרון רק "הקודם" -->
+            <div class="lightbox comic-lb" id="c-1">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <figure><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013"><figcaption>קומיקס שבת</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+            </div>
+            <div class="lightbox comic-lb" id="c-2">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 1 מתוך 2</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+                <a href="#c-3" class="lb-next" aria-label="לעמוד הבא"></a>
+            </div>
+            <div class="lightbox comic-lb" id="c-3">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 2 מתוך 2</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+                <a href="#c-2" class="lb-prev" aria-label="לעמוד הקודם"></a>
+            </div>
+            <div class="lightbox comic-lb" id="c-4">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <figure><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות" width="1271" height="1800"><figcaption>בחדר ההתאוששות</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+            </div>
+            <div class="lightbox comic-lb" id="c-5">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <!-- עמוד 1 של "מאחורי הקלעים" שמור כשני חצאים (top + bottom), שמוצגים זה מתחת לזה -->
+                <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1" width="1226" height="900"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt="" width="1226" height="900"><figcaption>מאחורי הקלעים — עמוד 1 מתוך 2</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+                <a href="#c-6" class="lb-next" aria-label="לעמוד הבא"></a>
+            </div>
+            <div class="lightbox comic-lb" id="c-6">
+                <a href="#_" class="lb-bg" aria-label="סגירה"></a>
+                <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2" width="1226" height="1800"><figcaption>מאחורי הקלעים — עמוד 2 מתוך 2</figcaption></figure>
+                <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
+                <a href="#c-5" class="lb-prev" aria-label="לעמוד הקודם"></a>
+            </div>
         </main>
     </div>
 
-
-
-    <!-- ===== חלונות התצוגה (lightbox) - אותו רעיון כמו בגלריה, עם :target =====
-         class="lightbox comic-lb": שתי מחלקות. lightbox - העיצוב המשותף מ-style.css,
-         comic-lb - תוספת מ-comics.css: עמוד קומיקס גבוה, ולכן אפשר לגלול בתוך החלון.
-         תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS).
-         החיצים עוברים רק בין העמודים של אותו קומיקס: בקומיקס של עמוד אחד אין חיצים,
-         בעמוד הראשון יש רק "הבא" ובעמוד האחרון רק "הקודם" -->
-    <div class="lightbox comic-lb" id="c-1">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת"><figcaption>קומיקס שבת</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-    </div>
-    <div class="lightbox comic-lb" id="c-2">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1"><figcaption>המעט שהוא רב — עמוד 1 מתוך 2</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-3" class="lb-next" aria-label="לעמוד הבא"></a>
-    </div>
-    <div class="lightbox comic-lb" id="c-3">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2"><figcaption>המעט שהוא רב — עמוד 2 מתוך 2</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-2" class="lb-prev" aria-label="לעמוד הקודם"></a>
-    </div>
-    <div class="lightbox comic-lb" id="c-4">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות"><figcaption>בחדר ההתאוששות</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-    </div>
-    <div class="lightbox comic-lb" id="c-5">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <!-- עמוד 1 של "מאחורי הקלעים" שמור כשני חצאים (top + bottom), שמוצגים זה מתחת לזה -->
-        <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt=""><figcaption>מאחורי הקלעים — עמוד 1 מתוך 2</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-6" class="lb-next" aria-label="לעמוד הבא"></a>
-    </div>
-    <div class="lightbox comic-lb" id="c-6">
-        <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-        <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2"><figcaption>מאחורי הקלעים — עמוד 2 מתוך 2</figcaption></figure>
-        <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
-        <a href="#c-5" class="lb-prev" aria-label="לעמוד הקודם"></a>
-    </div>
-
     <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
-         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
+         הסימן © כתוב ישירות (הקובץ ב-UTF-8). זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
-        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+        <p>© כל הזכויות שמורות | נעה אפשטיין | <a href="about.html">אודות</a></p>
     </footer>
 </body>
 </html>

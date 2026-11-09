@@ -11,12 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הזמנת ציור | בראשית</title>
 
+    <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש, מתחת לקישור -->
+    <meta name="description" content="הזמנת ציור אישי מבראשית: דיוקן, איור דמות, ציור משפחתי, קומיקס אישי או סט מדבקות. מלאו את הטופס ונחזור אליכם עם סקיצה והצעת מחיר.">
+
     <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
 
     <!-- העיצוב המשותף לכל הדפים -->
     <link rel="stylesheet" href="../css/style.css">
-
+    
     <!-- עיצובים ששייכים רק לדף הזה. נטען אחרי style.css, ולכן יכול לדרוס כללים משותפים -->
     <link rel="stylesheet" href="../css/order.css">
 </head>
@@ -52,21 +55,27 @@
          class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
          sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
          alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
-    <img src="../assets/images/stickers/bending-girl.webp" alt="" class="sticker deco deco-1">
-    <img src="../assets/images/stickers/family-boy.webp" alt="" class="sticker deco deco-2">
-    <img src="../assets/images/stickers/eyes-1.webp" alt="" class="sticker deco deco-3">
+    <img src="../assets/images/stickers/bending-girl.webp" alt="" class="sticker deco deco-1" width="315" height="405">
+    <img src="../assets/images/stickers/family-boy.webp" alt="" class="sticker deco deco-2" width="165" height="520">
+    <img src="../assets/images/stickers/eyes-1.webp" alt="" class="sticker deco deco-3" width="436" height="216">
 
     <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
          ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
-        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
-        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <!-- הלוגו, שם האתר והסלוגן עטופים יחד בקישור אחד לדף הבית (a.brand-link),
+             כך שלחיצה בכל מקום על האזור הזה מובילה לדף הבית.
+             alt="" בלוגו: לקישור כבר יש טקסט (שם האתר והסלוגן), ולכן אין צורך לחזור עליו -->
+        <a href="../index.html" class="brand-link">
+            <img src="../assets/images/logo.webp" alt="" class="logo" width="360" height="333">
 
-        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
-        <div class="brand">
-            <h1>בראשית</h1>
-            <p class="slogan">ליצור עולם בדיו</p>
-        </div>
+            <!-- שם האתר והסלוגן, מקובצים יחד ב-div.
+                 שם האתר הוא p ולא h1: ה-h1 של הדף הזה הוא כותרת הדף בתוך main,
+                 כי היא אומרת על מה הדף (גוגל וקוראי מסך נעזרים בה) -->
+            <div class="brand">
+                <p class="site-name">בראשית</p>
+                <p class="slogan">ליצור עולם בדיו</p>
+            </div>
+        </a>
 
         <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
              הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
@@ -88,7 +97,7 @@
         <!-- ===== main: התוכן המרכזי של הדף, מחולק ל-section ===== -->
         <main>
             <section>
-                <h2>הזמנת ציור</h2>
+                <h1>הזמנת ציור</h1>
                 <!-- span.req ריק: ה-CSS מוסיף בתוכו כוכבית אדומה, כמו ליד שדות החובה -->
                 <p>רוצים ציור, איור או קומיקס משלכם? מלאו את הפרטים ונחזור אליכם עם הצעה. שדות עם <span class="req"></span> הם שדות חובה.</p>
 
@@ -246,23 +255,27 @@
                             </select>
                         </div>
 
-                        <div class="field">
-                            <!-- כפתורי רדיו: בחירה אחת בלבד מתוך כמה.
-                                 כל הכפתורים באותה קבוצה מקבלים אותו name="style", ולכן בחירה באחד מבטלת את האחר.
-                                 מספיק required על אחד מהם כדי שהקבוצה כולה תהיה חובה.
-                                 כאן ה-input נמצא בתוך ה-label, ולכן לא צריך for ו-id:
-                                 לחיצה על הטקסט בוחרת את הכפתור.
-                                 span.field-title: כותרת לקבוצה (לא label, כי היא לא שייכת לשדה אחד).
-                                 div.choices: ב-CSS הוא flex בשורה עם גלישה -->
-                            <span class="field-title req">סגנון</span>
+                        <!-- כפתורי רדיו: בחירה אחת בלבד מתוך כמה.
+                             כל הכפתורים באותה קבוצה מקבלים אותו name="style", ולכן בחירה באחד מבטלת את האחר.
+                             מספיק required על אחד מהם כדי שהקבוצה כולה תהיה חובה.
+                             כאן ה-input נמצא בתוך ה-label, ולכן לא צריך for ו-id:
+                             לחיצה על הטקסט בוחרת את הכפתור.
+                             fieldset בתוך fieldset: קבוצת הכפתורים היא קבוצת שדות בפני עצמה,
+                             ו-legend הוא הכותרת שלה (לא label, כי היא לא שייכת לשדה אחד).
+                             כך קורא מסך מקריא "סגנון" לפני כל אחת מהאפשרויות.
+                             class="field group": מקבל את הריווח של .field, ובלי מסגרת (ב-order.css).
+                             div.choices: ב-CSS הוא flex בשורה עם גלישה -->
+                        <fieldset class="field group">
+                            <legend class="field-title req">סגנון</legend>
                             <div class="choices">
                                 <label><input type="radio" name="style" value="ink" required> קו דיו שחור-לבן</label>
                                 <label><input type="radio" name="style" value="color"> צבעוני</label>
                                 <label><input type="radio" name="style" value="sketch"> סקיצה בעיפרון</label>
                             </div>
-                        </div>
+                        </fieldset>
 
-                        <!-- פלטת צבעים מועדפת: עוד קבוצת כפתורי רדיו (name="palette"), בחירה אחת בלבד.
+                        <!-- פלטת צבעים מועדפת: עוד קבוצת כפתורי רדיו (name="palette"), בחירה אחת בלבד,
+                             גם היא fieldset פנימי עם legend.
                              לא חובה (אין required): אפשר לא לבחור, ואז נבחר בעצמנו.
                              כל אפשרות היא label עם class="palette", ובתוכו:
                              input - כפתור הרדיו
@@ -270,8 +283,8 @@
                                            (order.css), כל פלטה לפי המחלקה השנייה שלה (pastel, warm...)
                              והשם של הפלטה. האפשרות האחרונה, "אחר...", פותחת בחירה של 4 צבעים חופשיים.
                              div.palettes: ב-CSS הוא flex עם גלישה, כך שהאפשרויות מסתדרות בשורות -->
-                        <div class="field">
-                            <span class="field-title">פלטת צבעים מועדפת</span>
+                        <fieldset class="field group">
+                            <legend class="field-title">פלטת צבעים מועדפת</legend>
                             <div class="palettes">
                                 <label class="palette"><input type="radio" name="palette" value="pastel"> <span class="swatch pastel"></span> פסטל</label>
                                 <label class="palette"><input type="radio" name="palette" value="warm"> <span class="swatch warm"></span> חמים</label>
@@ -285,30 +298,32 @@
                                  בלי JavaScript: ה-CSS מסתיר את ה-div הזה (display: none), ומציג אותו
                                  בעזרת הסלקטור :has() כשכפתור הרדיו value="custom" מסומן (ראו order.css).
                                  type="color": פותח בוחר צבעים. value: הצבע ההתחלתי, בקוד הקסדצימלי.
-                                 כל input עטוף ב-label עם מספר, כדי שיהיה ברור איזה צבע זה -->
-                            <div class="custom-colors">
+                                 כל input עטוף ב-label עם מספר, כדי שיהיה ברור איזה צבע זה.
+                                 role="group" + aria-label: אומר לקורא מסך שארבעת השדות הם קבוצה אחת,
+                                 ונותן לקבוצה שם (כמו legend, בלי לשנות את העיצוב של השורה) -->
+                            <div class="custom-colors" role="group" aria-label="4 צבעים לבחירה חופשית">
                                 <span class="hint">בחרו 4 צבעים:</span>
                                 <label class="color-pick">1 <input type="color" name="color1" value="#ffd6e0"></label>
                                 <label class="color-pick">2 <input type="color" name="color2" value="#fff1b8"></label>
                                 <label class="color-pick">3 <input type="color" name="color3" value="#c9f0e1"></label>
                                 <label class="color-pick">4 <input type="color" name="color4" value="#cfe3ff"></label>
                             </div>
-                        </div>
+                        </fieldset>
                     </fieldset>
 
                     <!-- ===== 3. פרטי ההזמנה ===== -->
                     <fieldset>
                         <legend>פרטי ההזמנה</legend>
 
-                        <div class="field">
-                            <!-- עוד קבוצת רדיו, עם name="size" -->
-                            <span class="field-title req">גודל</span>
+                        <!-- עוד קבוצת רדיו, עם name="size", ב-fieldset פנימי עם legend -->
+                        <fieldset class="field group">
+                            <legend class="field-title req">גודל</legend>
                             <div class="choices">
                                 <label><input type="radio" name="size" value="digital" required> קובץ דיגיטלי</label>
                                 <label><input type="radio" name="size" value="a4"> הדפסה A4</label>
                                 <label><input type="radio" name="size" value="a3"> הדפסה A3</label>
                             </div>
-                        </div>
+                        </fieldset>
 
                         <div class="field">
                             <label for="date" class="req">מתי צריך את הציור?</label>
@@ -371,9 +386,9 @@
     </div>
 
     <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
-         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
+         הסימן © כתוב ישירות (הקובץ ב-UTF-8). זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
-        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+        <p>© כל הזכויות שמורות | נעה אפשטיין | <a href="about.html">אודות</a></p>
     </footer>
 </body>
 </html>

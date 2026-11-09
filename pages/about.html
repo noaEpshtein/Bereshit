@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אודות | בראשית</title>
 
+    <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש, מתחת לקישור -->
+    <meta name="description" content="נעה אפשטיין, מאיירת בדיגיטל וביד: מי אני, מה אני מציירת (דמויות, דיוקנאות, קומיקסים ומדבקות) ואיך יוצרים קשר.">
+
     <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
 
@@ -52,21 +55,27 @@
          class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
          sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
          alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
-    <img src="../assets/images/stickers/baby-face.webp" alt="" class="sticker deco deco-1">
-    <img src="../assets/images/stickers/professor.webp" alt="" class="sticker deco deco-2">
-    <img src="../assets/images/stickers/family-toddler.webp" alt="" class="sticker deco deco-3">
+    <img src="../assets/images/stickers/baby-face.webp" alt="" class="sticker deco deco-1" width="273" height="300">
+    <img src="../assets/images/stickers/professor.webp" alt="" class="sticker deco deco-2" width="213" height="520">
+    <img src="../assets/images/stickers/family-toddler.webp" alt="" class="sticker deco deco-3" width="154" height="520">
 
     <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
          ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
-        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
-        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <!-- הלוגו, שם האתר והסלוגן עטופים יחד בקישור אחד לדף הבית (a.brand-link),
+             כך שלחיצה בכל מקום על האזור הזה מובילה לדף הבית.
+             alt="" בלוגו: לקישור כבר יש טקסט (שם האתר והסלוגן), ולכן אין צורך לחזור עליו -->
+        <a href="../index.html" class="brand-link">
+            <img src="../assets/images/logo.webp" alt="" class="logo" width="360" height="333">
 
-        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
-        <div class="brand">
-            <h1>בראשית</h1>
-            <p class="slogan">ליצור עולם בדיו</p>
-        </div>
+            <!-- שם האתר והסלוגן, מקובצים יחד ב-div.
+                 שם האתר הוא p ולא h1: ה-h1 של הדף הזה הוא כותרת הדף בתוך main,
+                 כי היא אומרת על מה הדף (גוגל וקוראי מסך נעזרים בה) -->
+            <div class="brand">
+                <p class="site-name">בראשית</p>
+                <p class="slogan">ליצור עולם בדיו</p>
+            </div>
+        </a>
 
         <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
              הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
@@ -93,51 +102,57 @@
             <section class="intro">
                 <!-- div שמקבץ את כל הטקסט, כדי שיהיה פריט flex אחד מול הלוגו -->
                 <div class="intro-text">
-                    <h2>אודות</h2>
+                    <h1>אודות</h1>
                     <p>אני נעה אפשטיין, מאיירת בדיגיטל וביד. </p>
                     <p>אני אוהבת לצייר. מאז שאני זוכרת את עצמי, דף לבן ועט היו בשבילי הזמנה להתחיל משהו חדש.</p>
-                    <!-- blockquote: תגית לציטוט. כאן היא מדגישה את המשפט המרכזי -->
-                    <blockquote>ציור הוא כוח מופלא: קו אחד על דף ריק — ופתאום יש דמות, סיפור, עולם שלם.</blockquote>
+                    <!-- המשפט המרכזי, מעוצב כמו פתק בכתב יד (class="highlight" ב-about.css).
+                         זו פסקה רגילה (p) ולא blockquote, כי blockquote מיועד לציטוט ממקור אחר,
+                         וכאן זה משפט שלי. את המראה המיוחד נותן ה-CSS, לא התגית -->
+                    <p class="highlight">ציור הוא כוח מופלא: קו אחד על דף ריק — ופתאום יש דמות, סיפור, עולם שלם.</p>
                     <!-- strong: הדגשה עם משמעות (מילה חשובה). הדפדפן מציג אותה מודגשת -->
                     <p>מכאן גם השם <strong>בראשית</strong>: כל ציור מתחיל מכלום, מקו ראשון, ונבנה לאט לאט — סקיצה, דיו, ולפעמים גם צבע. באתר תמצאו ציורים, קומיקסים ומדבקות שיצרתי, וגם אפשרות להזמין ציור משלכם.</p>
                 </div>
-                <img src="../assets/images/logo.webp" alt="הלוגו של בראשית: גלובוס שמכחול מצייר" class="sticker intro-logo">
+                <img src="../assets/images/logo.webp" alt="הלוגו של בראשית: גלובוס שמכחול מצייר" class="sticker intro-logo" width="360" height="333">
             </section>
 
             <!-- רשימה לא ממוספרת (ul). כל li מעוצב ב-CSS כפתק צבעוני,
                  והרשימה כולה היא flex עם גלישה, כך שהפתקים מסתדרים בשורות.
-                 בתוך כל פריט: strong לכותרת הפתק, ואחריה טקסט רגיל -->
+                 בתוך כל פריט: h3 לכותרת הפתק (כותרת משנה של "מה אני מציירת"), ואחריה פסקה -->
             <section>
                 <h2>מה אני מציירת</h2>
                 <ul class="what-list">
-                    <li><strong>דמויות ודיוקנאות</strong>ילדים, משפחות ודמויות עם הרבה הבעה.</li>
-                    <li><strong>קומיקסים</strong>סיפורים קצרים מהחיים, בריבועים ובבועות דיבור.</li>
-                    <li><strong>איורים צבעוניים</strong>סצנות, רחובות וחדרים — עם פרספקטיבה וצבע.</li>
-                    <li><strong>מדבקות</strong>דמויות שגזרתי מהציורים — כמו אלה שמפוזרות באתר.</li>
+                    <li><h3>דמויות ודיוקנאות</h3><p>ילדים, משפחות ודמויות עם הרבה הבעה.</p></li>
+                    <li><h3>קומיקסים</h3><p>סיפורים קצרים מהחיים, בריבועים ובבועות דיבור.</p></li>
+                    <li><h3>איורים צבעוניים</h3><p>סצנות, רחובות וחדרים — עם פרספקטיבה וצבע.</p></li>
+                    <li><h3>מדבקות</h3><p>דמויות שגזרתי מהציורים — כמו אלה שמפוזרות באתר.</p></li>
                 </ul>
             </section>
 
             <section>
                 <h2>יצירת קשר</h2>
                 <p>רוצים לשאול, להתייעץ או להזמין? אשמח לשמוע!</p>
-                <!-- קישורים מיוחדים (נושא הלמידה העצמית):
+                <!-- address: תגית סמנטית לפרטי הקשר של בעלת האתר (לא לכתובת דואר דווקא).
+                     קישורים מיוחדים (נושא הלמידה העצמית):
                      mailto: - פותח את תוכנת המייל עם הודעה חדשה לכתובת הזו
                      tel:    - בטלפון פותח את החייגן עם המספר (בלי מקפים ב-href)
                      הקישור השלישי הוא קישור רגיל לדף אחר באתר.
-                     span.icon: עוטף את הסמל, כדי שיהיה אפשר לעצב אותו בנפרד מהטקסט -->
-                <ul class="contact-list">
-                    <li><a href="mailto:n0583200503@email.com"><span class="icon">✉️</span> n0583200503@email.com</a></li>
-                    <li><a href="tel:0583200503"><span class="icon">📞</span> 058-320-0503</a></li>
-                    <li><a href="order.html"><span class="icon">✏️</span> טופס הזמנת ציור</a></li>
-                </ul>
+                     span.icon: עוטף את הסמל, כדי שיהיה אפשר לעצב אותו בנפרד מהטקסט.
+                     aria-hidden="true": קורא מסך מדלג על הסמל (אחרת היה מקריא "מעטפה", "שפופרת טלפון") -->
+                <address>
+                    <ul class="contact-list">
+                        <li><a href="mailto:n0583200503@email.com"><span class="icon" aria-hidden="true">✉️</span> n0583200503@email.com</a></li>
+                        <li><a href="tel:0583200503"><span class="icon" aria-hidden="true">📞</span> 058-320-0503</a></li>
+                        <li><a href="order.html"><span class="icon" aria-hidden="true">✏️</span> טופס הזמנת ציור</a></li>
+                    </ul>
+                </address>
             </section>
         </main>
     </div>
 
     <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
-         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
+         הסימן © כתוב ישירות (הקובץ ב-UTF-8). זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
-        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+        <p>© כל הזכויות שמורות | נעה אפשטיין | <a href="about.html">אודות</a></p>
     </footer>
 </body>
 </html>

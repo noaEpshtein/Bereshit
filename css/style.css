@@ -60,6 +60,16 @@
     box-sizing: border-box;
 }
 
+/* תמונות: ב-HTML לכל img יש width ו-height (הגודל האמיתי של הקובץ בפיקסלים).
+   הדפדפן לומד מהם את היחס בין הרוחב לגובה עוד לפני שהתמונה נטענה, ושומר לה מקום,
+   כך שהדף לא "קופץ" כשהתמונות מגיעות (גוגל מודד את הקפיצות האלה - CLS).
+   width: auto ו-height: auto - הגודל על המסך נקבע כרגיל לפי ה-CSS (max-width, width באחוזים וכו'),
+   ולא לפי המספרים שב-HTML. כלל עם class (למשל .logo או .deco) דורס את הכלל הזה */
+img {
+    width: auto;
+    height: auto;
+}
+
 /* body: ההגדרות הבסיסיות של כל הטקסט בדף. אלמנטים בתוכו "יורשים" את הגופן והצבע */
 body {
     font-family: var(--font-text);
@@ -86,8 +96,11 @@ h1, h2, h3 {
     line-height: 1.2;
 }
 
-/* כותרת משנה עם קו קצר בצבע ההדגשה מתחתיה */
-h2 {
+/* כותרת משנה עם קו קצר בצבע ההדגשה מתחתיה.
+   main h1 - כותרת הדף בתוך main (בכל הדפים חוץ מדף הבית) נראית בדיוק כמו h2:
+   היא h1 כי היא הכותרת החשובה בדף, אבל המראה נקבע כאן ב-CSS, לא לפי התגית */
+h2,
+main h1 {
     font-size: 2.1rem;
     margin-bottom: 25px;
 }
@@ -95,7 +108,8 @@ h2 {
 /* ::after - פסאודו-אלמנט: "אלמנט מדומה" שנוצר רק ב-CSS, אחרי התוכן של h2.
    content: "" חובה כדי שהוא יופיע (כאן ריק, כי רוצים רק קו).
    display: block - כדי שיהיה בשורה משלו ויקבל רוחב וגובה */
-h2::after {
+h2::after,
+main h1::after {
     content: "";
     display: block;
     width: 50px;
@@ -150,9 +164,22 @@ header::after {
     background-repeat: repeat-x;
 }
 
+/* הקישור לדף הבית: הלוגו, שם האתר והסלוגן יחד.
+   flex בשורה: הלוגו ליד שם האתר, ממורכזים לגובה.
+   text-decoration: none - בלי קו תחתון של קישור. color: inherit - בלי צבע של קישור */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: inherit;
+    text-decoration: none;
+}
+
 /* שם האתר: אותיות בצהוב בהיר עם קו דיו "חי" מסביב.
-   header h1 - סלקטור צאצא: רק h1 שנמצא בתוך header */
-header h1 {
+   בדף הבית הוא h1, ובשאר הדפים p - ולכן העיצוב לפי class="site-name", ולא לפי התגית.
+   margin: 0 - מבטל את הרווח שיש ל-p מתחתיו */
+.site-name {
+    margin: 0;
     font-family: var(--font-hand);
     font-weight: 800;
     font-size: 3.2rem;
@@ -190,8 +217,10 @@ header h1 {
     transition: transform 0.4s;
 }
 
-/* :hover - כשהעכבר מעל הלוגו, הוא מסתובב קצת (rotate במעלות, מינוס = נגד כיוון השעון) */
-.logo:hover {
+/* :hover - כשהעכבר מעל הקישור (הלוגו, שם האתר או הסלוגן), הלוגו מסתובב קצת
+   (rotate במעלות, מינוס = נגד כיוון השעון).
+   .brand-link:hover .logo - הלוגו שבתוך קישור שהעכבר נמצא מעליו */
+.brand-link:hover .logo {
     transform: rotate(-6deg);
 }
 
@@ -472,14 +501,19 @@ footer a:hover {
     object-fit: contain;
 }
 
-/* שם המוצר עם "מרקר" צהוב:
+/* שם המוצר (h2) עם "מרקר" צהוב:
    linear-gradient - מעבר צבעים. כאן הוא חד: עד 55% מהגובה שקוף, ומשם צהוב,
    כך שרק החצי התחתון של הטקסט צבוע - כמו סימון במרקר */
-.product h3 {
+.product h2 {
     margin-bottom: 4px;
     padding: 0 12px;
     font-size: 1.2rem;
     background: linear-gradient(transparent 55%, var(--yellow) 55%);   /* "מרקר" עדין */
+}
+
+/* שם המוצר הוא h2, אבל בלי הקו הקצר ש-h2 מקבל למעלה */
+.product h2::after {
+    display: none;
 }
 
 /* שורת התיאור: קטנה ובאפור */
@@ -614,7 +648,7 @@ footer a:hover {
 
 /* מסך בינוני (טאבלט): עד 1000 פיקסלים */
 @media (max-width: 1000px) {
-    header h1 {
+    .site-name {
         font-size: 2.7rem;
     }
 
@@ -631,11 +665,15 @@ footer a:hover {
         gap: 12px;
     }
 
+    .brand-link {
+        gap: 12px;
+    }
+
     .logo {
         height: 60px;
     }
 
-    header h1 {
+    .site-name {
         font-size: 2.2rem;
     }
 
@@ -676,7 +714,8 @@ footer a:hover {
         box-shadow: var(--shadow);
     }
 
-    h2 {
+    h2,
+    main h1 {
         font-size: 1.7rem;
     }
 

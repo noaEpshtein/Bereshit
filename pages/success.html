@@ -11,6 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ההזמנה התקבלה | בראשית</title>
 
+    <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש -->
+    <meta name="description" content="אישור קבלת הזמנת ציור מבראשית ומה קורה מעכשיו: סקיצה ראשונה, אישור, ציור סופי ומשלוח.">
+
+    <!-- robots="noindex": מבקש מגוגל לא להציג את הדף הזה בתוצאות החיפוש.
+         זה דף "תודה" שמגיעים אליו רק אחרי שליחת הטופס, ואין טעם שמישהו ינחת עליו מחיפוש -->
+    <meta name="robots" content="noindex">
+
     <!-- favicon: האייקון בלשונית. הדף נמצא בתיקיית pages, ולכן עולים תיקייה אחת למעלה עם ../ -->
     <link rel="icon" href="../favicon.ico">
 
@@ -52,21 +59,27 @@
          class="sticker deco deco-1": אפשר לתת לאלמנט כמה מחלקות, מופרדות ברווח:
          sticker - הצל של המדבקה, deco - מדבקה מפוזרת, deco-1/2/3 - המיקום והזווית של כל אחת.
          alt="": תמונות קישוט בלבד, ולכן קורא מסך ידלג עליהן -->
-    <img src="../assets/images/stickers/winter-girl.webp" alt="" class="sticker deco deco-1">
-    <img src="../assets/images/stickers/duo.webp" alt="" class="sticker deco deco-2">
-    <img src="../assets/images/stickers/family-girl.webp" alt="" class="sticker deco deco-3">
+    <img src="../assets/images/stickers/winter-girl.webp" alt="" class="sticker deco deco-1" width="193" height="520">
+    <img src="../assets/images/stickers/duo.webp" alt="" class="sticker deco deco-2" width="520" height="267">
+    <img src="../assets/images/stickers/family-girl.webp" alt="" class="sticker deco deco-3" width="123" height="520">
 
     <!-- ===== header: הכותרת הראשית, זהה בכל הדפים =====
          ב-CSS היא flex בשורה: לוגו, שם האתר ותפריט זה לצד זה -->
     <header>
-        <!-- הלוגו הוא קישור לדף הבית, כמו שההנחיות דורשות -->
-        <a href="../index.html"><img src="../assets/images/logo.webp" alt="לוגו בראשית" class="logo"></a>
+        <!-- הלוגו, שם האתר והסלוגן עטופים יחד בקישור אחד לדף הבית (a.brand-link),
+             כך שלחיצה בכל מקום על האזור הזה מובילה לדף הבית.
+             alt="" בלוגו: לקישור כבר יש טקסט (שם האתר והסלוגן), ולכן אין צורך לחזור עליו -->
+        <a href="../index.html" class="brand-link">
+            <img src="../assets/images/logo.webp" alt="" class="logo" width="360" height="333">
 
-        <!-- שם האתר והסלוגן, מקובצים יחד ב-div -->
-        <div class="brand">
-            <h1>בראשית</h1>
-            <p class="slogan">ליצור עולם בדיו</p>
-        </div>
+            <!-- שם האתר והסלוגן, מקובצים יחד ב-div.
+                 שם האתר הוא p ולא h1: ה-h1 של הדף הזה הוא כותרת הדף בתוך main,
+                 כי היא אומרת על מה הדף (גוגל וקוראי מסך נעזרים בה) -->
+            <div class="brand">
+                <p class="site-name">בראשית</p>
+                <p class="slogan">ליצור עולם בדיו</p>
+            </div>
+        </a>
 
         <!-- nav: תפריט הניווט. רשימה (ul) של קישורים (li > a).
              הדפים האחרים נמצאים באותה תיקייה (pages), ולכן מספיק לכתוב את שם הקובץ.
@@ -91,11 +104,11 @@
                  הפרטים שנשלחו מופיעים בשורת הכתובת, אחרי סימן השאלה -->
             <section class="done">
                 <!-- המדבקה "קופצת" פנימה כשהדף נטען: אנימציה pop-in ב-success.css -->
-                <img src="../assets/images/stickers/reading-girl.webp" alt="" class="sticker done-sticker">
-                <h2>ההזמנה התקבלה בהצלחה!</h2>
+                <img src="../assets/images/stickers/reading-girl.webp" alt="" class="sticker done-sticker" width="491" height="520">
+                <h1>ההזמנה התקבלה בהצלחה!</h1>
                 <p>תודה! פרטי ההזמנה נקלטו, ונחזור אליכם תוך שלושה ימי עבודה עם סקיצה ראשונה והצעת מחיר.</p>
 
-                <h3>מה קורה עכשיו?</h3>
+                <h2>מה קורה עכשיו?</h2>
                 <!-- ol: רשימה ממוספרת (ordered list), כי לשלבים יש סדר.
                      ב-CSS המספרים הרגילים מוסתרים, ובמקומם מופיעים מספרים בעיגולים צבעוניים (counter) -->
                 <ol class="steps">
@@ -111,9 +124,9 @@
     </div>
 
     <!-- ===== footer: הכותרת התחתונה, זהה בכל הדפים =====
-         &copy; מציג את הסימן ©. זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
+         הסימן © כתוב ישירות (הקובץ ב-UTF-8). זכויות שמורות + קישור לדף האודות, כמו בהנחיות -->
     <footer>
-        <p>&copy; כל הזכויות שמורות | <a href="about.html">אודות</a></p>
+        <p>© כל הזכויות שמורות | נעה אפשטיין | <a href="about.html">אודות</a></p>
     </footer>
 </body>
 </html>

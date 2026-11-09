@@ -10,11 +10,13 @@
     margin-top: 25px;
 }
 
-/* כל חלק תופס חצי שורה: 50% פחות חצי מהרווח (30px) שבין שני החלקים.
+/* .order-form > fieldset - רק fieldset שהוא ילד ישיר של הטופס (ארבעת החלקים הגדולים),
+   ולא ה-fieldset הפנימיים של קבוצות הרדיו (סגנון, פלטה, גודל), שמעוצבים בנפרד (.group).
+   כל חלק תופס חצי שורה: 50% פחות חצי מהרווח (30px) שבין שני החלקים.
    calc() מחשב: חצי מהרוחב פחות 15 פיקסלים, כך ששני חלקים + רווח = בדיוק שורה אחת.
    flex: 1 1 ... - מותר לגדול ולהתכווץ מהרוחב הזה.
    שני חלקים באותה שורה נמתחים לאותו גובה (ברירת המחדל של flex) */
-.order-form fieldset {
+.order-form > fieldset {
     flex: 1 1 calc(50% - 15px);
     min-width: 0;           /* בלי זה fieldset לא מסכים להיות צר מהתוכן שלו */
     padding: 18px 22px 22px;
@@ -26,10 +28,10 @@
 /* כל חלק בצבע פסטל אחר בכותרת — סלקטור nth-of-type.
    :nth-of-type(2) - ה-fieldset השני מבין ה-fieldset (סופר רק אלמנטים מאותו סוג,
    בשונה מ-nth-child שסופר את כל האחים) */
-.order-form fieldset:nth-of-type(1) legend { background-color: var(--yellow); }
-.order-form fieldset:nth-of-type(2) legend { background-color: var(--mint); }
-.order-form fieldset:nth-of-type(3) legend { background-color: var(--blue); }
-.order-form fieldset:nth-of-type(4) legend { background-color: var(--lavender); }
+.order-form > fieldset:nth-of-type(1) > legend { background-color: var(--yellow); }
+.order-form > fieldset:nth-of-type(2) > legend { background-color: var(--mint); }
+.order-form > fieldset:nth-of-type(3) > legend { background-color: var(--blue); }
+.order-form > fieldset:nth-of-type(4) > legend { background-color: var(--lavender); }
 
 /* החלק האחרון והכפתורים תופסים את כל הרוחב.
    flex-basis: 100% - הרוחב ההתחלתי הוא כל השורה, ולכן הם בשורה משלהם */
@@ -38,8 +40,8 @@
     flex-basis: 100%;
 }
 
-/* הכותרת של כל חלק (legend) נראית כמו תווית */
-.order-form legend {
+/* הכותרת של כל חלק גדול (legend) נראית כמו תווית */
+.order-form > fieldset > legend {
     padding: 2px 14px;
     font-family: var(--font-hand);
     font-size: 1.2rem;
@@ -53,7 +55,21 @@
     margin-top: 14px;
 }
 
-/* .field > label - label שהוא ילד ישיר של .field (הכיתוב מעל השדה), וגם כותרות הקבוצות.
+/* fieldset פנימי של קבוצת רדיו: בלי מסגרת ובלי ריווח פנימי,
+   כך שהוא נראה בדיוק כמו שדה רגיל (div.field), רק עם המשמעות של "קבוצה".
+   min-width: 0 - כמו בחלקים הגדולים, כדי שלא יתעקש להיות רחב כמו התוכן שלו */
+.group {
+    border: none;
+    padding: 0;
+    min-width: 0;
+}
+
+/* legend של קבוצה: בלי הריווח שהדפדפן מוסיף ל-legend כברירת מחדל */
+.group > legend {
+    padding: 0;
+}
+
+/* .field > label - label שהוא ילד ישיר של .field (הכיתוב מעל השדה), וגם כותרות הקבוצות (legend.field-title).
    display: block - הכיתוב בשורה משלו, והשדה מתחתיו */
 .field > label,
 .field-title {
@@ -280,11 +296,8 @@
         gap: 22px;
     }
 
-    .order-form fieldset {
+    .order-form > fieldset {
         flex-basis: 100%;   /* בטלפון: כל חלק בשורה משלו */
-    }
-
-    .order-form fieldset {
         padding: 14px 14px 18px;
     }
 }

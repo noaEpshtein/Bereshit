@@ -19,10 +19,11 @@
     font-size: 1.1rem;
 }
 
-/* משפט מודגש בסגנון "ציטוט" בכתב יד.
-   .intro blockquote - רק blockquote שנמצא בתוך .intro */
-.intro blockquote {
-    margin: 20px 0;          /* למעלה ולמטה 20, בצדדים 0 (מבטל את ההזחה של ציטוט) */
+/* המשפט המרכזי, מעוצב כמו פתק בכתב יד.
+   .intro .highlight - רק אלמנט עם class="highlight" שנמצא בתוך .intro */
+.intro .highlight {
+    max-width: none;         /* מבטל את הגבלת הרוחב של p (65ch), כדי שהפתק יתפוס את כל השורה */
+    margin: 20px 0;          /* למעלה ולמטה 20, בצדדים 0 */
     padding: 12px 20px;
     font-family: var(--font-hand);
     font-size: 1.4rem;
@@ -65,14 +66,25 @@
 .what-list li:nth-child(3) { background-color: var(--blue);     rotate: -0.5deg; }
 .what-list li:nth-child(4) { background-color: var(--lavender); rotate: 1.5deg; }
 
-/* כותרת הפתק (strong). display: block שם אותה בשורה משלה, מעל הטקסט */
-.what-list strong {
-    display: block;
-    font-family: var(--font-hand);
+/* כותרת הפתק (h3). הגופן מגיע מהכלל המשותף h1, h2, h3 ב-style.css */
+.what-list h3 {
     font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.75;
+    margin-bottom: 0;
+}
+
+/* הטקסט בפתק: בלי רווח מתחת (הפתק עצמו נותן ריווח) */
+.what-list p {
+    margin-bottom: 0;
 }
 
 /* ----- פרטי קשר ----- */
+/* address מוצג בדפדפן בכתב נטוי כברירת מחדל. font-style: normal מחזיר כתב רגיל */
+address {
+    font-style: normal;
+}
+
 /* שלושת הקישורים (מייל, טלפון, טופס) בשורה, עם גלישה */
 .contact-list {
     list-style: none;

@@ -22,8 +22,10 @@ main.home {
     margin: 0 auto;
 }
 
-/* רווח בין חלק לחלק (section שבא אחרי section) */
-.home > section + section {
+/* רווח בין חלק לחלק (section שבא אחרי section).
+   .home > .hero-video + section - ה-section הראשון שבא אחרי הסרטון (שהוא figure, לא section) */
+.home > section + section,
+.home > .hero-video + section {
     margin-top: 70px;
 }
 
@@ -38,13 +40,15 @@ main.home {
 }
 
 /* ----- 1. הסרטון שפותח את הדף: לכל רוחב המסך ולכל הגובה שמתחת לכותרת ----- */
-/* width: 100vw - כל רוחב המסך (vw = אחוז מרוחב המסך).
+/* ב-HTML הסרטון עטוף ב-figure (עם כיתוב figcaption).
+   width: 100vw - כל רוחב המסך (vw = אחוז מרוחב המסך).
    calc() - חישוב בתוך CSS. 50% - 50vw זה מספר שלילי, שמושך את הסרטון ימינה
    עד קצה המסך, למרות שהוא בתוך main שיש לו ריווח בצדדים */
 .home > .hero-video {
     max-width: none;
     width: 100vw;
     margin-right: calc(50% - 50vw);   /* "בורח" מהריווח של main אל קצוות המסך */
+    margin-left: auto;
     margin-top: -20px;
     background-color: #fdfdfb;        /* אותו צבע כמו רקע הסרטון — המסגרת נעלמת */
     border-bottom: var(--line);
@@ -55,6 +59,14 @@ main.home {
     width: 100%;
     height: calc(100vh - 125px);      /* כל המסך פחות גובה הכותרת */
     object-fit: contain;              /* כל הציור נראה, בלי חיתוך */
+}
+
+/* הכיתוב מתחת לסרטון: קטן, במרכז, בכתב יד */
+.hero-video figcaption {
+    padding: 8px 5% 12px;
+    text-align: center;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
 }
 
 /* ----- 2. ברוכים הבאים ----- */
@@ -100,8 +112,15 @@ main.home {
     box-shadow: 9px 11px 0 var(--ink);
 }
 
-.card h3 {
+/* כותרת הכרטיס היא h2 (חלק עצמאי בדף), אבל נראית כמו קודם:
+   אותו גודל, ובלי הקו הקצר ש-h2 מקבל ב-style.css (display: none מסתיר את ה-::after) */
+.card h2 {
     font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.home .card h2::after {
+    display: none;
 }
 
 /* margin: 18px auto - רווח למעלה ולמטה, ומירכוז לרוחב */
@@ -159,8 +178,8 @@ main.home {
 }
 
 /* הנעץ: ברירת המחדל — באמצע הקצה העליון (פתקים ותמונות).
-   במדבקות, המיקום המדויק על הנייר מגיע מהמשתנים --px ו---py שכתובים על כל מדבקה
-   (ב-HTML: style="--px: 57.2%; --py: 6.5%;").
+   במדבקות, המיקום המדויק על הנייר מגיע מהמשתנים --px ו---py,
+   שמוגדרים לכל מדבקה ב-class משלה (pin-reading-girl וכו', מתחת לכלל הזה).
    var(--px, 50%) - ערך גיבוי: אם אין --px (בפתקים), משתמשים ב-50%.
    calc(var(--py, 0%) - 9px) - מעלים את הנעץ בחצי מהגובה שלו, כדי שהמרכז שלו יהיה בנקודה.
    margin-left: -9px - אותו דבר לרוחב: מזיזים חצי נעץ, כדי שיהיה ממורכז על הנקודה.
@@ -179,6 +198,19 @@ main.home {
     box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.35);
     z-index: 2;
 }
+
+/* מיקום הנעץ על כל מדבקה: --px מרחק מהצד השמאלי, --py מרחק מלמעלה (באחוזים מהמדבקה).
+   כל מדבקה בצורה אחרת, ולכן הנקודה שבה "נועצים" אותה שונה */
+.pin-reading-girl   { --px: 57.2%; --py: 6.5%; }
+.pin-bearded-man    { --px: 50.0%; --py: 5.6%; }
+.pin-family-father  { --px: 50.0%; --py: 5.4%; }
+.pin-duo            { --px: 69.4%; --py: 7.9%; }
+.pin-winter-girl    { --px: 63.7%; --py: 6.5%; }
+.pin-eyes-3         { --px: 49.9%; --py: 8.0%; }
+.pin-professor      { --px: 50.7%; --py: 6.0%; }
+.pin-family-mother  { --px: 49.6%; --py: 5.4%; }
+.pin-family-toddler { --px: 50.0%; --py: 6.9%; }
+.pin-books-boy      { --px: 39.3%; --py: 6.9%; }
 
 /* כל פריט בזווית ובצבע נעץ אחר.
    4n+1 = פריטים 1, 5, 9...   4n+2 = 2, 6, 10...   4n+3 = 3, 7, 11...   4n = 4, 8, 12...

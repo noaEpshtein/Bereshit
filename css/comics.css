@@ -4,7 +4,7 @@
 
 /* שם הקומיקס בפס כחול במקום צהוב — כדי להבדיל בין שני סוגי המוצרים.
    אותו "מרקר" כמו ב-style.css: עד 55% מהגובה שקוף, ומשם צבע */
-.product h3 {
+.product h2 {
     background: linear-gradient(transparent 55%, var(--blue) 55%);
 }
 
