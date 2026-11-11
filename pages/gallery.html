@@ -9,7 +9,7 @@
 
     <!-- viewport: בטלפון הדף מוצג ברוחב המסך האמיתי. בלי זה ה-media queries לא יעבדו בטלפון -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>גלריה | בראשית</title>
+    <title>גלריית ציורים ואיורים | בראשית</title>
 
     <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש, מתחת לקישור -->
     <meta name="description" content="גלריית הציורים של בראשית: דיוקנאות, דמויות, סצנות ואיורי פרספקטיבה, בצבע ובשחור-לבן. לחיצה על ציור פותחת אותו בגודל מלא.">
@@ -177,7 +177,7 @@
 
                     <article class="product">
                         <figure>
-                            <a href="#v-8"><img src="../assets/images/gallery/classroom.jpg" alt="בכיתה: סצנה בשחור-לבן – פתיחה בגודל מלא" loading="lazy" width="1400" height="990"></a>
+                            <a href="#v-8"><img src="../assets/images/gallery/classroom.webp" alt="בכיתה: סצנה בשחור-לבן – פתיחה בגודל מלא" loading="lazy" width="1400" height="990"></a>
                         </figure>
                         <h2>בכיתה</h2>
                         <p>סצנה · שחור-לבן</p>
@@ -270,122 +270,123 @@
                  a.lb-prev / a.lb-next - חיצים לציור הקודם / הבא. בגלריה הם עוברים במעגל:
                              מהציור האחרון ממשיכים לראשון.
                  סגירה: הקישור "#_" מצביע על id שלא קיים, ולכן אף חלון לא :target וכולם נעלמים.
-                 aria-label: שם לקישור בלי טקסט, בשביל קוראי מסך -->
+                 aria-label: שם לקישור בלי טקסט, בשביל קוראי מסך
+                 loading="lazy": תמונה בגודל מלא נטענת רק כשפותחים את החלון שלה, ולא כולן כבר בטעינת הדף -->
             <div class="lightbox" id="v-1">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/stage.jpg" alt="על הבמה: סצנה בצבע" width="1222" height="864"><figcaption>על הבמה</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/stage.jpg" alt="על הבמה: סצנה בצבע" width="1222" height="864"><figcaption>על הבמה</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-17" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-2" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-2">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה: דמות בצבע" width="1400" height="990"><figcaption>ילדה וסוכרייה</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה: דמות בצבע" width="1400" height="990"><figcaption>ילדה וסוכרייה</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-1" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-3" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-3">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/street.jpg" alt="רחוב: פרספקטיבה בצבע" width="1400" height="990"><figcaption>רחוב</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/street.jpg" alt="רחוב: פרספקטיבה בצבע" width="1400" height="990"><figcaption>רחוב</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-2" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-4" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-4">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/curly-boy.jpg" alt="ידידי: דיוקן בשחור-לבן" width="990" height="1400"><figcaption>ידידי</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/curly-boy.jpg" alt="ידידי: דיוקן בשחור-לבן" width="990" height="1400"><figcaption>ידידי</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-3" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-5" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-5">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/bar-mitzvah.jpg" alt="אני בן 13: איור בשחור-לבן" width="1400" height="990"><figcaption>אני בן 13</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/bar-mitzvah.jpg" alt="אני בן 13: איור בשחור-לבן" width="1400" height="990"><figcaption>אני בן 13</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-4" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-6" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-6">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/three-point.jpg" alt="שלוש נקודות: פרספקטיבה בצבע" width="1400" height="990"><figcaption>שלוש נקודות</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/three-point.jpg" alt="שלוש נקודות: פרספקטיבה בצבע" width="1400" height="990"><figcaption>שלוש נקודות</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-5" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-7" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-7">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/curly-girl.webp" alt="ילדונת: דמות בצבע" width="595" height="842"><figcaption>ילדונת</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/curly-girl.webp" alt="ילדונת: דמות בצבע" width="595" height="842"><figcaption>ילדונת</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-6" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-8" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-8">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/classroom.jpg" alt="בכיתה: סצנה בשחור-לבן" width="1400" height="990"><figcaption>בכיתה</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/classroom.webp" alt="בכיתה: סצנה בשחור-לבן" width="1400" height="990"><figcaption>בכיתה</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-7" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-9" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-9">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/woman.jpg" alt="אישה: דיוקן בשחור-לבן" width="595" height="842"><figcaption>אישה</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/woman.jpg" alt="אישה: דיוקן בשחור-לבן" width="595" height="842"><figcaption>אישה</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-8" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-10" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-10">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/one-point.jpg" alt="נקודה אחת: פרספקטיבה בצבע" width="1400" height="990"><figcaption>נקודה אחת</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/one-point.jpg" alt="נקודה אחת: פרספקטיבה בצבע" width="1400" height="990"><figcaption>נקודה אחת</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-9" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-11" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-11">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/girl-5.jpg" alt="ילדה בת חמש: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילדה בת חמש</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/girl-5.jpg" alt="ילדה בת חמש: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילדה בת חמש</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-10" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-12" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-12">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/park-sketch.jpg" alt="ברחוב: סצנה בשחור-לבן" width="1400" height="990"><figcaption>ברחוב</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/park-sketch.jpg" alt="ברחוב: סצנה בשחור-לבן" width="1400" height="990"><figcaption>ברחוב</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-11" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-13" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-13">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/boy-12.jpg" alt="ילד בן 12: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילד בן 12</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/boy-12.jpg" alt="ילד בן 12: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילד בן 12</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-12" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-14" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-14">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/winter-girl.jpg" alt="ילדה בחורף: דמות בצבע" width="1400" height="990"><figcaption>ילדה בחורף</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/winter-girl.jpg" alt="ילדה בחורף: דמות בצבע" width="1400" height="990"><figcaption>ילדה בחורף</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-13" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-15" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-15">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/toddler-2.jpg" alt="ילד בן שנתיים: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילד בן שנתיים</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/toddler-2.jpg" alt="ילד בן שנתיים: דיוקן בשחור-לבן" width="595" height="842"><figcaption>ילד בן שנתיים</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-14" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-16" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-16">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/girl-dress.jpg" alt="ילדה בשמלה: דמות בשחור-לבן" width="595" height="842"><figcaption>ילדה בשמלה</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/girl-dress.jpg" alt="ילדה בשמלה: דמות בשחור-לבן" width="595" height="842"><figcaption>ילדה בשמלה</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-15" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-17" class="lb-next" aria-label="הבא"></a>
             </div>
             <div class="lightbox" id="v-17">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/gallery/baby.webp" alt="תינוק: דיוקן בשחור-לבן" width="595" height="842"><figcaption>תינוק</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/gallery/baby.webp" alt="תינוק: דיוקן בשחור-לבן" width="595" height="842"><figcaption>תינוק</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#v-16" class="lb-prev" aria-label="הקודם"></a>
                 <a href="#v-1" class="lb-next" aria-label="הבא"></a>

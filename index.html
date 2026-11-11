@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- הכותרת שמופיעה בלשונית של הדפדפן -->
-    <title>דף הבית | בראשית</title>
+    <title>בראשית | איורים, קומיקסים ומדבקות – נעה אפשטיין</title>
 
     <!-- description: תיאור קצר של הדף. גוגל מציג אותו בתוצאות החיפוש, מתחת לקישור לאתר.
          לכל דף יש תיאור משלו, שמסביר מה יש בדף הזה דווקא -->
@@ -142,17 +142,18 @@
              כל כרטיס הוא קישור (a) אחד גדול, כך שלחיצה בכל מקום בכרטיס מעבירה לדף.
              הכותרות כאן h2 (ולא h3), כי הכרטיסים לא שייכים לחלק "ברוכים הבאים" שמעליהם:
              הם חלק עצמאי בדף, ולכן הכותרת שלהם באותה דרגה כמו "ברוכים הבאים" ו"על הלוח".
-             ב-CSS: section.cards הוא flex בשורה, ובטלפון עובר לעמודה -->
+             ב-CSS: section.cards הוא flex בשורה, ובטלפון עובר לעמודה
+             loading="lazy": התמונות נטענות רק כשמגיעים אליהן בגלילה, כי הן מתחת לסרטון -->
         <section class="cards">
             <a href="pages/comics.html" class="card">
                 <h2>קומיקסים</h2>
-                <img src="assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013">
+                <img loading="lazy" src="assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013">
                 <!-- span: תגית "ריקה" בלי משמעות, רק כדי לעצב את הטקסט הזה בנפרד -->
                 <span>לכל הקומיקסים ←</span>
             </a>
             <a href="pages/gallery.html" class="card">
                 <h2>גלריה</h2>
-                <img src="assets/images/gallery/stage.jpg" alt="על הבמה" width="1222" height="864">
+                <img loading="lazy" src="assets/images/gallery/stage.jpg" alt="על הבמה" width="1222" height="864">
                 <span>לכל הציורים ←</span>
             </a>
         </section>
@@ -171,26 +172,27 @@
              לפתקים אין משתנים, ולכן הנעץ שלהם במקום ברירת המחדל: באמצע הקצה העליון.
              alt במדבקות: כל מדבקה היא התוכן היחיד של קישור, ולכן ה-alt שלה הוא "שם הקישור":
              מה רואים ולאן הקישור מוביל. בלי alt, לקישור לא היה שם בכלל -
-             קורא מסך היה מקריא רק את הכתובת, וגוגל היה רואה קישור בלי טקסט -->
+             קורא מסך היה מקריא רק את הכתובת, וגוגל היה רואה קישור בלי טקסט
+             loading="lazy" בכל התמונות שעל הלוח: הוא בתחתית הדף, ולכן הן נטענות רק כשגוללים אליו -->
         <section class="board-section">
             <h2>על הלוח</h2>
             <div class="corkboard">
                 <a href="pages/gallery.html" class="pinned note">ציורים חדשים עלו לגלריה!</a>
-                <a href="pages/gallery.html" class="pinned pin-reading-girl"><img src="assets/images/stickers/reading-girl.webp" alt="ילדה קוראת – לגלריה" class="sticker" width="491" height="520"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/curly-girl.webp" alt="ילדונת" width="595" height="842"><span>ילדונת</span></a>
-                <a href="pages/comics.html" class="pinned pin-bearded-man"><img src="assets/images/stickers/bearded-man.webp" alt="איש עם זקן – לקומיקסים" class="sticker" width="308" height="484"></a>
-                <a href="pages/gallery.html" class="pinned pin-family-father"><img src="assets/images/stickers/family-father.webp" alt="אבא – לגלריה" class="sticker" width="150" height="520"></a>
-                <a href="pages/gallery.html" class="pinned pin-duo"><img src="assets/images/stickers/duo.webp" alt="שתי דמויות – לגלריה" class="sticker" width="520" height="267"></a>
+                <a href="pages/gallery.html" class="pinned pin-reading-girl"><img loading="lazy" src="assets/images/stickers/reading-girl.webp" alt="ילדה קוראת – לגלריה" class="sticker" width="491" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img loading="lazy" src="assets/images/gallery/curly-girl.webp" alt="ילדונת" width="595" height="842"><span>ילדונת</span></a>
+                <a href="pages/comics.html" class="pinned pin-bearded-man"><img loading="lazy" src="assets/images/stickers/bearded-man.webp" alt="איש עם זקן – לקומיקסים" class="sticker" width="308" height="484"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-father"><img loading="lazy" src="assets/images/stickers/family-father.webp" alt="אבא – לגלריה" class="sticker" width="150" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-duo"><img loading="lazy" src="assets/images/stickers/duo.webp" alt="שתי דמויות – לגלריה" class="sticker" width="520" height="267"></a>
                 <a href="pages/order.html" class="pinned note pink">רוצים ציור משלכם? הזמינו כאן</a>
-                <a href="pages/gallery.html" class="pinned pin-winter-girl"><img src="assets/images/stickers/winter-girl.webp" alt="ילדה עם כובע – לגלריה" class="sticker" width="193" height="520"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/street.jpg" alt="רחוב" width="1400" height="990"><span>רחוב</span></a>
-                <a href="pages/comics.html" class="pinned pin-eyes-3"><img src="assets/images/stickers/eyes-3.webp" alt="זוג עיניים – לקומיקסים" class="sticker" width="369" height="199"></a>
-                <a href="pages/gallery.html" class="pinned pin-professor"><img src="assets/images/stickers/professor.webp" alt="פרופסור עם תיק – לגלריה" class="sticker" width="213" height="520"></a>
-                <a href="pages/gallery.html" class="pinned pin-family-mother"><img src="assets/images/stickers/family-mother.webp" alt="אמא – לגלריה" class="sticker" width="123" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-winter-girl"><img loading="lazy" src="assets/images/stickers/winter-girl.webp" alt="ילדה עם כובע – לגלריה" class="sticker" width="193" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img loading="lazy" src="assets/images/gallery/street.jpg" alt="רחוב" width="1400" height="990"><span>רחוב</span></a>
+                <a href="pages/comics.html" class="pinned pin-eyes-3"><img loading="lazy" src="assets/images/stickers/eyes-3.webp" alt="זוג עיניים – לקומיקסים" class="sticker" width="369" height="199"></a>
+                <a href="pages/gallery.html" class="pinned pin-professor"><img loading="lazy" src="assets/images/stickers/professor.webp" alt="פרופסור עם תיק – לגלריה" class="sticker" width="213" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-mother"><img loading="lazy" src="assets/images/stickers/family-mother.webp" alt="אמא – לגלריה" class="sticker" width="123" height="520"></a>
                 <a href="pages/comics.html" class="pinned note blue">קומיקס חדש: מאחורי הקלעים</a>
-                <a href="pages/gallery.html" class="pinned pin-family-toddler"><img src="assets/images/stickers/family-toddler.webp" alt="פעוטה – לגלריה" class="sticker" width="154" height="520"></a>
-                <a href="pages/gallery.html" class="pinned polaroid"><img src="assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה" width="1400" height="990"><span>ילדה וסוכרייה</span></a>
-                <a href="pages/gallery.html" class="pinned pin-books-boy"><img src="assets/images/stickers/books-boy.webp" alt="ערימת ספרים – לגלריה" class="sticker" width="331" height="520"></a>
+                <a href="pages/gallery.html" class="pinned pin-family-toddler"><img loading="lazy" src="assets/images/stickers/family-toddler.webp" alt="פעוטה – לגלריה" class="sticker" width="154" height="520"></a>
+                <a href="pages/gallery.html" class="pinned polaroid"><img loading="lazy" src="assets/images/gallery/girl-lollipop.jpg" alt="ילדה וסוכרייה" width="1400" height="990"><span>ילדה וסוכרייה</span></a>
+                <a href="pages/gallery.html" class="pinned pin-books-boy"><img loading="lazy" src="assets/images/stickers/books-boy.webp" alt="ערימת ספרים – לגלריה" class="sticker" width="331" height="520"></a>
             </div>
         </section>
 

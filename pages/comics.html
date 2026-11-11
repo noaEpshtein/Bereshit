@@ -9,7 +9,7 @@
 
     <!-- viewport: בטלפון הדף מוצג ברוחב המסך האמיתי. בלי זה ה-media queries לא יעבדו בטלפון -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קומיקסים | בראשית</title>
+    <title>קומיקסים מצוירים | בראשית</title>
 
     <!-- description: תיאור הדף שגוגל מציג בתוצאות החיפוש, מתחת לקישור -->
     <meta name="description" content="קומיקסים קצרים מהחיים שכתבתי וציירתי: קומיקס שבת, המעט שהוא רב, בחדר ההתאוששות ומאחורי הקלעים. לחיצה על קומיקס פותחת אותו לקריאה.">
@@ -150,39 +150,40 @@
                  comic-lb - תוספת מ-comics.css: עמוד קומיקס גבוה, ולכן אפשר לגלול בתוך החלון.
                  תצוגה בתוך האתר: כל חלון מוסתר, ומופיע כשהכתובת מסתיימת ב-#השם שלו (:target ב-CSS).
                  החיצים עוברים רק בין העמודים של אותו קומיקס: בקומיקס של עמוד אחד אין חיצים,
-                 בעמוד הראשון יש רק "הבא" ובעמוד האחרון רק "הקודם" -->
+                 בעמוד הראשון יש רק "הבא" ובעמוד האחרון רק "הקודם"
+                 loading="lazy": עמוד קומיקס נטען רק כשפותחים את החלון שלו, ולא כבר בטעינת הדף -->
             <div class="lightbox comic-lb" id="c-1">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013"><figcaption>קומיקס שבת</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/shabbat-72.webp" alt="קומיקס שבת" width="1800" height="1013"><figcaption>קומיקס שבת</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
             </div>
             <div class="lightbox comic-lb" id="c-2">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 1 מתוך 2</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/daily-1.jpg" alt="המעט שהוא רב — עמוד 1" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 1 מתוך 2</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#c-3" class="lb-next" aria-label="לעמוד הבא"></a>
             </div>
             <div class="lightbox comic-lb" id="c-3">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 2 מתוך 2</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/daily-2.jpg" alt="המעט שהוא רב — עמוד 2" width="1224" height="1800"><figcaption>המעט שהוא רב — עמוד 2 מתוך 2</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#c-2" class="lb-prev" aria-label="לעמוד הקודם"></a>
             </div>
             <div class="lightbox comic-lb" id="c-4">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/comics/recovery-room.jpg" alt="בחדר ההתאוששות" width="1271" height="1800"><figcaption>בחדר ההתאוששות</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/recovery-room.webp" alt="בחדר ההתאוששות" width="1271" height="1800"><figcaption>בחדר ההתאוששות</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
             </div>
             <div class="lightbox comic-lb" id="c-5">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
                 <!-- עמוד 1 של "מאחורי הקלעים" שמור כשני חצאים (top + bottom), שמוצגים זה מתחת לזה -->
-                <figure><img src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1" width="1226" height="900"><img src="../assets/images/comics/behind-scenes-1-bottom.webp" alt="" width="1226" height="900"><figcaption>מאחורי הקלעים — עמוד 1 מתוך 2</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/behind-scenes-1-top.webp" alt="מאחורי הקלעים — עמוד 1" width="1226" height="900"><img loading="lazy" src="../assets/images/comics/behind-scenes-1-bottom.webp" alt="" width="1226" height="900"><figcaption>מאחורי הקלעים — עמוד 1 מתוך 2</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#c-6" class="lb-next" aria-label="לעמוד הבא"></a>
             </div>
             <div class="lightbox comic-lb" id="c-6">
                 <a href="#_" class="lb-bg" aria-label="סגירה"></a>
-                <figure><img src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2" width="1226" height="1800"><figcaption>מאחורי הקלעים — עמוד 2 מתוך 2</figcaption></figure>
+                <figure><img loading="lazy" src="../assets/images/comics/behind-scenes-2.webp" alt="מאחורי הקלעים — עמוד 2" width="1226" height="1800"><figcaption>מאחורי הקלעים — עמוד 2 מתוך 2</figcaption></figure>
                 <a href="#_" class="lb-x" aria-label="סגירה">✕</a>
                 <a href="#c-5" class="lb-prev" aria-label="לעמוד הקודם"></a>
             </div>
