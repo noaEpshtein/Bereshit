@@ -118,8 +118,9 @@
                  autoplay    - מתחיל לבד כשהדף נטען
                  muted       - בלי קול (דפדפנים מאפשרים autoplay רק לסרטון מושתק)
                  loop        - חוזר להתחלה כשהוא נגמר
-                 playsinline - בטלפון מתנגן בתוך הדף ולא פותח מסך מלא -->
-            <video controls autoplay muted loop playsinline>
+                 playsinline - בטלפון מתנגן בתוך הדף ולא פותח מסך מלא
+                 poster      - תמונה שמוצגת מיד, עד שהסרטון נטען (במקום ריבוע ריק) -->
+            <video controls autoplay muted loop playsinline poster="assets/files/process-poster.webp">
                 <!-- source: קובץ הסרטון וסוג הקובץ, כדי שהדפדפן ידע אם הוא יכול לנגן אותו -->
                 <source src="assets/files/process.mp4" type="video/mp4">
                 <!-- הטקסט הזה מוצג רק בדפדפן ישן שלא מכיר את תגית video -->
